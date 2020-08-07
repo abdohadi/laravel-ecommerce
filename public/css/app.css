@@ -37,6 +37,10 @@ img {
   max-width: 100%;
 }
 
+.breadcrumb-separator {
+  margin: 0 6px;
+}
+
 .clearfix::after {
   clear: both;
   content: "";
@@ -637,13 +641,8 @@ footer {
 }
 
 .product-section-image img {
-  opacity: 0;
   transition: opacity 0.1s ease-in-out;
   max-height: 100%;
-}
-
-.product-section-image img.active {
-  opacity: 1;
 }
 
 .product-section-information p {

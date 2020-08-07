@@ -21,7 +21,7 @@
             <div class="top-nav container">
                 <div class="logo">Laravel Ecommerce</div>
                 <ul>
-                    <li><a href="#">Shop</a></li>
+                    <li><a href="/shop">Shop</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#"><i class="fa fa-cart-plus"></i> <span class="cart-count"><span>3</span></span></a></li>
@@ -65,50 +65,17 @@
                 </div> --}}
 
                 <div class="products text-center">
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
-                    <div class="product">
-                        <a href="#"><img src="/img/macbook-pro.png" alt="product"></a>
-                        <a href="#"><div class="product-name">MacBook Pro</div></a>
-                        <div class="product-price">$2499.99</div>
-                    </div>
+                    @foreach ($products as $product)    
+                        <div class="product">
+                            <a href="{{ route('shop.show', $product->slug) }}"><img src="/img/macbook-pro.png" alt="product"></a>
+                            <a href="{{ route('shop.show', $product->slug) }}"><div class="product-name">{{ $product->name }}</div></a>
+                            <div class="product-price">{{ $product->presentPrice() }}</div>
+                        </div>
+                    @endforeach
                 </div> <!-- end products -->
 
                 <div class="text-center button-container">
-                    <a href="#" class="button">View more products</a>
+                    <a href="{{ route('shop.index') }}" class="button">View more products</a>
                 </div>
 
             </div> <!-- end container -->
