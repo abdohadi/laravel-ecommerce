@@ -1,6 +1,6 @@
 .cart-section {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
     grid-gap: 30px;
     margin: 60px auto;
 
@@ -8,45 +8,79 @@
         margin-bottom: 30px;
     }
 
-    .cart-table {
-
-    }
-
     .cart-table-row {
         display: flex;
         justify-content: space-between;
-        border-top: 1px solid $text-color-light;
+        border-top: 1px solid $border-color;
         padding: 14px 0;
 
         &:last-child {
-            border-bottom: 1px solid $text-color-light;
+            border-bottom: 1px solid $border-color;
         }
 
         .cart-table-row-left, .cart-table-row-right {
             display: flex;
-            justify-content: space-between;
+            align-items: center;
         }
 
         .cart-table-row-left {
             width: 50%;
+
+            a {
+                margin-right: 20px;
+            }
         }
 
         .cart-table-row-right {
-            width: 33%;
-            padding-top: 10px;
+            justify-content: space-between;
+            width: 43%;
+
+            .quantity-section {
+                margin-right: -40px;
+            }
+        }
+        
+        .wishlist-table-row-left {
+            width: 55%;
+        }
+
+        .wishlist-table-row-right {
+            width: 39%;
         }
 
         .cart-table-img {
-            max-height: 75px;
+            max-width: 125px;
         }
 
         .cart-table-actions {
-            text-align: right;
-            font-size: 14px;
-        }
+            display: flex;
+            align-items: center;
 
-        .cart-item-details {
-            padding-top: 5px;
+            form button i {
+                font-size: 22px;
+            }
+
+            .move-to-cart-form {
+                margin-left: 70px;
+            }
+
+            .remove-item-form {
+                margin-left: 70px;
+
+                button[type="submit"] {
+                    font-size: 17px !important;
+                    padding: 3px 8px;
+                }
+            }
+
+            .heart-item-form button i {
+                font-size: 27px !important;
+                color: #a1a0a0;
+
+                &:hover {
+                    color: $red;
+                }
+            }
         }
 
         .cart-table-description {
@@ -80,7 +114,7 @@
         .cart-totals-right {
             display: flex;
             justify-content: space-between;
-            width: 35%;
+            width: 30;
             text-align: right;
         }
 
@@ -132,7 +166,6 @@
     }
   }
 }
-
 
 
 

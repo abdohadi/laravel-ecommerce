@@ -18,6 +18,17 @@
     }
 }
 
+.button-icon {
+    font-weight: normal;
+    background: transparent;
+    font-size: 14px !important;
+    padding: 0;
+
+    &:hover {
+        font-weight: 300;
+    }
+}
+
 .button-primary {
     background: $primary;
     color: white !important;
@@ -40,4 +51,32 @@
 
 .button-container {
     margin: 80px 0;
+}
+
+.button-blue {
+    background: $blue-light;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 14px !important;
+    line-height: normal !important;
+
+    &:hover {
+        background: $blue-dark;
+    }
+}
+
+.button-red {
+    background: $red;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-weight: normal;
+    font-size: 14px !important;
+    line-height: normal !important;
+
+    &:hover {
+        background: $red-dark;
+    }
 }

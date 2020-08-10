@@ -6,6 +6,13 @@ html {
     box-sizing: inherit;
 }
 
+* {
+    -webkit-transition: all 0.3s ease-in-out; 
+    -moz-transition: all 0.3s ease-in-out; 
+    -o-transition: all 0.3s ease-in-out; 
+    transition: all 0.3s ease-in-out; 
+}
+
 a {
     text-decoration: none;
     color: $text-color;
@@ -34,8 +41,4 @@ h2 {
 
 img {
     max-width: 100%;
-}
-
-.breadcrumb-separator {
-    margin: 0 6px;
 }

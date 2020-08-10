@@ -13,10 +13,11 @@
     }
 
     .might-like-product {
-        border: 1px solid #979797;
+        border: 1px solid $border-color;
         background: white;
         padding: 30px 0 20px;
         text-align: center;
+        border-radius: 6px;
 
         img {
             width: 70%;

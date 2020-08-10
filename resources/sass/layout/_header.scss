@@ -89,48 +89,37 @@ header.with-background {
             margin-right: 0;
           }
 
-          i {
-            font-size: 35px;
-          }
-
           a {
+            position: relative;
             display: flex;
             align-items: center;
+            color: $white;
 
-            span {
-              margin-left: 4px;
+            &:hover {
+              color: darken($white, 10%);
+            }
+
+            i {
+              font-size: 35px;
+            }
+
+            .cart-count, .wishlist-count {
+              background: $red;
+              color: #eee;
+              border-radius: 50%;
+              font-size: 16px;
+              position: absolute;
+              right: -13px;
+              top: -13px;
+              font-weight: bold;
+              height: 26px;
+              width: 26px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
           }
         }
-
-        a {
-          color: $white;
-          &:hover {
-            color: darken($white, 10%);
-          }
-        }
-
-        .cart-count {
-          display: inline-block;
-          // position: absolute;
-          // right: 0;
-          // top: -22px;
-          // right: -24px;
-          background: $cart-count;
-          color: $text-color;
-          line-height: 0;
-          border-radius: 50%;
-          font-size: 14px;
-
-          span {
-            display: inline-block;
-            padding-top: 50%;
-            padding-bottom: 50%;
-            margin-left:6px;
-            margin-right:6px;
-          }
-        }
-
       }
     }
 

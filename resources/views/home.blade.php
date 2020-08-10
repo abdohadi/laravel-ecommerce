@@ -9,7 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -20,12 +20,7 @@
         <header class="with-background">
             <div class="top-nav container">
                 <div class="logo">Laravel Ecommerce</div>
-                <ul>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#"><i class="fa fa-cart-plus"></i> <span class="cart-count"><span>3</span></span></a></li>
-                </ul>
+                @include('partials.right-nav-list')
             </div> <!-- end top-nav -->
             <div class="hero container">
                 <div class="hero-copy">

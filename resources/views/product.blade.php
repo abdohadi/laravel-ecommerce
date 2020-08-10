@@ -31,7 +31,18 @@
 
             <p>&nbsp;</p>
 
-            <a href="#" class="button">Add to Cart</a>
+            @if ($isAlreadyInCart)
+                <div class="already-in-cart">Item is already in Cart</div>
+            @else 
+                <form action="{{ route('cart.store') }}" method="post">
+                    @csrf
+
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    <input type="hidden" name="name" value="{{ $product->name }}">
+                    <input type="hidden" name="price" value="{{ $product->price }}">
+                    <button class="button button-plain" type="submit">Add to Cart</button>
+                </form>
+            @endif
         </div>
     </div> <!-- end product-section -->
 

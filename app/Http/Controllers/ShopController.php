@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopController extends Controller
 {
@@ -22,17 +23,24 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
-        $mightAlsoLike = Product::where('slug', '!=', $slug)->inRandomOrder()->take(4)->get();
+        $mightAlsoLike = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
+
+        $duplicates = Cart::search(function($cartItem, $rowId) use ($product) {
+            return $cartItem->id == $product->id;
+        });
+
+        $isAlreadyInCart = $duplicates->isNotEmpty() ? true : false;
 
         return view('product', [
             'product' => $product,
-            'mightAlsoLike' => $mightAlsoLike
+            'mightAlsoLike' => $mightAlsoLike,
+            'isAlreadyInCart' => $isAlreadyInCart
         ]);
     }
 }

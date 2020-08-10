@@ -2,12 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Home
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('shop', 'ShopController@index')->name('shop.index');
-Route::get('shop/{product}', 'ShopController@show')->name('shop.show');
+// Shop
+Route::resource('shop', 'ShopController')->only(['index', 'show']);
 
-Route::view('/product', 'product');
-Route::view('/cart', 'cart');
+// Cart
+Route::resource('cart', 'CartController')->only(['index', 'store', 'destroy']);
+
+// Wishlist
+Route::resource('wishlist', 'WishlistController')->only(['index', 'store', 'destroy']);
+
 Route::view('/checkout', 'checkout');
 Route::view('/thankyou', 'thankyou');
