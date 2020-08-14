@@ -24,7 +24,7 @@
         <div>
             @if (count($errors))
                 <ul class="error-msg">
-                    @foreach ($errors as $error)
+                    @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
                 </ul>
@@ -49,16 +49,20 @@
                             </div>
                             <div class="cart-table-row-right">
                                 <div class="quantity-section">
-                                    <select class="quantity">
-                                        <option selected="">1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <form class="quantity-form" action="{{ route('cart.update', $item->model) }}" method="post">
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <input type="hidden" name="row_id" value="{{ $item->rowId }}">
+                                        <input 
+                                            type="number" 
+                                            name="quantity" 
+                                            class="quantity" 
+                                            value="{{ $item->qty }}" min="1" max="{{ $item->model->quantity }}" >
+                                    </form>
                                 </div>
 
-                                <div>{{ $item->model->presentPrice() }}</div>
+                                <div>{{ presentPrice($item->subtotal()) }}</div>
 
                                 <div class="cart-table-actions">
                                     {{-- Add to wishlist form --}}
@@ -131,5 +135,39 @@
 
     @include('partials.might-like')
 
+@endsection
+
+
+@section('extra-js')
+
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+    <script>
+
+        (function() {
+            var quantityInputs = document.querySelectorAll('.quantity');
+            var events = ['change', 'keydown'];
+
+            events.forEach(function(event) {
+                quantityInputs.forEach(function(input) {
+                    input.addEventListener(event, function(e) {
+                        var form = e.target.form;
+
+                        if (! Boolean(form.getElementsByClassName('quantity-submit')[0])) {
+                            var div = document.createElement('div');
+                            div.innerHTML = '<button type="submit" class="button-blue quantity-submit">Save</button>';
+
+                            form.append(div);
+                        }
+                    });
+                });
+            }); 
+        }());
+
+        function showSubmitBtn() {
+            console.log(e);
+        }
+
+    </script>
 
 @endsection

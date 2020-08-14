@@ -37,6 +37,16 @@
 
             .quantity-section {
                 margin-right: -40px;
+
+                input.quantity {
+                    width: 80px;
+                }
+
+                .quantity-submit {
+                    display: block;
+                    margin: auto;
+                    margin-top: 5px;
+                }
             }
         }
         

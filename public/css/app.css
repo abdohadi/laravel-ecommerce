@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 *,
@@ -195,7 +196,6 @@ table {
 
 body {
   font-family: "Roboto", Arial, sans-serif;
-  font-size: 16px;
   font-weight: 300;
   line-height: 1.6;
 }
@@ -270,7 +270,6 @@ h2 {
   border-radius: 0.25rem;
   text-align: center;
   font-size: 18px;
-  font-weight: normal;
 }
 
 .success-msg {
@@ -543,7 +542,7 @@ header.with-background .hero .hero-image {
 }
 
 header.with-background .hero h1 {
-  font-size: 52px;
+  font-size: 4rem;
   margin-top: 50px;
 }
 
@@ -601,7 +600,7 @@ header .top-nav ul li a:hover {
 }
 
 header .top-nav ul li a i {
-  font-size: 35px;
+  font-size: 2rem;
 }
 
 header .top-nav ul li a .cart-count,
@@ -828,6 +827,16 @@ footer {
 
 .cart-section .cart-table-row .cart-table-row-right .quantity-section {
   margin-right: -40px;
+}
+
+.cart-section .cart-table-row .cart-table-row-right .quantity-section input.quantity {
+  width: 80px;
+}
+
+.cart-section .cart-table-row .cart-table-row-right .quantity-section .quantity-submit {
+  display: block;
+  margin: auto;
+  margin-top: 5px;
 }
 
 .cart-section .cart-table-row .wishlist-table-row-left {

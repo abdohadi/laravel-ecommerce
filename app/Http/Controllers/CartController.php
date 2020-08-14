@@ -34,7 +34,7 @@ class CartController extends Controller
         });
 
         if ($duplicates->isNotEmpty()) {
-            return back()->with('success-message', 'Item is already in Cart!');
+            return back()->with('success-message', 'Item is already in Cart successfully!');
         }
 
         // If item is in Wishlist
@@ -47,7 +47,24 @@ class CartController extends Controller
         Cart::instance('default')->add($request->id, $request->name, 1, $request->price)
             ->associate('App\Product');
 
-        return redirect()->route('cart.index')->with('success-message', 'Item was added to Cart');
+        return redirect()->route('cart.index')->with('success-message', 'Item was added to Cart successfully!');
+    }
+
+    /**
+     * Update a resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'quantity' => 'required|integer|between:1,' .$product->quantity
+        ]);
+
+        Cart::instance('default')->update($request->row_id, $request->quantity);
+
+        return back()->with('success-message', 'Quantity was updated successfully!');
     }
 
     /**
@@ -60,6 +77,6 @@ class CartController extends Controller
     {
         Cart::remove($rowId);
 
-        return back()->with('success-message', 'Item was removed from Cart!');
+        return back()->with('success-message', 'Item was removed from Cart successfully!');
     }
 }
