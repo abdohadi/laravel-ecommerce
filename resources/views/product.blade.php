@@ -31,12 +31,15 @@
 
             <p>&nbsp;</p>
 
-            @if ($isAlreadyInCart)
-                <div class="already-in-cart">Item is already in Cart</div>
+            @if ($product->isInCart())
+                <div class="empty">Item is already in Cart</div>
             @else 
                 <form action="{{ route('cart.store') }}" method="post">
                     @csrf
 
+                    @if ($rowId = $product->getCartRowId('wishlist'))
+                        <input type="hidden" name="row_id" value="{{ $rowId }}">
+                    @endif
                     <input type="hidden" name="id" value="{{ $product->id }}">
                     <input type="hidden" name="name" value="{{ $product->name }}">
                     <input type="hidden" name="price" value="{{ $product->price }}">

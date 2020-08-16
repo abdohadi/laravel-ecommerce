@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -15,32 +16,44 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(12)->get();
+        if (request()->category) {
+            $targetCategory = Category::where('slug', request()->category)->firstOrFail();
+            $products = $targetCategory->products();
+            $categoryName = $targetCategory->name;
+            $categories = '';
 
-        return view('shop', ['products' => $products]);
+            if (request()->sort == 'high_low') {
+                $products = $products->orderBy('price', 'desc');
+            } else if (request()->sort == 'low_high') {
+                $products = $products->orderBy('price');
+            } else {
+                $products = $products->inRandomOrder();
+            }
+        } else {
+            $products = Product::where('featured', TRUE)->inRandomOrder();
+            $categories = Category::all();
+            $categoryName = 'Featured';
+        }
+
+        $products = $products->paginate(12);
+
+        return view('shop', compact(['products', 'categories', 'categoryName']));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-        $mightAlsoLike = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
-
-        $duplicates = Cart::search(function($cartItem, $rowId) use ($product) {
-            return $cartItem->id == $product->id;
-        });
-
-        $isAlreadyInCart = $duplicates->isNotEmpty() ? true : false;
+        $product = Product::findOrFail($id);
+        $mightAlsoLike = Product::where('id', '!=', $id)->mightAlsoLike()->get();
 
         return view('product', [
             'product' => $product,
-            'mightAlsoLike' => $mightAlsoLike,
-            'isAlreadyInCart' => $isAlreadyInCart
+            'mightAlsoLike' => $mightAlsoLike
         ]);
     }
 }

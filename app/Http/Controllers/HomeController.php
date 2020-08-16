@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(8)->get();
+        $products = Product::where('featured', TRUE)->inRandomOrder()->take(8)->get();
 
         return view('home', ['products' => $products]);
     }

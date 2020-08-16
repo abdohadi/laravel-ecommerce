@@ -28,17 +28,15 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        // Check if item's already in Cart
-        $duplicates = Cart::search(function($cartItem, $rowId) use ($request) {
-            return $cartItem->id === $request->id;
-        });
+        $product = Product::findOrFail($request->id);
 
-        if ($duplicates->isNotEmpty()) {
-            return back()->with('success-message', 'Item is already in Cart successfully!');
+        // Check if item's already in Cart
+        if ($product->isInCart()) {
+            return back()->with('success-message', 'Item is already in Cart!');
         }
 
         // If item is in Wishlist
-        if ($request->has('row_id')) {
+        if ($request->has('row_id') && $product->isInWishlist()) {
             // Remove it from Wishlist
             Cart::instance('wishlist')->remove($request->row_id);
         }

@@ -14,4 +14,36 @@
     }
 }
 
+.sidebar {
+    h3 {
+        font-size: 1.5rem;
+    }
 
+    .categories-list {
+        margin-left: 15px;
+    }
+
+    .sort-by-links {
+        margin-left: 15px;
+
+        div {
+            position: relative;
+            display: flex;
+            align-items: center;
+            
+            &.active {
+                font-weight: bold;
+                
+                &::after {
+                    position: absolute;
+                    content: '';
+                    height: 7px;
+                    width: 7px;
+                    background: red;
+                    border-radius: 50%;
+                    left: 97px;
+                }
+            }
+        }
+    }
+}

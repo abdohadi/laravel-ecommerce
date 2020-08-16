@@ -3,7 +3,7 @@
         <h2>You might also like...</h2>
         <div class="might-like-grid">
             @foreach ($mightAlsoLike as $product)
-                <a href="{{ route('shop.show', $product->slug) }}" class="might-like-product">
+                <a href="{{ route('shop.show', $product->id) }}" class="might-like-product">
                     <img src="{{ asset('img/macbook-pro.png') }}" alt="product">
                     <div class="might-like-product-name">{{ $product->name }}</div>
                     <div class="might-like-product-price">{{ $product->presentPrice() }}</div>
