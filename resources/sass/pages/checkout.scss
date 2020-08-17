@@ -44,7 +44,11 @@ h1.checkout-heading {
     }
 
     .checkout-table-img {
-      max-height: 60px;
+      width: 28%;
+    }
+
+    .checkout-item-details {
+      width: 59%;
     }
 
     .checkout-table-description {
@@ -73,10 +77,41 @@ h1.checkout-heading {
       text-align: right;
     }
 
+    .checkout-totals-left {
+      .remove-coupon-form {
+        display: inline;
+        margin-left: 20px;
+
+        button {
+          color: $red;
+        }
+      }
+    }
+
     .checkout-totals-total {
       font-weight: bold;
       font-size: 22px;
       line-height: 2.2;
+    }
+  }
+
+  .have-code-container {
+    padding: 16px;
+    width: 85%;
+    margin: auto;
+
+    form {
+      display: flex;
+    }
+
+    input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      width: 30%;
     }
   }
 }

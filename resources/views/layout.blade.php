@@ -27,6 +27,14 @@
 <body class="@yield('body-class', '')">
     @include('partials.nav')
 
+    @if (session()->has('success-message'))
+        <div class="success-session-msg">{{ session()->get('success-message') }}</div>
+    @endif
+
+    @if (session()->has('error-message'))
+        <div class="error-session-msg">{{ session()->get('error-message') }}</div>
+    @endif
+
     @yield('content')
 
     @include('partials.footer')

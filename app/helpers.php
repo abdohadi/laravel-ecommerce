@@ -1,9 +1,9 @@
 <?php 
 
 function presentPrice($price) {
-	return '$' . $price;
-}
+	if (! is_string($price)) {
+    	$price = number_format($price, 2, '.', ',');
+    }
 
-function productImgPath($slug) {
-	return asset('/img/' . $slug);
+	return '$' . $price;
 }

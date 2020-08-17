@@ -62,7 +62,7 @@
                 <div class="products text-center">
                     @foreach ($products as $product)    
                         <div class="product">
-                            <a href="{{ route('shop.show', $product->id) }}"><img src="{{ productImgPath($product->image) }}" alt="product"></a>
+                            <a href="{{ route('shop.show', $product->id) }}"><img src="{{ $product->imgPath() }}" alt="product"></a>
                             <a href="{{ route('shop.show', $product->id) }}"><div class="product-name">{{ $product->name }}</div></a>
                             <div class="product-price">{{ $product->presentPrice() }}</div>
                         </div>

@@ -80,3 +80,17 @@
         background: $red-dark;
     }
 }
+
+.button-black {
+      background: white;
+      border: 1px solid #535353;
+      padding: 8px 0;
+      background: #535353;
+      color: #fff;
+      font-size: 15px !important;
+      font-weight: bold;
+
+      &:hover {
+        background: $text-color;
+      }
+}

@@ -16,14 +16,10 @@
         </div>
     </div> <!-- end breadcrumbs -->
 
-    @if (session()->has('success-message'))
-        <div class="success-msg">{{ session()->get('success-message') }}</div>
-    @endif
-
     <div class="cart-section container">
         <div>
             @if (count($errors))
-                <ul class="error-msg">
+                <ul class="validation-error-msg">
                     @foreach ($errors as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -38,7 +34,7 @@
                         <div class="cart-table-row">
                             <div class="cart-table-row-left wishlist-table-row-left">
                                 <a href="{{ route('shop.show', $item->model->id) }}">
-                                    <img src="/img/macbook-pro.png" alt="item" class="cart-table-img">
+                                    <img src="{{ $item->model->imgPath() }}" alt="item" class="cart-table-img">
                                 </a>
                                 <div class="cart-item-details">
                                     <div class="cart-table-item">

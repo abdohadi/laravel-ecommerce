@@ -13,14 +13,28 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function getPriceAttribute($value)
+    {
+        return round($value, 2);
+    }
+
     public function scopeMightAlsoLike($query)
     {
     	return $query->inRandomOrder()->take(4);
     }
 
-    public function presentPrice()
+    public function presentPrice($price = null)
     {
-    	return '$' . $this->price;
+        // If price is not comming from cart (subtotal)
+        if (! $price) {   
+        	$price = number_format($this->price, 2, '.', ',');
+        }
+
+        return '$' . $price;
+    }
+
+    public function imgPath() {
+        return asset('/img/macbook-pro.png');
     }
 
     public function getCartRowId($instance)

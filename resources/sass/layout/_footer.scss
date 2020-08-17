@@ -5,20 +5,5 @@ footer {
   }
 
   .footer-content {
-    display: flex;
-    justify-content: space-between;
-
-    .heart {
-      color: $heart;
-    }
-
-    ul {
-      display: flex;
-      width: 30%;
-      justify-content: space-between;
-    }
-
-    a {
-      color: $white;
-    }
+    text-align: center;
   }

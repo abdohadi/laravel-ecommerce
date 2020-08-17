@@ -1,5 +1,5 @@
 
-.error-msg {
+.validation-error-msg {
     color: #721c24;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
@@ -10,7 +10,8 @@
     font-size: 18px;
 }
 
-.success-msg {
+.success-session-msg,
+.error-session-msg {
     position: fixed;
     top: 109px;
     right: -1000px;
@@ -21,6 +22,10 @@
     font-weight: normal;
     border-top: 10px solid #4cd137;
     animation: display-msg 5s linear;
+}
+
+.error-session-msg {
+    border-top: 10px solid $red;
 }
 
 @keyframes display-msg {

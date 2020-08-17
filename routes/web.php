@@ -15,5 +15,12 @@ Route::patch('cart/{product}', 'CartController@update')->name('cart.update');
 // Wishlist
 Route::resource('wishlist', 'WishlistController')->only(['index', 'store', 'destroy']);
 
-Route::view('/checkout', 'checkout');
+// Checkout
+Route::resource('checkout', 'CheckoutController')->only(['index', 'store']);
+
+// Coupon
+Route::post('coupon', 'CouponController@store')->name('coupon.store');
+Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
+
+
 Route::view('/thankyou', 'thankyou');
