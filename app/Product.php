@@ -34,7 +34,7 @@ class Product extends Model
     }
 
     public function imgPath() {
-        return asset('/img/macbook-pro.png');
+        return asset('/images/' . $this->image);
     }
 
     public function getCartRowId($instance)

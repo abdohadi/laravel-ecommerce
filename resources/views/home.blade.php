@@ -33,7 +33,7 @@
                 </div> <!-- end hero-copy -->
 
                 <div class="hero-image">
-                    <img src="img/macbook-pro-laravel.png" alt="hero image">
+                    <img src="{{ asset('/images/macbook-pro-laravel.png') }}" alt="hero image">
                 </div> <!-- end hero-image -->
             </div> <!-- end hero -->
         </header>
@@ -85,17 +85,17 @@
 
                 <div class="blog-posts">
                     <div class="blog-post" id="blog1">
-                        <a href="#"><img src="/img/blog1.png" alt="Blog Image"></a>
+                        <a href="#"><img src="{{ asset('/images/blog1.png') }}" alt="Blog Image"></a>
                         <a href="#"><h2 class="blog-title">Blog Post Title 1</h2></a>
                         <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, tenetur numquam ipsam reiciendis.</div>
                     </div>
                     <div class="blog-post" id="blog2">
-                        <a href="#"><img src="/img/blog2.png" alt="Blog Image"></a>
+                        <a href="#"><img src="{{ asset('/images/blog2.png') }}" alt="Blog Image"></a>
                         <a href="#"><h2 class="blog-title">Blog Post Title 2</h2></a>
                         <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, tenetur numquam ipsam reiciendis.</div>
                     </div>
                     <div class="blog-post" id="blog3">
-                        <a href="#"><img src="/img/blog3.png" alt="Blog Image"></a>
+                        <a href="#"><img src="{{ asset('/images/blog3.png') }}" alt="Blog Image"></a>
                         <a href="#"><h2 class="blog-title">Blog Post Title 3</h2></a>
                         <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, tenetur numquam ipsam reiciendis.</div>
                     </div>

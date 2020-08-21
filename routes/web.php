@@ -24,3 +24,7 @@ Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
 
 
 Route::view('/thankyou', 'thankyou');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
