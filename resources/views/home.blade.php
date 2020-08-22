@@ -20,7 +20,9 @@
         <header class="with-background">
             <div class="top-nav container">
                 <div class="logo">Laravel Ecommerce</div>
-                @include('partials.right-nav-list')
+
+                {{-- Main menu --}}
+                {{ menu('main', 'partials.menus.main') }}
             </div> <!-- end top-nav -->
             <div class="hero container">
                 <div class="hero-copy">

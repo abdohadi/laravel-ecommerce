@@ -34,7 +34,7 @@ class Product extends Model
     }
 
     public function imgPath() {
-        return asset('/images/' . $this->image);
+        return $this->image && file_exists('images/' . $this->image) ? asset('images/' . $this->image)  : asset('images/' . 'no-image.jpg') ;
     }
 
     public function getCartRowId($instance)

@@ -84,7 +84,6 @@
 
                     <button type="submit" class="button-primary full-width">Complete Order</button>
 
-
                 </form>
             </div>
 
