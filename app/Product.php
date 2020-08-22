@@ -33,8 +33,11 @@ class Product extends Model
         return '$' . $price;
     }
 
-    public function imgPath() {
-        return $this->image && file_exists('images/' . $this->image) ? asset('images/' . $this->image)  : asset('images/' . 'no-image.jpg') ;
+    public function imgPath() 
+    {
+        $images = json_decode($this->images);
+
+        return count($images) && file_exists('images/' . $images[0]) ? asset('images/' . $images[0])  : asset('images/' . 'no-image.jpg') ;
     }
 
     public function getCartRowId($instance)

@@ -905,6 +905,26 @@ footer {
   max-height: 100%;
 }
 
+.product-section-information .product-section-first-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-section-information .product-section-first-row h2 {
+  font-size: 2.5rem;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button i {
+  font-size: 27px !important;
+  color: #a1a0a0;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button i:hover {
+  color: #f53243;
+}
+
 .product-section-information p {
   margin-bottom: 16px;
 }
@@ -914,13 +934,14 @@ footer {
 }
 
 .product-section-subtitle {
-  font-size: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
   font-weight: bold;
   color: #919191;
 }
 
 .product-section-price {
-  font-size: 38px;
+  font-size: 1.7rem;
   color: #212121;
   margin-bottom: 16px;
 }
