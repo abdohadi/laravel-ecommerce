@@ -35,9 +35,7 @@ class Product extends Model
 
     public function imgPath() 
     {
-        $images = json_decode($this->images);
-
-        return count($images) && file_exists('images/' . $images[0]) ? asset('images/' . $images[0])  : asset('images/' . 'no-image.jpg') ;
+        return asset('images/' . $this->main_image);
     }
 
     public function getCartRowId($instance)
