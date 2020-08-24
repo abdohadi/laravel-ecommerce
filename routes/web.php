@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 // Home
+Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 
 // Shop
@@ -28,3 +29,6 @@ Route::view('/thankyou', 'thankyou');
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Auth::routes();
+

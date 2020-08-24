@@ -8,7 +8,7 @@
         <title>{{ env('APP_NAME') }}</title>
 
         <!-- Fonts -->
-        {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
 
         <!-- Styles -->
@@ -19,18 +19,18 @@
     <body>
         <header class="with-background">
             <div class="top-nav container">
-                <div class="logo">Laravel Ecommerce</div>
+                <div class="logo"><a href="/">Ecommerce</a></div>
 
                 {{-- Main menu --}}
                 {{ menu('main', 'partials.menus.main') }}
             </div> <!-- end top-nav -->
+
             <div class="hero container">
                 <div class="hero-copy">
                     <h1>Laravel Ecommerce Demo</h1>
                     <p>Includes multiple products, categories, a shopping cart and a checkout system with Stripe integration.</p>
                     <div class="hero-buttons">
-                        <a href="#" class="button button-white">Blog Post</a>
-                        <a href="#" class="button button-white">GitHub</a>
+                        <a href="{{ route('shop.index') }}" class="button button-white">Shop Now</a>
                     </div>
                 </div> <!-- end hero-copy -->
 
@@ -106,7 +106,6 @@
         </div> <!-- end blog-section -->
 
         @include('partials.footer')
-
 
     </body>
 </html>

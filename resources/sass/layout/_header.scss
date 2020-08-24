@@ -6,7 +6,7 @@ header.with-background {
     .top-nav {
       display: flex;
       justify-content: space-between;
-      padding: 40px 0;
+      padding: 30px 0;
       letter-spacing: 1.5px;
 
       .logo {
@@ -15,18 +15,12 @@ header.with-background {
       }
 
       ul {
-        // display: flex;
-        // text-transform: uppercase;
-        // justify-content: space-between;
-        // width: 40%;
-
         a {
           color: $white;
           &:hover {
             color: darken($white, 10%);
           }
         }
-
       }
     }
 
@@ -36,6 +30,7 @@ header.with-background {
       grid-gap: $gutter;
       padding-top: 20px;
       padding-bottom: 84px;
+      margin-top: 15px;
 
       .hero-image {
         padding-left: 60px;
@@ -50,8 +45,12 @@ header.with-background {
         margin: 40px 0 68px;
       }
 
-      .button {
-        margin-right: 14px;
+      .hero-buttons {
+        text-align: center;
+        
+        .button {
+          font-weight: normal;
+        }
       }
     }
   }
@@ -74,11 +73,14 @@ header.with-background {
 
       ul {
         display: flex;
-        text-transform: uppercase;
         // justify-content: space-between;
         // width: 40%;
         // padding-top: 8px;
         font-weight: 400;
+
+        &.nav-left {
+          margin-right: auto;
+        }
 
         li {
           margin-right: 38px;
@@ -121,14 +123,5 @@ header.with-background {
           }
         }
       }
-    }
-
-    .top-nav-left {
-      display: flex;
-    }
-
-    .top-nav-right {
-      display: flex;
-      align-items: center;
     }
   }

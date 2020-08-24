@@ -56,7 +56,8 @@
                 <li><a href="#">$2500+</a></li>
             </ul> --}}
         </div> <!-- end sidebar -->
-        <div>
+
+        <div class="products-section-all">
             <h1 class="stylish-heading">{{ $categoryName }}</h1>
 
             <div class="products text-center">

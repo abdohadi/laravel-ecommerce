@@ -13,7 +13,7 @@
         <link href="/img/favicon.ico" rel="SHORTCUT ICON" />
 
         <!-- Fonts -->
-        {{-- <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet"> --}}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat%7CRoboto:300,400,700" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
 
         <!-- Styles -->
@@ -25,20 +25,26 @@
 
 
 <body class="@yield('body-class', '')">
-    @include('partials.nav')
+    <div class="main">
+        @include('partials.nav')
 
-    @if (session()->has('success-message'))
-        <div class="success-session-msg">{{ session()->get('success-message') }}</div>
-    @endif
+        @if (session()->has('success-message'))
+            <div class="success-session-msg">{{ session()->get('success-message') }}</div>
+        @endif
 
-    @if (session()->has('error-message'))
-        <div class="error-session-msg">{{ session()->get('error-message') }}</div>
-    @endif
+        @if (session()->has('error-message'))
+            <div class="error-session-msg">{{ session()->get('error-message') }}</div>
+        @endif
 
-    @yield('content')
+        @yield('content')
+
+    </div>
 
     @include('partials.footer')
+    
 
+    <script src="{{ asset('js/app.js') }}"></script>
+    
     @yield('extra-js')
 
 </body>

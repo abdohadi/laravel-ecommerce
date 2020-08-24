@@ -4,9 +4,9 @@
 @import 'abstracts/variables';
 
 // Base
+@import 'base/reset';
 @import 'base/base';
 @import 'base/helpers';
-@import 'base/reset';
 @import 'base/typography';
 @import 'base/utility';
 
@@ -17,8 +17,11 @@
 @import 'components/sidebar';
 @import 'components/might-like';
 @import 'components/form';
-@import 'components/pagination';
 @import 'components/alerts';
+@import 'components/pagination';
+@import 'components/search';
+@import 'components/tables';
+@import 'components/badge';
 
 // Layout
 @import 'layout/header';
