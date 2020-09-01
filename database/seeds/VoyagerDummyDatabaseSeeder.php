@@ -18,9 +18,9 @@ class VoyagerDummyDatabaseSeeder extends Seeder
     {
         $this->seedersPath = database_path('seeds').'/';
         $this->seed('UsersTableSeeder');
-        $this->seed('PostsTableSeeder');
-        $this->seed('PagesTableSeeder');
-        $this->seed('TranslationsTableSeeder');
+        // $this->seed('PostsTableSeeder');
+        // $this->seed('PagesTableSeeder');
+        // $this->seed('TranslationsTableSeeder');
         $this->seed('PermissionRoleTableSeeder');
     }
 }

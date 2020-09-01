@@ -306,7 +306,7 @@ h2 {
 
 .button {
   border: 1px solid #212121;
-  padding: 12px 40px;
+  padding: 9px 28px;
 }
 
 .button:hover {
@@ -351,8 +351,9 @@ h2 {
 }
 
 .button-plain {
-  border: 1px solid #212121 !important;
+  border: 1px solid #aeacac !important;
   background: transparent;
+  border-radius: 100px;
 }
 
 .button-container {
@@ -456,7 +457,7 @@ form .half-form {
 form button[type=submit] {
   border-style: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.1rem;
   line-height: 1.6;
 }
 
@@ -1227,8 +1228,8 @@ footer {
 
 .product-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 120px;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 70px;
   padding: 100px 0 120px;
 }
 
@@ -1239,7 +1240,7 @@ footer {
   border: 1px solid #e5e5e5;
   padding: 30px;
   text-align: center;
-  height: 400px;
+  height: 300px;
 }
 
 .product-section-images .product-section-main-image img {
@@ -1272,6 +1273,10 @@ footer {
   border: 1px solid #979797;
 }
 
+.product-section-information {
+  padding-right: 50px;
+}
+
 .product-section-information .product-section-first-row {
   display: flex;
   justify-content: space-between;
@@ -1280,7 +1285,7 @@ footer {
 }
 
 .product-section-information .product-section-first-row h2 {
-  font-size: 2.5rem;
+  font-size: 1.7rem;
 }
 
 .product-section-information .product-section-first-row .heart-item-form button i {
@@ -1301,14 +1306,14 @@ footer {
 }
 
 .product-section-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 16px;
   font-weight: bold;
   color: #919191;
 }
 
 .product-section-price {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: #212121;
   margin-bottom: 16px;
 }

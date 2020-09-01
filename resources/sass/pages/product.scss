@@ -1,7 +1,7 @@
 .product-section {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 120px;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 70px;
     padding: 100px 0 120px;
 }
 
@@ -13,7 +13,7 @@
         border: 1px solid $border-color;
         padding: 30px;
         text-align: center;
-        height: 400px;
+        height: 300px;
 
         img {
             opacity: 0;
@@ -48,6 +48,8 @@
 
 
 .product-section-information {
+    padding-right: 50px;
+
     .product-section-first-row {
         display: flex;
         justify-content: space-between;
@@ -55,7 +57,7 @@
         margin-bottom: 20px;
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 1.7rem;
         }
 
         .heart-item-form button i {
@@ -78,14 +80,14 @@
 }
 
 .product-section-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-bottom: 16px;
     font-weight: bold;
     color: $text-color-light;
 }
 
 .product-section-price {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: $text-color;
     margin-bottom: 16px;
 }

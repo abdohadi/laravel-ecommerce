@@ -1,6 +1,6 @@
 .button {
     border: 1px solid $text-color;
-    padding: 12px 40px;
+    padding: 9px 28px;
 
     &:hover {
         color: $white;
@@ -45,8 +45,9 @@
 }
 
 .button-plain {
-    border: 1px solid $text-color !important;
+    border: 1px solid #aeacac !important;
     background: transparent;
+    border-radius: 100px;
 }
 
 .button-container {

@@ -25,7 +25,7 @@
             </div>
 
             @if ($product->images)
-                @if (count($images = json_decode($product->images)) > 1)
+                @if (count($images = json_decode($product->images)) > 0)
                     <div class="product-section-thumbnails">
                         <div class="product-section-thumbnail selected">
                             <img src="{{ $product->imgPath() }}" class="thumbnail" alt="product">
