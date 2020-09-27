@@ -37,7 +37,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         // Validation
-        $request->validate($this->rules());
+        $request->validate($this->rules(), $this->messages());
 
         // Payment details
         $cartProducts = Cart::instance('default')->content();
@@ -85,8 +85,9 @@ class CheckoutController extends Controller
 
     protected function rules()
     {
+        $emailRule = auth()->user() ? 'required|email' : 'required|email|unique:users';
         return [
-            'email' => 'required|email',
+            'email' => $emailRule,
             'phone_number' => 'required',
             'billing_address' => 'required',
             'country' => 'required',
@@ -101,6 +102,13 @@ class CheckoutController extends Controller
             'cc_first_name' => 'required',
             'cc_last_name' => 'required',
             'cc_phone_number' => 'required',
+        ];
+    }
+
+    protected function messages()
+    {
+        return [
+            'email.unique' => 'You already have an account with this email address. Please <a href="'.route('login').'">login</a> to continue.'
         ];
     }
 

@@ -20,6 +20,9 @@ Route::resource('wishlist', 'WishlistController')->only(['index', 'store', 'dest
 Route::resource('checkout', 'CheckoutController')->only(['index', 'store']);
 Route::post('checkout/verify', 'CheckoutController@verify')->name('checkout.verify');
 
+// Login checkout
+Route::name('loginToCheckout')->get('loginToCheckout', 'Auth\LoginController@loginToCheckout');
+
 // Coupon
 Route::post('coupon', 'CouponController@store')->name('coupon.store');
 Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');

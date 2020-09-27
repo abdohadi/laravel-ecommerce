@@ -109,7 +109,7 @@
 
                 <div class="cart-buttons">
                     <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
-                    <a href="{{ route('checkout.index') }}" class="button-primary">Proceed to Checkout</a>
+                    <a href="{{ auth()->user() ? route('checkout.index') : route('loginToCheckout') }}" class="button-primary">Proceed to Checkout</a>
                 </div>
             @else 
                 <div class="empty">No items in Cart!</div>

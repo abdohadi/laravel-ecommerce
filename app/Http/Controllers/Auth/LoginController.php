@@ -39,4 +39,11 @@ class LoginController extends Controller
 
         $this->middleware('guest')->except('logout');
     }
+
+    public function loginToCheckout()
+    {
+        session(['url.intended' => route('checkout.index')]);
+
+        return redirect(route('login'));
+    }
 }

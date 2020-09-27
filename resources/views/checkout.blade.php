@@ -28,23 +28,23 @@
 
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required="">
                     </div>
 
                     <div class="form-group">
                         <label for="phone_number">Phone Number</label>
-                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required="">
                     </div>
 
                     <div class="form-group">
                         <label for="billing_address">Address</label>
-                        <input type="text" class="form-control" id="billing_address" name="billing_address" value="{{ old('billing_address') }}">
+                        <input type="text" class="form-control" id="billing_address" name="billing_address" value="{{ old('billing_address') }}" required="">
                     </div>
 
                     <div class="half-form">
                         <div class="form-group">
                             <label for="country">Country</label>
-                            <select class="form-control" id="country" name="country">
+                            <select class="form-control" id="country" name="country" required="">
                                 <option value="">Select Country...</option>
                                 @foreach (countries() as $country)
                                     <option value="{{ $country['val2'] }}" {{ old('country') == $country['val2'] ? 'selected' : '' }}>{{ $country['val0'] }}</option>
@@ -53,18 +53,18 @@
                         </div>
                         <div class="form-group">
                             <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}">
+                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
 
                     <div class="half-form">
                         <div class="form-group">
                             <label for="state">State</label>
-                            <input type="text" class="form-control" id="state" name="state" value="{{ old('state') }}">
+                            <input type="text" class="form-control" id="state" name="state" value="{{ old('state') }}" required="">
                         </div>
                         <div class="form-group">
                             <label for="postal_code">Postal Code</label>
-                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
 
@@ -74,13 +74,13 @@
 
                     <div class="form-group">
                         <label for="address_shipping">Address</label>
-                        <input type="text" class="form-control" id="address_shipping" name="address_shipping" value="{{ old('address_shipping') }}">
+                        <input type="text" class="form-control" id="address_shipping" name="address_shipping" value="{{ old('address_shipping') }}" required="">
                     </div>
 
                     <div class="half-form">
                         <div class="form-group">
                             <label for="country_shipping">Country</label>
-                            <select class="form-control" id="country_shipping" name="country_shipping">
+                            <select class="form-control" id="country_shipping" name="country_shipping" required="">
                                 <option value="">Select Country...</option>
                                 @foreach (countries() as $country)
                                     <option value="{{ $country['val2'] }}" {{ old('country_shipping') == $country['val2'] ? 'selected' : '' }}>{{ $country['val0'] }}</option>
@@ -89,18 +89,18 @@
                         </div>
                         <div class="form-group">
                             <label for="city_shipping">City</label>
-                            <input type="text" class="form-control" id="city_shipping" name="city_shipping" value="{{ old('city_shipping') }}">
+                            <input type="text" class="form-control" id="city_shipping" name="city_shipping" value="{{ old('city_shipping') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
 
                     <div class="half-form">
                         <div class="form-group">
                             <label for="state_shipping">State</label>
-                            <input type="text" class="form-control" id="state_shipping" name="state_shipping" value="{{ old('state_shipping') }}">
+                            <input type="text" class="form-control" id="state_shipping" name="state_shipping" value="{{ old('state_shipping') }}" required="">
                         </div>
                         <div class="form-group">
                             <label for="postal_code_shipping">Postal Code</label>
-                            <input type="text" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}">
+                            <input type="text" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
 
@@ -111,35 +111,19 @@
                     <div class="half-form">
                         <div class="form-group">
                             <label for="cc_first_name">First Name on Card</label>
-                            <input type="text" class="form-control" id="cc_first_name" name="cc_first_name" value="{{ old('cc_first_name') }}">
+                            <input type="text" class="form-control" id="cc_first_name" name="cc_first_name" value="{{ old('cc_first_name') }}" required="">
                         </div>
                         <div class="form-group">
                             <label for="cc_last_name">Last Name on Card</label>
-                            <input type="text" class="form-control" id="cc_last_name" name="cc_last_name" value="{{ old('cc_last_name') }}">
+                            <input type="text" class="form-control" id="cc_last_name" name="cc_last_name" value="{{ old('cc_last_name') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
 
                     <div class="form-group">
                         <label for="cc_phone_number">Card Phone Number</label>
-                        <input type="text" class="form-control" id="cc_phone_number" name="cc_phone_number" value="{{ old('cc_phone_number') }}">
+                        <input type="text" class="form-control" id="cc_phone_number" name="cc_phone_number" value="{{ old('cc_phone_number') }}" required="">
                     </div>
-
-                    {{-- <div class="form-group">
-                        <label for="cc-number">Credit Card Number</label>
-                        <input type="text" class="form-control" id="cc-number" name="cc-number" value="">
-                    </div>
-
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="expiry">Expiry</label>
-                            <input type="text" class="form-control" id="expiry" name="expiry" placeholder="MM/DD">
-                        </div>
-                        <div class="form-group">
-                            <label for="cvc">CVC Code</label>
-                            <input type="text" class="form-control" id="cvc" name="cvc" value="">
-                        </div>
-                    </div> <!-- end half-form --> --}}
-
+                    
                     <div class="spacer"></div>
 
                     <button type="submit" class="button-primary full-width" id="checkout-submit-btn">Continue</button>
