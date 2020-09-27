@@ -191,9 +191,9 @@
 
                     <div class="checkout-totals-right">
                         {{ presentPrice($subtotal) }} <br>
-                        {{ presentPrice($newTax) }} <br>
+                        {{ presentPrice($tax) }} <br>
                         <div class="hr"></div>
-                        {{ presentPrice($newSubtotal) }} <br>
+                        {{ presentPrice($total) }} <br>
                         @if ($discount)
                             -{{ presentPrice($discount) }} <br>
                         @endif

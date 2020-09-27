@@ -15,18 +15,14 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $subtotal = doubleval(Cart::subtotal(2, '.', ''));
-        $newTax = (config('cart.tax') / 100) * $subtotal;
-        $newSubtotal = $subtotal + $newTax;
-        $discount = session()->get('coupon')['discount'] ?? 0;
-        $newTotal = $newSubtotal - $discount;
+        $newTotal = $this->getNumbers()->get('newTotal');
         $muchPrice = $newTotal > 5000 ? 'The total price of products should be between 0.27 and 5000.00 USD' : null;
 
         return view('checkout')->with([
-            'subtotal' => $subtotal,
-            'newTax' => $newTax,
-            'newSubtotal' => $newSubtotal,
-            'discount' => $discount,
+            'subtotal' => $this->getNumbers()->get('subtotal'),
+            'tax' => $this->getNumbers()->get('tax'),
+            'total' => $this->getNumbers()->get('total'),
+            'discount' => $this->getNumbers()->get('discount'),
             'newTotal' => $newTotal,
             'muchPrice' => $muchPrice
         ]);
@@ -57,7 +53,7 @@ class CheckoutController extends Controller
         // Checkout with Paytabs
         $pt = new Paytabs(config('services.paytabs.merchant_email'), config('services.paytabs.secret_key'));
 
-        $result = $pt->create_pay_page($this->paymentInfo($request, $productsPerTitle, $productsPerQuantity, $unitPrice, $tax, $totalPrice, $discount));
+        $result = $pt->create_pay_page($this->getPaymentInfo($request, $productsPerTitle, $productsPerQuantity, $unitPrice));
 
         if ($result->response_code != 4012) {
             return back()->withErrors('Something went wrong. Please try again!');
@@ -79,6 +75,7 @@ class CheckoutController extends Controller
 
         if ($result->response_code == 100) {
             Cart::instance('default')->destroy();
+            session()->forget('coupon');
 
             return view('thankyou');
         } else {
@@ -107,7 +104,7 @@ class CheckoutController extends Controller
         ];
     }
 
-    protected function paymentInfo(Request $request, $productsPerTitle, $productsPerQuantity, $unitPrice, $tax, $totalPrice, $discount)
+    protected function getPaymentInfo(Request $request, $productsPerTitle, $productsPerQuantity, $unitPrice)
     {
         return array(
             //Customer's Personal Information
@@ -137,9 +134,9 @@ class CheckoutController extends Controller
             "products_per_title" => $productsPerTitle,   //Product title of the product. If multiple products then add “||” separator  ex: "Product1 || Product 2 || Product 4"
             'quantity' => $productsPerQuantity,                                    //Quantity of products. If multiple products then add “||” separator  ex: "1 || 1 || 1"
             'unit_price' => $unitPrice,                                  //Unit price of the product. If multiple products then add “||” separator.
-            "other_charges" => $tax,                                     //Additional charges. e.g.: shipping charges, taxes, VAT, etc.         
-            'amount' => $totalPrice,                                          //Amount of the products and other charges, it should be equal to: amount = (sum of all products’ (unit_price * quantity)) + other_charges
-            'discount'=> $discount,                                                //Discount of the transaction. The Total amount of the invoice will be= amount - discount
+            "other_charges" => $this->getNumbers()->get('tax'),                                     //Additional charges. e.g.: shipping charges, taxes, VAT, etc.         
+            'amount' => $this->getNumbers()->get('total'),                                          //Amount of the products and other charges, it should be equal to: amount = (sum of all products’ (unit_price * quantity)) + other_charges
+            'discount'=> $this->getNumbers()->get('discount'),                                                //Discount of the transaction. The Total amount of the invoice will be= amount - discount
             'currency' => "USD",                                            //Currency of the amount stated. 3 character ISO currency code 
             
             //Invoice Information
@@ -154,5 +151,22 @@ class CheckoutController extends Controller
 
             "paypage_info" => "1"
         );
+    }
+
+    protected function getNumbers()
+    {
+        $subtotal = doubleval(Cart::subtotal(2, '.', ''));
+        $tax = round((config('cart.tax') / 100) * $subtotal, 2);
+        $total = $subtotal + $tax;
+        $discount = session()->get('coupon')['discount'] ?? 0;
+        $newTotal = $total - $discount;
+
+        return collect([
+            "subtotal" => $subtotal,
+            "tax" => $tax,
+            "total" => $total,
+            "discount" => $discount,
+            "newTotal" => $newTotal
+        ]);
     }
 }
