@@ -1611,6 +1611,7 @@ h1.checkout-heading {
   text-align: center;
   justify-content: center;
   flex: 1;
+  margin-top: 200px;
 }
 
 .thank-you-section h1 {

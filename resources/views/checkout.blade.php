@@ -11,60 +11,120 @@
     <div class="container">
 
         <h1 class="checkout-heading stylish-heading">Checkout</h1>
+
+        {{-- Validation Errors --}}
+        @include('partials.errors')
+
+        @if ($muchPrice)
+            <div class="validation-error-msg">{{ $muchPrice }}</div>
+        @endif
+
         <div class="checkout-section">
             <div>
-                <form action="#">
+                <form action="{{ route('checkout.store') }}" method="POST" id="checkout-form">
                     <h2>Billing Details</h2>
+
+                    @csrf
 
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" class="form-control" id="email" name="email" value="">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                     </div>
+
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
                     </div>
+
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="">
+                        <label for="billing_address">Address</label>
+                        <input type="text" class="form-control" id="billing_address" name="billing_address" value="{{ old('billing_address') }}">
                     </div>
 
                     <div class="half-form">
                         <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="">
+                            <label for="country">Country</label>
+                            <select class="form-control" id="country" name="country">
+                                <option value="">Select Country...</option>
+                                @foreach (countries() as $country)
+                                    <option value="{{ $country['val2'] }}" {{ old('country') == $country['val2'] ? 'selected' : '' }}>{{ $country['val0'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="province">Province</label>
-                            <input type="text" class="form-control" id="province" name="province" value="">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}">
                         </div>
                     </div> <!-- end half-form -->
 
                     <div class="half-form">
                         <div class="form-group">
-                            <label for="postalcode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" id="state" name="state" value="{{ old('state') }}">
                         </div>
                         <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="">
+                            <label for="postal_code">Postal Code</label>
+                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ old('postal_code') }}">
                         </div>
                     </div> <!-- end half-form -->
 
                     <div class="spacer"></div>
 
-                    <h2>Payment Details</h2>
+                    <h2>Shipping Details</h2>
 
                     <div class="form-group">
-                        <label for="name_on_card">Name on Card</label>
-                        <input type="text" class="form-control" id="name_on_card" name="name_on_card" value="">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="">
+                        <label for="address_shipping">Address</label>
+                        <input type="text" class="form-control" id="address_shipping" name="address_shipping" value="{{ old('address_shipping') }}">
                     </div>
 
+                    <div class="half-form">
+                        <div class="form-group">
+                            <label for="country_shipping">Country</label>
+                            <select class="form-control" id="country_shipping" name="country_shipping">
+                                <option value="">Select Country...</option>
+                                @foreach (countries() as $country)
+                                    <option value="{{ $country['val2'] }}" {{ old('country_shipping') == $country['val2'] ? 'selected' : '' }}>{{ $country['val0'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="city_shipping">City</label>
+                            <input type="text" class="form-control" id="city_shipping" name="city_shipping" value="{{ old('city_shipping') }}">
+                        </div>
+                    </div> <!-- end half-form -->
+
+                    <div class="half-form">
+                        <div class="form-group">
+                            <label for="state_shipping">State</label>
+                            <input type="text" class="form-control" id="state_shipping" name="state_shipping" value="{{ old('state_shipping') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="postal_code_shipping">Postal Code</label>
+                            <input type="text" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}">
+                        </div>
+                    </div> <!-- end half-form -->
+
+                    <div class="spacer"></div>
+
+                    <h2>Card Details</h2>
+
+                    <div class="half-form">
+                        <div class="form-group">
+                            <label for="cc_first_name">First Name on Card</label>
+                            <input type="text" class="form-control" id="cc_first_name" name="cc_first_name" value="{{ old('cc_first_name') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="cc_last_name">Last Name on Card</label>
+                            <input type="text" class="form-control" id="cc_last_name" name="cc_last_name" value="{{ old('cc_last_name') }}">
+                        </div>
+                    </div> <!-- end half-form -->
+
                     <div class="form-group">
+                        <label for="cc_phone_number">Card Phone Number</label>
+                        <input type="text" class="form-control" id="cc_phone_number" name="cc_phone_number" value="{{ old('cc_phone_number') }}">
+                    </div>
+
+                    {{-- <div class="form-group">
                         <label for="cc-number">Credit Card Number</label>
                         <input type="text" class="form-control" id="cc-number" name="cc-number" value="">
                     </div>
@@ -78,13 +138,13 @@
                             <label for="cvc">CVC Code</label>
                             <input type="text" class="form-control" id="cvc" name="cvc" value="">
                         </div>
-                    </div> <!-- end half-form -->
+                    </div> <!-- end half-form --> --}}
 
                     <div class="spacer"></div>
 
-                    <button type="submit" class="button-primary full-width">Complete Order</button>
+                    <button type="submit" class="button-primary full-width" id="checkout-submit-btn">Continue</button>
 
-                </form>
+                </form><!-- end form -->
             </div>
 
             <div class="checkout-table-container">
@@ -113,6 +173,9 @@
                 <div class="checkout-totals">
                     <div class="checkout-totals-left">
                         Subtotal <br>
+                        Tax({{ config('cart.tax') }}%) <br>
+                        <div class="hr"></div>
+                        New Subtotal <br>
                         @if ($discount)
                             Discount ({{ $discount }}) 
                             <form class="remove-coupon-form" action="{{ route('coupon.destroy') }}" method="post">
@@ -123,20 +186,17 @@
                             </form>
                             <br>
                         @endif
-                        <div class="hr"></div>
-                        New Subtotal <br>
-                        Tax({{ config('cart.tax') }}%) <br>
                         <span class="checkout-totals-total">Total</span>
                     </div>
 
                     <div class="checkout-totals-right">
                         {{ presentPrice($subtotal) }} <br>
+                        {{ presentPrice($newTax) }} <br>
+                        <div class="hr"></div>
+                        {{ presentPrice($newSubtotal) }} <br>
                         @if ($discount)
                             -{{ presentPrice($discount) }} <br>
                         @endif
-                        <div class="hr"></div>
-                        {{ presentPrice($newSubtotal) }} <br>
-                        {{ presentPrice($newTax) }} <br>
                         <span class="checkout-totals-total">{{ presentPrice($newTotal) }}</span>
                     </div>
                 </div> <!-- end checkout-totals -->
@@ -158,3 +218,14 @@
     </div>
 
 @endsection
+
+
+<script>
+
+    window.onload = function() {
+        document.querySelector('#checkout-form').addEventListener('submit', () => {
+            document.querySelector('#checkout-submit-btn').disabled = true;
+        });
+    }
+
+</script>

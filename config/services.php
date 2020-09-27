@@ -30,4 +30,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'paytabs' => [
+        'paypage_url' => env('PAYTABS_PAYPAGE_URL'),
+        'verify_url' => env('PAYTABS_VERIFY_URL'),
+        'merchant_email' => env('PAYTABS_MERCHANT_EMAIL'),
+        'secret_key' => env('PAYTABS_SECRET_KEY'),
+        'site_url' => env('PAYTABS_SITE_URL'),
+    ],
+
 ];

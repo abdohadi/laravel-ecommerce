@@ -18,13 +18,12 @@ Route::resource('wishlist', 'WishlistController')->only(['index', 'store', 'dest
 
 // Checkout
 Route::resource('checkout', 'CheckoutController')->only(['index', 'store']);
+Route::post('checkout/verify', 'CheckoutController@verify')->name('checkout.verify');
 
 // Coupon
 Route::post('coupon', 'CouponController@store')->name('coupon.store');
 Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
 
-
-Route::view('/thankyou', 'thankyou');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
