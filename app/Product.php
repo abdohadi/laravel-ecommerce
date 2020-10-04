@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Category;
 use Illuminate\Database\Eloquent\Model;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -10,7 +9,12 @@ class Product extends Model
 {
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany('App\Category');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany('App\Order');
     }
 
     public function getPriceAttribute($value)

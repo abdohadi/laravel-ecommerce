@@ -15,9 +15,11 @@
         {{-- Validation Errors --}}
         @include('partials.errors')
 
-        @if ($muchPrice)
-            <div class="validation-error-msg">{{ $muchPrice }}</div>
-        @endif
+        @foreach ($warnings as $warning)
+            @if ($warning)
+                <div class="validation-warning-msg">{!! $warning !!}</div>
+            @endif
+        @endforeach
 
         <div class="checkout-section">
             <div>

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderProduct;
 use App\Paytabs\Paytabs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
@@ -14,9 +17,19 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {//dd($_COOKIE);
+        // Get cart from cookie to session
+        $this->getFromCookieToSession('cart');
+
+        // Delete "cart" cookie
+        setcookie('cart', '', time()-60);
+
+        // Delete "user_id" cookie
+        setcookie('user_id', '', time()-3600);
+
         $newTotal = $this->getNumbers()->get('newTotal');
-        $muchPrice = $newTotal > 5000 ? 'The total price of products should be between 0.27 and 5000.00 USD' : null;
+        $muchPrice = $newTotal > 5000 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
+        $cartIsEmpty = Cart::instance('default')->content()->isEmpty() ? 'Notice! Your cart is empty. Go to <a href="'.route('shop.index').'">shop</a> instead.' : null;
 
         return view('checkout')->with([
             'subtotal' => $this->getNumbers()->get('subtotal'),
@@ -24,7 +37,7 @@ class CheckoutController extends Controller
             'total' => $this->getNumbers()->get('total'),
             'discount' => $this->getNumbers()->get('discount'),
             'newTotal' => $newTotal,
-            'muchPrice' => $muchPrice
+            'warnings' => [$muchPrice, $cartIsEmpty]
         ]);
     }
 
@@ -39,25 +52,43 @@ class CheckoutController extends Controller
         // Validation
         $request->validate($this->rules(), $this->messages());
 
-        // Payment details
-        $cartProducts = Cart::instance('default')->content();
-        $productsPerTitle = implode(' || ', $cartProducts->pluck('name')->toArray());
-        $productsPerQuantity = implode(' || ', $cartProducts->pluck('qty')->toArray());
-        $unitPrice = implode(' || ', $cartProducts->pluck('price')->toArray());
-
-        $subtotal = doubleval(Cart::subtotal(2, '.', ''));
-        $tax = round((config('cart.tax') / 100) * $subtotal, 2);
-        $totalPrice = $subtotal + $tax;
-        $discount = session()->get('coupon')['discount'] ?? 0;
-
         // Checkout with Paytabs
-        $pt = new Paytabs(config('services.paytabs.merchant_email'), config('services.paytabs.secret_key'));
+        $result = $this->createPayPageForPaytbas($request);
 
-        $result = $pt->create_pay_page($this->getPaymentInfo($request, $productsPerTitle, $productsPerQuantity, $unitPrice));
+        // Add cart content to cookie so we can get it back to session if payment failed
+        setcookie('cart', Cart::content()->toJson(), time()+600);
 
+        // Add coupon to cookie
+        if (session()->has('coupon')) {
+            setcookie('coupon', json_encode(session()->get('coupon'), true), time()+600);
+        }
+
+        // If there is an error while creating the pay page
         if ($result->response_code != 4012) {
+            // Insert into orders tables with error
+            $this->addToOrdersTables($request, $result->result);
+
             return back()->withErrors('Something went wrong. Please try again!');
         }
+
+        // Insert into orders tables without error
+        $order = $this->addToOrdersTables($request);
+
+        // Add wishlist to cookies becuase after the redirect, session is gonna be destroyed
+        // We r gonna get it back to session in the "verify" method
+        $wishlist = Cart::instance('wishlist');
+        if ($wishlist->count()) {
+            setcookie('wishlist', $wishlist->content()->toJson(), time()+600);
+        }
+
+        // Same as wishlist, we r gonna add the "user_id" to cookie, if not a guest
+        // And use it later to authenticate them again
+        if (auth()->user()) {
+            setcookie('user_id', auth()->id(), time()+600);
+        }
+
+        // Add "latest_order_id" to cookie, so we can store errors to DB
+        setcookie('latest_order_id', $order->id, time()+600);
 
         return redirect($result->payment_url);
     }
@@ -73,13 +104,49 @@ class CheckoutController extends Controller
 
         $result = $pt->verify_payment($request->payment_reference);
 
+        // Get wishlist from cookie back to session
+        $this->getFromCookieToSession('wishlist');
+
+        // Delete "wishlist" cookie
+        setcookie('wishlist', '', time()-3600);
+
+        // Authenticate user if they were logged in
+        if (! empty($id = $_COOKIE['user_id'] ?? null)) {
+            \Auth::loginUsingId($id);
+        }
+
+        // successful payment
         if ($result->response_code == 100) {
             Cart::instance('default')->destroy();
+
             session()->forget('coupon');
 
-            return view('thankyou');
-        } else {
-            return redirect('checkout')->withErrors($result->result);
+            return redirect(route('thankyou'));
+        }
+
+        // Add error to the order in DB if payment failed
+        Order::find($_COOKIE['latest_order_id'])->update([
+            'error' => $result->result
+        ]);
+
+        setcookie('latest_order_id', '', time()-3600);
+
+        // Get coupon from cookie to session
+        if (! empty($coupon = $_COOKIE['coupon'] ?? null)) {
+            session()->put('coupon', json_decode($coupon, true));
+        }
+
+        return redirect(route('checkout.index'))->withErrors($result->result);
+    }
+
+    protected function getFromCookieToSession($index)
+    {
+        if (! empty($items = $_COOKIE[$index] ?? null)) {
+            foreach (json_decode($items) as $itemId => $item) {
+                Cart::instance($index == 'wishlist' ? 'wishlist' : 'default')
+                    ->add($item->id, $item->name, 1, $item->price)
+                    ->associate('App\Product');
+            }
         }
     }
 
@@ -112,8 +179,21 @@ class CheckoutController extends Controller
         ];
     }
 
-    protected function getPaymentInfo(Request $request, $productsPerTitle, $productsPerQuantity, $unitPrice)
+    protected function createPayPageForPaytbas(Request $request)
     {
+        $pt = new Paytabs(config('services.paytabs.merchant_email'), config('services.paytabs.secret_key'));
+
+        return $pt->create_pay_page($this->getPaymentInfo($request));
+    }
+
+    protected function getPaymentInfo(Request $request)
+    {
+        // Payment details
+        $cartProducts = Cart::instance('default')->content();
+        $productsPerTitle = implode(' || ', $cartProducts->pluck('name')->toArray());
+        $productsPerQuantity = implode(' || ', $cartProducts->pluck('qty')->toArray());
+        $unitPrice = implode(' || ', $cartProducts->pluck('price')->toArray());
+
         return array(
             //Customer's Personal Information
             'cc_first_name' => $request->cc_first_name,
@@ -161,12 +241,57 @@ class CheckoutController extends Controller
         );
     }
 
+    protected function addToOrdersTables(Request $request, $error = null)
+    {
+        $order = Order::create([
+            'user_id' => auth()->user() ? auth()->id() : null,
+            'billing_email' => $request->email,
+            'billing_phone' => $request->phone_number,
+            'billing_address' => $request->billing_address,
+            'billing_country' => $request->country,
+            'billing_city' => $request->city,
+            'billing_state' => $request->state,
+            'billing_postal_code' => $request->postal_code,
+            'shipping_address' => $request->address_shipping,
+            'shipping_country' => $request->country_shipping,
+            'shipping_city' => $request->city_shipping,
+            'shipping_state' => $request->state_shipping,
+            'shipping_postal_code' => $request->postal_code_shipping,
+            'cc_first_name' => $request->cc_first_name,
+            'cc_last_name' => $request->cc_last_name,  
+            'cc_phone' => $request->cc_phone_number,
+            'subtotal' => $this->getNumbers()->get('subtotal'),
+            'tax' => $this->getNumbers()->get('tax'),
+            'discount' => $this->getNumbers()->get('discount'),
+            'discount_code' => $this->getNumbers()->get('discountCode'),
+            'total' => $this->getNumbers()->get('newTotal'),
+            'payment_gateway' => 'paytabs',
+            'error' => $error
+        ]);
+
+        session()->put('latest_order_id', $order->id);
+
+        foreach (Cart::content() as $item) {
+            OrderProduct::create([
+                'order_id' => $order->id,
+                'product_id' => $item->model->id,
+                'quantity' => $item->qty
+            ]);
+        }
+
+        return $order;
+    }
+
+    /**
+    * returns a collection of all numbers related to payment
+    */
     protected function getNumbers()
     {
         $subtotal = doubleval(Cart::subtotal(2, '.', ''));
         $tax = round((config('cart.tax') / 100) * $subtotal, 2);
         $total = $subtotal + $tax;
         $discount = session()->get('coupon')['discount'] ?? 0;
+        $discountCode = session()->get('coupon')['code'] ?? null;
         $newTotal = $total - $discount;
 
         return collect([
@@ -174,6 +299,7 @@ class CheckoutController extends Controller
             "tax" => $tax,
             "total" => $total,
             "discount" => $discount,
+            "discountCode" => $discountCode,
             "newTotal" => $newTotal
         ]);
     }

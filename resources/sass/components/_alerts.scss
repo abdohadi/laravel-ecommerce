@@ -10,6 +10,17 @@
     font-size: 18px;
 }
 
+.validation-warning-msg {
+    border: 1px solid #ffeeba;
+    color: #856404;
+    background-color: #fff3cd;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: .25rem;
+    text-align: center;
+    font-size: 18px;
+}
+
 .success-session-msg,
 .error-session-msg {
     position: fixed;

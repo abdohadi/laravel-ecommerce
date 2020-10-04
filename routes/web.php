@@ -27,6 +27,16 @@ Route::name('loginToCheckout')->get('loginToCheckout', 'Auth\LoginController@log
 Route::post('coupon', 'CouponController@store')->name('coupon.store');
 Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
 
+Route::get('thankyou', function() {
+    // Delete "user_id" cookie
+    setcookie('user_id', '', time()-3600);
+
+	// Delete "cart" cookie
+    setcookie('cart', '', time()-60);
+
+	return view('thankyou');
+})->name('thankyou');
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
