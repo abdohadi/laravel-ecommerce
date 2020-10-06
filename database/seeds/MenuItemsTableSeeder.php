@@ -43,7 +43,7 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-person',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 2,
+                'order'      => 4,
             ])->save();
         }
 

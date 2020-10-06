@@ -202,6 +202,10 @@ class ProductSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
+                'details'      => [
+                    "on" => "Yes",
+                    "off" => "No"
+                ],
                 'order'        => 9,
             ])->save();
         }
@@ -250,7 +254,7 @@ class ProductSeeder extends Seeder
                 'icon_class' => 'voyager-bag',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 4,
+                'order'      => 3,
             ])->save();
         }
 
@@ -319,18 +323,6 @@ class ProductSeeder extends Seeder
 
             $tablet->categories()->attach($tabletsCategory);
         }
-    }
-
-    /**
-     * [post description].
-     *
-     * @param [type] $slug [description]
-     *
-     * @return [type] [description]
-     */
-    protected function findPost($slug)
-    {
-        return Post::firstOrNew(['slug' => $slug]);
     }
 
     /**

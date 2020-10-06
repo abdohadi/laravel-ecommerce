@@ -179,7 +179,7 @@ class CouponSeeder extends Seeder
                 'icon_class' => 'voyager-dollar',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 5,
+                'order'      => 6,
             ])->save();
         }
 

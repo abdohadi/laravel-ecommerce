@@ -134,7 +134,7 @@ class CategorySeeder extends Seeder
                 'icon_class' => 'voyager-categories',
                 'color'      => null,
                 'parent_id'  => null,
-                'order'      => 3,
+                'order'      => 5,
             ])->save();
         }
 
