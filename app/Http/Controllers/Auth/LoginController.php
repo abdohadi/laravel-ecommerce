@@ -42,6 +42,7 @@ class LoginController extends Controller
 
     public function loginToCheckout()
     {
+        session(['login_to_checkout' => 'login_to_checkout']);
         session(['url.intended' => route('checkout.index')]);
 
         return redirect(route('login'));

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\OrderProduct;
 use App\Paytabs\Paytabs;
+use App\Mail\OrderPlaced;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cookie;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -115,8 +117,12 @@ class CheckoutController extends Controller
             \Auth::loginUsingId($id);
         }
 
+        $order = Order::find($_COOKIE['latest_order_id']);
+
         // successful payment
         if ($result->response_code == 100) {
+            Mail::send(new OrderPlaced($order));
+
             Cart::instance('default')->destroy();
 
             session()->forget('coupon');
@@ -125,7 +131,7 @@ class CheckoutController extends Controller
         }
 
         // Add error to the order in DB if payment failed
-        Order::find($_COOKIE['latest_order_id'])->update([
+        $order->update([
             'error' => $result->result
         ]);
 

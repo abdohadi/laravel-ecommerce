@@ -1,5 +1,8 @@
 <?php
 
+use App\Order;
+use App\Mail\OrderPlaced;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -43,4 +46,3 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Auth::routes();
-
