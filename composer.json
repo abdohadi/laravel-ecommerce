@@ -16,6 +16,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",
+        "nicolaslopezj/searchable": "^1.13",
         "tcg/voyager": "^1.4"
     },
     "require-dev": {

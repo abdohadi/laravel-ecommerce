@@ -10,13 +10,17 @@
 
     <div class="breadcrumbs">
         <div class="container">
-            <a href="{{ route('home') }}">Home</a>
-            <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <a href="{{ route('shop.index') }}">Shop</a>
-            @if (request()->has('category'))
+            <div>
+                <a href="{{ route('home') }}">Home</a>
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
-                <span>{{ request()->category }}</span>
-            @endif
+                <a href="{{ route('shop.index') }}">Shop</a>
+                @if (request()->has('category'))
+                    <i class="fa fa-chevron-right breadcrumb-separator"></i>
+                    <span>{{ request()->category }}</span>
+                @endif
+            </div>
+
+            @include('partials.search-form')
         </div>
     </div> <!-- end breadcrumbs -->
 

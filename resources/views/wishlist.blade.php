@@ -10,9 +10,13 @@
 
     <div class="breadcrumbs">
         <div class="container">
-            <a href="{{ route('home') }}">Home</a>
-            <i class="fa fa-chevron-right breadcrumb-separator"></i>
-            <span>Wishlist</span>
+            <div>
+                <a href="{{ route('home') }}">Home</a>
+                <i class="fa fa-chevron-right breadcrumb-separator"></i>
+                <span>Wishlist</span>
+            </div>
+
+            @include('partials.search-form')
         </div>
     </div> <!-- end breadcrumbs -->
 

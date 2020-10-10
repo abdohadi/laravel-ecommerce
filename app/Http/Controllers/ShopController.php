@@ -9,6 +9,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -57,5 +58,16 @@ class ShopController extends Controller
         $wishlistRowId = $wishlistInstance ? $wishlistInstance->rowId : null;
 
         return view('product', compact(['product', 'mightAlsoLike', 'wishlistRowId']));
+    }
+
+    public function search(Request $request)
+    {
+        request()->validate([
+            'query' => 'required|min:3'
+        ]);
+
+        $products = Product::search($request->input('query'))->paginate(10);
+
+        return view('search-results', compact('products'));
     }
 }

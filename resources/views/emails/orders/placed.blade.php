@@ -35,13 +35,13 @@
 
 	<hr style="color: #eee">
 
-	<h3>Items Order</h3>
+	<h3>Items Ordered</h3>
 	<p>
 		@foreach ($order->products as $product)
 			<p style="font-size: 16px">
 				Item Name: {{ $product->name }} <br>
 				Item Price: {{ presentPrice($product->price) }} <br>
-				Item Quantity: {{ $product->quantity }}
+				Item Quantity: {{ $product->pivot->quantity }}
 			</p>
 			<hr style="margin: 0 200px 0 0;color: #ebebeb">
 		@endforeach

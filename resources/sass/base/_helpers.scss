@@ -5,7 +5,7 @@
 }
 
 .container {
-	margin: auto;
+	margin: auto 85px;
 	max-width: 1200px;
 }
 
@@ -16,4 +16,16 @@
 .hr {
 	border-bottom: 1px solid #999;
 	margin: 5px 0;
+}
+
+.is-invalid {
+	border-color: lighten($red, 30%) !important;
+}
+
+.invalid-feedback {
+	color: $red;
+}
+
+.text-center {
+	text-align: center;
 }

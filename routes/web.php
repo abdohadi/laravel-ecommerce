@@ -11,6 +11,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // Shop
 Route::resource('shop', 'ShopController')->only(['index', 'show']);
+Route::get('search', 'ShopController@search')->name('search');
 
 // Cart
 Route::resource('cart', 'CartController')->only(['index', 'store', 'destroy']);
