@@ -14428,7 +14428,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
   var html = document.querySelector('html'); // Stick footer element to the bottom
 
   if (main.offsetHeight < window.innerHeight) {
-    console.log('here');
     html.style.height = "100%";
     main.style.marginBottom = '-' + document.querySelector('footer').offsetHeight + 'px';
     main.style.height = "100%";

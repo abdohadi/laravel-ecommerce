@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use App\SearchableProduct;
 use Illuminate\Http\Request;
+use MeiliSearch\Endpoints\Indexes;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopController extends Controller
@@ -31,7 +33,9 @@ class ShopController extends Controller
                 $products = $products->inRandomOrder();
             }
         } else {
-            $products = Product::where('featured', TRUE)->inRandomOrder();
+            $products = Product::where('quantity', '>', 0)
+                                ->Where('featured', TRUE)
+                                ->inRandomOrder();
             $categories = Category::all();
             $categoryName = 'Featured';
         }
@@ -49,7 +53,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('quantity', '>', 0)->findOrFail($id);
         $mightAlsoLike = Product::where('id', '!=', $id)->mightAlsoLike()->get();
         $wishlistInstance = Cart::instance('wishlist')->search(function($cartItem, $rowId) use ($id) {
             return $cartItem->id === $id;
@@ -65,8 +69,8 @@ class ShopController extends Controller
         request()->validate([
             'query' => 'required|min:3'
         ]);
-
-        $products = Product::search($request->input('query'))->paginate(10);
+        
+        $products = Product::search($request->input('query'))->where('quantity', '>', 0)->paginate(4);
 
         return view('search-results', compact('products'));
     }

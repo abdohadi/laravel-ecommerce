@@ -3,7 +3,7 @@
 @section('title', 'Shopping Cart')
 
 @section('extra-css')
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docs-searchbar.js/dist/cdn/docs-searchbar.min.css" />
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
             <div>
                 <a href="{{ route('home') }}">Home</a>
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
-                <span>Wishlist</span>
+                <span class="visited">Wishlist</span>
             </div>
 
             @include('partials.search-form')
@@ -88,5 +88,8 @@
 
     @include('partials.might-like')
 
+@endsection
 
+@section('extra-js')
+    @include('partials.js.search-section')
 @endsection

@@ -311,18 +311,23 @@ h2 {
 .breadcrumbs {
   background: #F5F5F5;
   border-bottom: 1px solid #CDCDCD;
-  padding: 24px 0;
+  padding: 14px 0;
 }
 
 .breadcrumbs .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 13px;
+}
+
+.breadcrumbs .container .visited {
+  color: #668;
 }
 
 .breadcrumbs .container .breadcrumb-separator {
-  font-size: 14px;
-  color: #545454;
+  font-size: 10px;
+  color: #6e6e6e;
 }
 
 .breadcrumbs .container .breadcrumbs-container {
@@ -1007,6 +1012,44 @@ form button[type=submit] {
   background-color: #343a40;
 }
 
+.docs-searchbar-suggestion--category-header {
+  display: none !important;
+}
+
+.docs-searchbar-suggestion--wrapper {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px !important;
+}
+
+.docs-searchbar-suggestion--wrapper .docs-searchbar-suggestion--subcategory-column {
+  display: none !important;
+}
+
+.docs-searchbar-suggestion--wrapper .docs-searchbar-suggestion--content {
+  width: 100% !important;
+}
+
+.docs-searchbar-suggestion--wrapper .docs-searchbar-suggestion--content:before {
+  width: 0 !important;
+}
+
+.docs-searchbar-suggestion--wrapper .docs-searchbar-suggestion--content .docs-searchbar-suggestion--title {
+  font-weight: normal !important;
+}
+
+.docs-searchbar-suggestion--wrapper .docs-searchbar-suggestion--content .docs-searchbar-suggestion--title h3 {
+  font-size: 1.2rem;
+}
+
+.docs-searchbar-suggestion--wrapper .docs-searchbar-suggestion--content .docs-searchbar-suggestion--title .aa-suggestion-title-separator {
+  display: none;
+}
+
+.docs-searchbar-footer {
+  display: none;
+}
+
 header.with-background {
   background: url("/images/triangles.svg");
   background-size: cover;
@@ -1352,7 +1395,7 @@ footer {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-gap: 70px;
-  padding: 100px 0 120px;
+  padding: 70px 0;
 }
 
 .product-section-images .product-section-main-image {

@@ -3,7 +3,7 @@
 @section('title', $product->name)
 
 @section('extra-css')
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docs-searchbar.js/dist/cdn/docs-searchbar.min.css" />
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
                 <a href="{{ route('shop.index') }}">Shop</a>
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
-                <span>{{ $product->name }}</span>
+                <span class="visited">{{ $product->name }}</span>
             </div>
             
             @include('partials.search-form')
@@ -129,4 +129,7 @@
         }());
 
     </script>
+
+    @include('partials.js.search-section')
 @endsection
+

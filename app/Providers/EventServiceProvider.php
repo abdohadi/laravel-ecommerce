@@ -18,6 +18,8 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\ProductSaved' => ['App\Listeners\MakeProductSearchable'],
+        'App\Events\ProductDeleted' => ['App\Listeners\MakeProductUnsearchable']
     ];
 
     /**

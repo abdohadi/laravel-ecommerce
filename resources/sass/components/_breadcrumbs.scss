@@ -1,16 +1,21 @@
 .breadcrumbs {
     background: $light-gray-background;
     border-bottom: 1px solid $separator-color;
-    padding: 24px 0;
+    padding: 14px 0;
 
     .container {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-size: 13px;
+
+        .visited {
+            color: #668;
+        }
 
         .breadcrumb-separator {
-            font-size: 14px;
-            color: lighten($text-color, 20%);
+            font-size: 10px;
+            color: lighten($text-color, 30%);
         }
 
         .breadcrumbs-container {

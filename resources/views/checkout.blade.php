@@ -206,12 +206,14 @@
 @endsection
 
 
-<script>
+@section('extra-js')
+    <script>
 
-    window.onload = function() {
-        document.querySelector('#checkout-form').addEventListener('submit', () => {
-            document.querySelector('#checkout-submit-btn').disabled = true;
-        });
-    }
+        window.onload = function() {
+            document.querySelector('#checkout-form').addEventListener('submit', () => {
+                document.querySelector('#checkout-submit-btn').disabled = true;
+            });
+        }
 
-</script>
+    </script>
+@endsection

@@ -36,6 +36,8 @@ window.Vue = require('vue');
 
 
 
+
+
 /*******************************
  *	Our custom Javascript
  */
@@ -44,7 +46,7 @@ window.Vue = require('vue');
 	let html = document.querySelector('html');
 
 	// Stick footer element to the bottom
-	if (main.offsetHeight < window.innerHeight) {console.log('here');
+	if (main.offsetHeight < window.innerHeight) {
 		html.style.height = "100%";
 		main.style.marginBottom = '-' + document.querySelector('footer').offsetHeight + 'px';
 		main.style.height = "100%";

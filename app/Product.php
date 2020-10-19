@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Events\ProductSaved;
+use App\Events\ProductDeleted;
 use Illuminate\Database\Eloquent\Model;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -29,7 +31,16 @@ class Product extends Model
             'products.description' => 2,
         ],
     ];
-    
+    protected $dispatchesEvents = [
+        'saved' => ProductSaved::class,         // when a product is created or updated
+        'deleting' => ProductDeleted::class
+    ];
+
+    public function searchableProduct()
+    {
+        return $this->hasOne('App\SearchableProduct');
+    }
+
     public function categories()
     {
         return $this->belongsToMany('App\Category');

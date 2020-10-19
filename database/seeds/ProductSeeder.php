@@ -271,7 +271,7 @@ class ProductSeeder extends Seeder
 
         $laptops = factory(Product::class, 10)->create();
         $i = 1;
-        foreach ($laptops as $laptop) {
+        foreach ($laptops->fresh() as $laptop) {
             $laptop->update([
                 'name' => 'Laptop ' . $i,
             ]);
@@ -282,7 +282,7 @@ class ProductSeeder extends Seeder
 
         $desktops = factory(Product::class, 10)->create();
         $i = 1;
-        foreach ($desktops as $desktop) {
+        foreach ($desktops->fresh() as $desktop) {
             $desktop->update([
                 'name' => 'Desktop ' . $i,
             ]);
@@ -293,7 +293,7 @@ class ProductSeeder extends Seeder
 
         $cameras = factory(Product::class, 10)->create();
         $i = 1;
-        foreach ($cameras as $camera) {
+        foreach ($cameras->fresh() as $camera) {
             $camera->update([
                 'name' => 'Camera ' . $i,
             ]);
@@ -304,7 +304,7 @@ class ProductSeeder extends Seeder
 
         $iphones = factory(Product::class, 10)->create();
         $i = 1;
-        foreach ($iphones as $iphone) {
+        foreach ($iphones->fresh() as $iphone) {
             $iphone->update([
                 'name' => 'Iphone ' . $i,
             ]);
@@ -315,7 +315,7 @@ class ProductSeeder extends Seeder
 
         $tablets = factory(Product::class, 10)->create();
         $i = 1;
-        foreach ($tablets as $tablet) {
+        foreach ($tablets->fresh() as $tablet) {
             $tablet->update([
                 'name' => 'Tablet ' . $i,
             ]);
