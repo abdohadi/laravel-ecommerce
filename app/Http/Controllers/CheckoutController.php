@@ -30,7 +30,7 @@ class CheckoutController extends Controller
         setcookie('user_id', '', time()-3600);
 
         $newTotal = $this->getNumbers()->get('newTotal');
-        $muchPrice = $newTotal > 5000 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
+        $muchPrice = $newTotal > 5000 || $newTotal < 0.27 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
         $cartIsEmpty = Cart::instance('default')->content()->isEmpty() ? 'Notice! Your cart is empty. Go to <a href="'.route('shop.index').'">shop</a> instead.' : null;
 
         return view('checkout')->with([
@@ -298,7 +298,7 @@ class CheckoutController extends Controller
         $total = $subtotal + $tax;
         $discount = session()->get('coupon')['discount'] ?? 0;
         $discountCode = session()->get('coupon')['code'] ?? null;
-        $newTotal = $total - $discount;
+        $newTotal = $total > $discount ? $total - $discount : 0;
 
         return collect([
             "subtotal" => $subtotal,
