@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use App\Product;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -42,7 +43,8 @@ class CartController extends Controller
         }
 
         // Add to Cart
-        Cart::instance('default')->add($request->id, $request->name, 1, round($request->price, 2))
+        Cart::instance('default')
+            ->add($request->id, $request->name, 1, round($request->price, 2))
             ->associate('App\Product');
 
         return redirect()->route('cart.index')->with('success-message', 'Item was added to Cart successfully!');

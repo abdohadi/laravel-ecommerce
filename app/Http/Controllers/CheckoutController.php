@@ -19,7 +19,7 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {//dd($_COOKIE);
+    {
         // Get cart from cookie to session
         $this->getFromCookieToSession('cart');
 
@@ -29,16 +29,18 @@ class CheckoutController extends Controller
         // Delete "user_id" cookie
         setcookie('user_id', '', time()-3600);
 
-        $newTotal = $this->getNumbers()->get('newTotal');
-        $muchPrice = $newTotal > 5000 || $newTotal < 0.27 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
+        $total = $this->getNumbers()->get('total');
+        $muchPrice = $total > 5000 || $total < 0.27 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
         $cartIsEmpty = Cart::instance('default')->content()->isEmpty() ? 'Notice! Your cart is empty. Go to <a href="'.route('shop.index').'">shop</a> instead.' : null;
 
         return view('checkout')->with([
             'subtotal' => $this->getNumbers()->get('subtotal'),
             'tax' => $this->getNumbers()->get('tax'),
-            'total' => $this->getNumbers()->get('total'),
+            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
             'discount' => $this->getNumbers()->get('discount'),
-            'newTotal' => $newTotal,
+            'discountType' => $this->getNumbers()->get('discountType'),
+            'discountPercent' => $this->getNumbers()->get('discountPercent'),
+            'total' => $total,
             'warnings' => [$muchPrice, $cartIsEmpty]
         ]);
     }
@@ -270,7 +272,7 @@ class CheckoutController extends Controller
             'tax' => $this->getNumbers()->get('tax'),
             'discount' => $this->getNumbers()->get('discount'),
             'discount_code' => $this->getNumbers()->get('discountCode'),
-            'total' => $this->getNumbers()->get('newTotal'),
+            'total' => $this->getNumbers()->get('total'),
             'payment_gateway' => 'paytabs',
             'error' => $error
         ]);
@@ -295,18 +297,23 @@ class CheckoutController extends Controller
     {
         $subtotal = doubleval(Cart::subtotal(2, '.', ''));
         $tax = round((config('cart.tax') / 100) * $subtotal, 2);
-        $total = $subtotal + $tax;
-        $discount = session()->get('coupon')['discount'] ?? 0;
-        $discountCode = session()->get('coupon')['code'] ?? null;
-        $newTotal = $total > $discount ? $total - $discount : 0;
+        $newSubtotal = $subtotal + $tax;
+        $couponSession = session()->get('coupon');
+        $discount = $couponSession['discount'] ?? 0;
+        $discountCode = $couponSession['code'] ?? null;
+        $discountType = $couponSession['type'] ?? null;
+        $discountPercent = $couponSession['percent'] ?? null;
+        $total = $newSubtotal > $discount ? $newSubtotal - $discount : 0;
 
         return collect([
             "subtotal" => $subtotal,
             "tax" => $tax,
-            "total" => $total,
+            "newSubtotal" => $newSubtotal,
             "discount" => $discount,
             "discountCode" => $discountCode,
-            "newTotal" => $newTotal
+            "discountType" => $discountType,
+            "discountPercent" => $discountPercent,
+            "total" => $total
         ]);
     }
 }

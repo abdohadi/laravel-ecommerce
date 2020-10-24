@@ -19,7 +19,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'App\Events\ProductSaved' => ['App\Listeners\MakeProductSearchable'],
-        'App\Events\ProductDeleted' => ['App\Listeners\MakeProductUnsearchable']
+        'App\Events\ProductDeleted' => ['App\Listeners\MakeProductUnsearchable'],
+        'cart.added' => ['App\Listeners\UpdateCouponDiscount'],
+        'cart.updated' => ['App\Listeners\UpdateCouponDiscount'],
+        'cart.removed' => ['App\Listeners\UpdateCouponDiscount']
     ];
 
     /**

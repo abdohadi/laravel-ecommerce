@@ -163,7 +163,7 @@
                         <div class="hr"></div>
                         New Subtotal <br>
                         @if ($discount)
-                            Discount ({{ $discount }}) 
+                            Discount ({{ $discountPercent ? $discountPercent.'%' : presentPrice($discount) }}) 
                             <form class="remove-coupon-form" action="{{ route('coupon.destroy') }}" method="post">
                                 @csrf
                                 @method('DELETE')
@@ -179,11 +179,11 @@
                         {{ presentPrice($subtotal) }} <br>
                         {{ presentPrice($tax) }} <br>
                         <div class="hr"></div>
-                        {{ presentPrice($total) }} <br>
+                        {{ presentPrice($newSubtotal) }} <br>
                         @if ($discount)
                             -{{ presentPrice($discount) }} <br>
                         @endif
-                        <span class="checkout-totals-total">{{ presentPrice($newTotal) }}</span>
+                        <span class="checkout-totals-total">{{ presentPrice($total) }}</span>
                     </div>
                 </div> <!-- end checkout-totals -->
 
