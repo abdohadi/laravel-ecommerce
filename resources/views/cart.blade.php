@@ -84,7 +84,7 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="button-red" title="Remove from Cart">x</button>
+                                        <button type="submit" class="button-red" title="Remove from Cart"><span>x</span></button>
                                     </form> 
                                 </div>
                             </div>
@@ -94,19 +94,48 @@
 
                 <div class="cart-totals">
                     <div class="cart-totals-left">
-                        Shipping is free because we’re awesome like that. Also because that’s additional stuff I don’t feel like figuring out :).
+                        @if (! session()->has('coupon'))
+                            <div class="have-coupon-container">
+                                <span class="have-coupon">Have a Coupon?</span>
+                
+                                <form id="coupon-form" action="{{ route('coupon.store') }}" method="post">
+                                    @csrf
+
+                                    <input type="text" name="code">
+                                    <button type="submit" class="button-black">Apply</button>
+                                </form>
+                            </div> <!-- end have-coupon-container -->
+                        @endif
                     </div>
 
                     <div class="cart-totals-right">
-                        <div>
+                        <div class="totals-left">
                             Subtotal <br>
-                            Tax <span class="small-text">({{ config('cart.tax') }}%)</span> <br>
-                            <span class="cart-totals-total">Total</span>
+                            Tax<span class="small-text">({{ config('cart.tax') }}%)</span> <br>
+                            <div class="hr"></div>
+                            New Subtotal <br>
+                            @if ($discount)
+                                Discount<span class="small-text">({{ $discountPercent ? $discountPercent.'%' : presentPrice($discount) }})</span>
+                                <form class="remove-coupon-form" action="{{ route('coupon.destroy') }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="button-icon-red">Remove</button>
+                                </form>
+                                <br>
+                            @endif
+                            <span class="checkout-totals-total">Total</span>
                         </div>
-                        <div class="cart-totals-subtotal">
-                            {{ presentPrice(Cart::subtotal()) }} <br>
-                            {{ presentPrice(Cart::tax()) }} <br>
-                            <span class="cart-totals-total">{{ presentPrice(Cart::total()) }}</span>
+
+                        <div class="totals-right">
+                            {{ presentPrice($subtotal) }} <br>
+                            {{ presentPrice($tax) }} <br>
+                            <div class="hr"></div>
+                            {{ presentPrice($newSubtotal) }} <br>
+                            @if ($discount)
+                                -{{ presentPrice($discount) }} <br>
+                            @endif
+                            <span class="checkout-totals-total">{{ presentPrice($total) }}</span>
                         </div>
                     </div>
                 </div> <!-- end cart-totals -->

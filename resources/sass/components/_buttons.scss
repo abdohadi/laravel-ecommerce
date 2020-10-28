@@ -29,6 +29,17 @@
     }
 }
 
+.button-icon-red {
+    font-weight: normal;
+    background: transparent;
+    font-size: 14px !important;
+    padding: 0;
+    
+    &:hover {
+        color: $red-light;
+    }
+}
+
 .button-primary {
     background: $primary;
     color: white !important;
@@ -83,15 +94,13 @@
 }
 
 .button-black {
-      background: white;
       border: 1px solid #535353;
       padding: 8px 0;
       background: #535353;
       color: #fff;
       font-size: 15px !important;
-      font-weight: bold;
 
       &:hover {
-        background: $text-color;
+        background: $text-color-dark;
       }
 }

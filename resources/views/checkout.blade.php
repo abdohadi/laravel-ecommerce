@@ -186,19 +186,6 @@
                         <span class="checkout-totals-total">{{ presentPrice($total) }}</span>
                     </div>
                 </div> <!-- end checkout-totals -->
-
-                @if (! session()->has('coupon'))
-                    <div class="have-code-container">
-                        <span class="have-code">Have a Coupon?</span>
-        
-                        <form action="{{ route('coupon.store') }}" method="post">
-                            @csrf
-
-                            <input type="text" name="code">
-                            <button type="submit" class="button-black">Apply</button>
-                        </form>
-                    </div> <!-- end have-code-container -->
-                @endif
             </div>
         </div> <!-- end checkout-section -->
     </div>
@@ -209,6 +196,7 @@
 @section('extra-js')
     <script>
 
+        // Make checkout submit button disabled after submitting the form
         window.onload = function() {
             document.querySelector('#checkout-form').addEventListener('submit', () => {
                 document.querySelector('#checkout-submit-btn').disabled = true;

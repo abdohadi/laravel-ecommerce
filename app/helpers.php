@@ -8,6 +8,33 @@ function presentPrice($price) {
 	return '$' . $price;
 }
 
+/**
+* returns a collection of all numbers related to payment
+*/
+function getNumbers()
+{
+    $subtotal = doubleval(Cart::subtotal(2, '.', ''));
+    $tax = round((config('cart.tax') / 100) * $subtotal, 2);
+    $newSubtotal = $subtotal + $tax;
+    $couponSession = session()->get('coupon');
+    $discount = $couponSession['discount'] ?? 0;
+    $discountCode = $couponSession['code'] ?? null;
+    $discountType = $couponSession['type'] ?? null;
+    $discountPercent = $couponSession['percent'] ?? null;
+    $total = $newSubtotal > $discount ? $newSubtotal - $discount : 0;
+
+    return collect([
+        "subtotal" => $subtotal,
+        "tax" => $tax,
+        "newSubtotal" => $newSubtotal,
+        "discount" => $discount,
+        "discountCode" => $discountCode,
+        "discountType" => $discountType,
+        "discountPercent" => $discountPercent,
+        "total" => $total
+    ]);
+}
+
 function countries() {
 	return array(
 	    array("val0"=>"Afghanistan","val2"=>"AFG"),

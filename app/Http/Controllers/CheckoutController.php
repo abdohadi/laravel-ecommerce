@@ -29,17 +29,17 @@ class CheckoutController extends Controller
         // Delete "user_id" cookie
         setcookie('user_id', '', time()-3600);
 
-        $total = $this->getNumbers()->get('total');
+        $total = getNumbers()->get('total');
         $muchPrice = $total > 5000 || $total < 0.27 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
         $cartIsEmpty = Cart::instance('default')->content()->isEmpty() ? 'Notice! Your cart is empty. Go to <a href="'.route('shop.index').'">shop</a> instead.' : null;
 
         return view('checkout')->with([
-            'subtotal' => $this->getNumbers()->get('subtotal'),
-            'tax' => $this->getNumbers()->get('tax'),
-            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
-            'discount' => $this->getNumbers()->get('discount'),
-            'discountType' => $this->getNumbers()->get('discountType'),
-            'discountPercent' => $this->getNumbers()->get('discountPercent'),
+            'subtotal' => getNumbers()->get('subtotal'),
+            'tax' => getNumbers()->get('tax'),
+            'newSubtotal' => getNumbers()->get('newSubtotal'),
+            'discount' => getNumbers()->get('discount'),
+            'discountType' => getNumbers()->get('discountType'),
+            'discountPercent' => getNumbers()->get('discountPercent'),
             'total' => $total,
             'warnings' => [$muchPrice, $cartIsEmpty]
         ]);
@@ -230,9 +230,9 @@ class CheckoutController extends Controller
             "products_per_title" => $productsPerTitle,   //Product title of the product. If multiple products then add “||” separator  ex: "Product1 || Product 2 || Product 4"
             'quantity' => $productsPerQuantity,                                    //Quantity of products. If multiple products then add “||” separator  ex: "1 || 1 || 1"
             'unit_price' => $unitPrice,                                  //Unit price of the product. If multiple products then add “||” separator.
-            "other_charges" => $this->getNumbers()->get('tax'),                                     //Additional charges. e.g.: shipping charges, taxes, VAT, etc.         
-            'amount' => $this->getNumbers()->get('total'),                                          //Amount of the products and other charges, it should be equal to: amount = (sum of all products’ (unit_price * quantity)) + other_charges
-            'discount'=> $this->getNumbers()->get('discount'),                                                //Discount of the transaction. The Total amount of the invoice will be= amount - discount
+            "other_charges" => getNumbers()->get('tax'),                                     //Additional charges. e.g.: shipping charges, taxes, VAT, etc.         
+            'amount' => getNumbers()->get('total'),                                          //Amount of the products and other charges, it should be equal to: amount = (sum of all products’ (unit_price * quantity)) + other_charges
+            'discount'=> getNumbers()->get('discount'),                                                //Discount of the transaction. The Total amount of the invoice will be= amount - discount
             'currency' => "USD",                                            //Currency of the amount stated. 3 character ISO currency code 
             
             //Invoice Information
@@ -268,11 +268,11 @@ class CheckoutController extends Controller
             'cc_first_name' => $request->cc_first_name,
             'cc_last_name' => $request->cc_last_name,  
             'cc_phone' => $request->cc_phone_number,
-            'subtotal' => $this->getNumbers()->get('subtotal'),
-            'tax' => $this->getNumbers()->get('tax'),
-            'discount' => $this->getNumbers()->get('discount'),
-            'discount_code' => $this->getNumbers()->get('discountCode'),
-            'total' => $this->getNumbers()->get('total'),
+            'subtotal' => getNumbers()->get('subtotal'),
+            'tax' => getNumbers()->get('tax'),
+            'discount' => getNumbers()->get('discount'),
+            'discount_code' => getNumbers()->get('discountCode'),
+            'total' => getNumbers()->get('total'),
             'payment_gateway' => 'paytabs',
             'error' => $error
         ]);
@@ -288,32 +288,5 @@ class CheckoutController extends Controller
         }
 
         return $order;
-    }
-
-    /**
-    * returns a collection of all numbers related to payment
-    */
-    protected function getNumbers()
-    {
-        $subtotal = doubleval(Cart::subtotal(2, '.', ''));
-        $tax = round((config('cart.tax') / 100) * $subtotal, 2);
-        $newSubtotal = $subtotal + $tax;
-        $couponSession = session()->get('coupon');
-        $discount = $couponSession['discount'] ?? 0;
-        $discountCode = $couponSession['code'] ?? null;
-        $discountType = $couponSession['type'] ?? null;
-        $discountPercent = $couponSession['percent'] ?? null;
-        $total = $newSubtotal > $discount ? $newSubtotal - $discount : 0;
-
-        return collect([
-            "subtotal" => $subtotal,
-            "tax" => $tax,
-            "newSubtotal" => $newSubtotal,
-            "discount" => $discount,
-            "discountCode" => $discountCode,
-            "discountType" => $discountType,
-            "discountPercent" => $discountPercent,
-            "total" => $total
-        ]);
     }
 }

@@ -119,6 +119,7 @@
 
         .cart-totals-left {
             width: 50%;
+            display: flex;
         }
 
         .cart-totals-right {
@@ -126,6 +127,33 @@
             justify-content: space-between;
             width: 30%;
             text-align: right;
+            font-size: 1.1rem;
+            font-weight: normal;
+            line-height: 2;
+
+            .totals-right {
+              text-align: right;
+            }
+
+            .totals-left {
+              text-align: left;
+
+              .remove-coupon-form {
+                display: inline;
+                margin-left: 9px;
+
+                button {
+                  color: $red;
+                  font-size: 12px !important;
+                }
+              }
+            }
+
+            .checkout-totals-total {
+              font-weight: bold;
+              font-size: 22px;
+              line-height: 2.2;
+            }
         }
 
         .cart-totals-total {
@@ -141,10 +169,35 @@
         margin-bottom: 40px;
     }
 
-    .have-code {
-        display: block;
-        margin: 14px 0;
-        text-align: right;
+    .have-coupon-container {
+        padding: 16px;
+        margin: auto;
+
+        .have-coupon {
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        form {
+            display: flex;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 50px;
+            border: 1px solid #d3d3d3;
+            background: #ffffffd6;
+        }
+
+        button[type="submit"] {
+            width: 65px;
+            border-radius: 50px;
+            font-size: 0.96rem;
+            margin-left: 3px;
+            font-size: .9rem !important
+        }
     }
 }
 
