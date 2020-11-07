@@ -56,16 +56,50 @@
         align-items: center;
         margin-bottom: 20px;
 
-        h2 {
-            font-size: 1.7rem;
+        .product-section-title-badge {
+            display: flex;
+            align-items: center;
+
+            h2 {
+                font-size: 1.7rem;
+                margin-right: 30px;
+            }
         }
 
-        .heart-item-form button i {
-            font-size: 27px !important;
-            color: #a1a0a0;
+        .heart-item-form button {
+            display: flex;
+            align-items: center;
+            color: #b3b2b2;
+            position: relative;
 
-            &:hover {
-                color: $red;
+            &:hover > span {
+                right: 19px;
+                visibility: visible;
+                color: $red-light;
+            }
+
+            &:hover > i {
+                color: $red-light;
+            }
+
+            span {
+                position: absolute;
+                right: 0px;
+                visibility: hidden;
+                transition: right .4s ease, visibility .1s ease;
+                color: #b3b2b2;
+
+                &.add-to-wishlist {
+                    width: 120px;
+                }
+
+                &.remove-from-wishlist {
+                    width: 160px;
+                }
+            }
+
+            i {
+                font-size: 1.9rem !important;
             }
         }
     }
@@ -88,7 +122,19 @@
 
 .product-section-price {
     font-size: 1.5rem;
-    color: $text-color;
+    color: $text-color-dark;
     margin-bottom: 16px;
 }
 
+.add-to-cart-btn {
+    .fa-cart-plus {
+        color: $text-color-light;
+        font-size: 1.4rem;
+    }
+
+    &:hover {
+        .fa-cart-plus {
+            color: $white;
+        }
+    }
+}

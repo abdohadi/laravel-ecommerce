@@ -152,7 +152,7 @@ body {
 }
 
 * {
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 a {
@@ -395,9 +395,10 @@ h2 {
 }
 
 .button-plain {
-  border: 1px solid #aeacac !important;
+  border: 1px solid #b3b3b3 !important;
   background: transparent;
   border-radius: 100px;
+  color: #535353;
 }
 
 .button-container {
@@ -515,6 +516,15 @@ form button[type=submit] {
   width: 100%;
   padding: 12px;
   font-size: 16px;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda !important;
+  border-color: #c3e6cb;
+  padding: 9px 30px;
+  font-size: 1.3rem;
+  border: 1px solid #a7ceb0;
 }
 
 .validation-error-msg {
@@ -1003,7 +1013,7 @@ form button[type=submit] {
 }
 
 .badge-warning {
-  color: #212529;
+  color: #535353;
   background-color: #ffc107;
 }
 
@@ -1459,17 +1469,51 @@ footer {
   margin-bottom: 20px;
 }
 
-.product-section-information .product-section-first-row h2 {
+.product-section-information .product-section-first-row .product-section-title-badge {
+  display: flex;
+  align-items: center;
+}
+
+.product-section-information .product-section-first-row .product-section-title-badge h2 {
   font-size: 1.7rem;
+  margin-right: 30px;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button {
+  display: flex;
+  align-items: center;
+  color: #b3b2b2;
+  position: relative;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button:hover > span {
+  right: 19px;
+  visibility: visible;
+  color: #f95e6c;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button:hover > i {
+  color: #f95e6c;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button span {
+  position: absolute;
+  right: 0px;
+  visibility: hidden;
+  transition: right 0.4s ease, visibility 0.1s ease;
+  color: #b3b2b2;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button span.add-to-wishlist {
+  width: 120px;
+}
+
+.product-section-information .product-section-first-row .heart-item-form button span.remove-from-wishlist {
+  width: 160px;
 }
 
 .product-section-information .product-section-first-row .heart-item-form button i {
-  font-size: 27px !important;
-  color: #a1a0a0;
-}
-
-.product-section-information .product-section-first-row .heart-item-form button i:hover {
-  color: #f53243;
+  font-size: 1.9rem !important;
 }
 
 .product-section-information p {
@@ -1489,8 +1533,17 @@ footer {
 
 .product-section-price {
   font-size: 1.5rem;
-  color: #535353;
+  color: #333;
   margin-bottom: 16px;
+}
+
+.add-to-cart-btn .fa-cart-plus {
+  color: #919191;
+  font-size: 1.4rem;
+}
+
+.add-to-cart-btn:hover .fa-cart-plus {
+  color: #e9e9e9;
 }
 
 .cart-section {

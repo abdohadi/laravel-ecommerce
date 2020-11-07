@@ -95,6 +95,11 @@ class Product extends Model
         return $this->checkCartDuplicates('default');
     }
 
+    public function isAvailable()
+    {
+        return $this->quantity > 0;
+    }
+
     protected function checkCartDuplicates($instance = 'default')
     {
         $duplicates = Cart::instance($instance)->search(function($cartItem, $rowId) {

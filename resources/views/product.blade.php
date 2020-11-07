@@ -47,7 +47,11 @@
 
         <div class="product-section-information">
             <div class="product-section-first-row">
-                <h2 class="product-section-title">{{ $product->name }}</h2>
+                <div class="product-section-title-badge">
+                    <h2 class="product-section-title">{{ $product->name }}</h2>
+
+                    {!! $productLevel !!}
+                </div>
                 
                 @if ($product->isInWishlist())
                     {{-- Remove from wishlist from --}}
@@ -56,7 +60,7 @@
                         @method('DELETE')
 
                         <button type="submit" class="button-icon" title="Remove from Wishlist">
-                            <i class="fas fa-heart solid-heart"></i>
+                            <span class="remove-from-wishlist">Remove from Wishlist</span>&nbsp;<i class="fas fa-heart solid-heart"></i>
                         </button>
                     </form>
                 @else
@@ -69,7 +73,7 @@
                         <input type="hidden" name="name" value="{{ $product->name }}">
                         <input type="hidden" name="price" value="{{ $product->price }}">
                         <button type="submit" class="button-icon" title="Add to Wishlist">
-                            <i class="far fa-heart"></i>
+                            <span class="add-to-wishlist">Add to Wishlist</span>&nbsp;<i class="far fa-heart"></i>
                         </button>
                     </form>
                 @endif
@@ -83,20 +87,22 @@
 
             <p>&nbsp;</p>
 
-            @if ($product->isInCart())
-                <div class="empty">Item is already in Cart</div>
-            @else 
-                <form action="{{ route('cart.store') }}" method="post">
-                    @csrf
+            @if ($product->isAvailable())
+                @if ($product->isInCart())
+                    <div class="alert-success">Item is already in Cart</div>
+                @else 
+                    <form action="{{ route('cart.store') }}" method="post">
+                        @csrf
 
-                    @if ($rowId = $product->getCartRowId('wishlist'))
-                        <input type="hidden" name="row_id" value="{{ $rowId }}">
-                    @endif
-                    <input type="hidden" name="id" value="{{ $product->id }}">
-                    <input type="hidden" name="name" value="{{ $product->name }}">
-                    <input type="hidden" name="price" value="{{ $product->price }}">
-                    <button class="button button-plain" type="submit">Add to Cart</button>
-                </form>
+                        @if ($rowId = $product->getCartRowId('wishlist'))
+                            <input type="hidden" name="row_id" value="{{ $rowId }}">
+                        @endif
+                        <input type="hidden" name="id" value="{{ $product->id }}">
+                        <input type="hidden" name="name" value="{{ $product->name }}">
+                        <input type="hidden" name="price" value="{{ $product->price }}">
+                        <button class="button button-plain add-to-cart-btn" type="submit">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                    </form>
+                @endif
             @endif
         </div>
     </div> <!-- end product-section -->

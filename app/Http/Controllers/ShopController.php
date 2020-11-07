@@ -33,8 +33,7 @@ class ShopController extends Controller
                 $products = $products->inRandomOrder();
             }
         } else {
-            $products = Product::where('quantity', '>', 0)
-                                ->Where('featured', TRUE)
+            $products = Product::Where('featured', TRUE)
                                 ->inRandomOrder();
             $categories = Category::all();
             $categoryName = 'Featured';
@@ -53,7 +52,7 @@ class ShopController extends Controller
      */
     public function show($id)
     {
-        $product = Product::where('quantity', '>', 0)->findOrFail($id);
+        $product = Product::findOrFail($id);
         $mightAlsoLike = Product::where('id', '!=', $id)->mightAlsoLike()->get();
         $wishlistInstance = Cart::instance('wishlist')->search(function($cartItem, $rowId) use ($id) {
             return $cartItem->id === $id;
@@ -61,7 +60,9 @@ class ShopController extends Controller
 
         $wishlistRowId = $wishlistInstance ? $wishlistInstance->rowId : null;
 
-        return view('product', compact(['product', 'mightAlsoLike', 'wishlistRowId']));
+        $productLevel = getProductLevel($product->quantity);
+
+        return view('product', compact(['product', 'mightAlsoLike', 'wishlistRowId', 'productLevel']));
     }
 
     public function search(Request $request)

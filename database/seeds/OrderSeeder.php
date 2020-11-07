@@ -53,7 +53,7 @@ class OrderSeeder extends Seeder
         $dataRow = $this->dataRow($postDataType, 'user_id');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'number',
+                'type'         => 'string',
                 'display_name' => 'user_id',
                 'required'     => 1,
                 'browse'       => 1,

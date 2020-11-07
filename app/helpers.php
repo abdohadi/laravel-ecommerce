@@ -1,6 +1,7 @@
 <?php 
 
-function presentPrice($price) {
+function presentPrice($price) 
+{
 	if (! is_string($price)) {
     	$price = number_format($price, 2, '.', ',');
     }
@@ -35,7 +36,19 @@ function getNumbers()
     ]);
 }
 
-function countries() {
+function getProductLevel($quantity) 
+{
+	if ($quantity > setting('site.stock_threshold')) {
+		return '<div class="badge badge-success">In Stock</div>';
+	} else if ($quantity < setting('site.stock_threshold') && $quantity > 0) {
+		return '<div class="badge badge-warning">Low Stock</div>';
+	} else {
+		return '<div class="badge badge-danger">Not Available</div>';
+	}
+}
+
+function countries() 
+{
 	return array(
 	    array("val0"=>"Afghanistan","val2"=>"AFG"),
 	    array("val0"=>"Albania","val2"=>"ALB"),

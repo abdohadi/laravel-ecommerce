@@ -40,6 +40,10 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($request->id);
 
+        if ($product->quantity == 0) {
+            return back()->with('error-message', 'Item is not available!');
+        }
+
         // Check if item's already in Cart
         if ($product->isInCart()) {
             return back()->with('success-message', 'Item is already in Cart!');

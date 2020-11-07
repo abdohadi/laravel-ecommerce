@@ -56,9 +56,10 @@
 }
 
 .button-plain {
-    border: 1px solid #aeacac !important;
+    border: 1px solid $border-color-dark !important;
     background: transparent;
     border-radius: 100px;
+    color: $text-color;
 }
 
 .button-container {
