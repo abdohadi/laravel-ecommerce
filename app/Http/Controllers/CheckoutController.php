@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Product;
 use App\OrderProduct;
 use App\Paytabs\Paytabs;
 use App\Mail\OrderPlaced;
@@ -123,6 +124,8 @@ class CheckoutController extends Controller
 
         // successful payment
         if ($result->response_code == 100) {
+            $this->reduceProductsQuantity($order);
+
             Mail::send(new OrderPlaced($order));
 
             Cart::instance('default')->destroy();
@@ -155,6 +158,15 @@ class CheckoutController extends Controller
                     ->add($item->id, $item->name, 1, $item->price)
                     ->associate('App\Product');
             }
+        }
+    }
+
+    protected function reduceProductsQuantity(Order $order)
+    {
+        foreach ($order->products as $product) {
+            $product->update([
+                'quantity' => $product->quantity - $product->pivot->quantity
+            ]);
         }
     }
 
