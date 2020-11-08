@@ -31,8 +31,9 @@ class CheckoutController extends Controller
         setcookie('user_id', '', time()-3600);
 
         $total = getNumbers()->get('total');
-        $muchPrice = $total > 5000 || $total < 0.27 ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
-        $cartIsEmpty = Cart::instance('default')->content()->isEmpty() ? 'Notice! Your cart is empty. Go to <a href="'.route('shop.index').'">shop</a> instead.' : null;
+        $cartIsEmpty = Cart::content()->isEmpty() ? 'Notice! Your cart is empty. Go to <a href="'.route('shop.index').'">shop</a> instead.' : null;
+        $muchPrice = ($total > 5000 || $total < 0.27) && !$cartIsEmpty ? 'Notice! The total price of products should be between 0.27 and 5000.00 USD' : null;
+        $productsAreNoLongerAvailable = $this->productsAreNoLongerAvailable();
 
         return view('checkout')->with([
             'subtotal' => getNumbers()->get('subtotal'),
@@ -42,7 +43,8 @@ class CheckoutController extends Controller
             'discountType' => getNumbers()->get('discountType'),
             'discountPercent' => getNumbers()->get('discountPercent'),
             'total' => $total,
-            'warnings' => [$muchPrice, $cartIsEmpty]
+            'warnings' => [$muchPrice, $cartIsEmpty],
+            'productsAreNoLongerAvailable' => $productsAreNoLongerAvailable
         ]);
     }
 
@@ -54,6 +56,11 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        // Check race condition when there are less items available to purchase
+        if ($error = $this->productsAreNoLongerAvailable()) {
+            return back();
+        } 
+
         // Validation
         $request->validate($this->rules(), $this->messages());
 
@@ -148,6 +155,18 @@ class CheckoutController extends Controller
         }
 
         return redirect(route('checkout.index'))->withErrors($result->result);
+    }
+
+    protected function productsAreNoLongerAvailable()
+    {
+        foreach (Cart::content() as $item) {
+            $product = Product::find($item->model->id);
+            if ($product->quantity < $item->qty) {
+                return 'Sorry! One of the items in your cart is no longer available.';
+            }
+        }
+
+        return false;
     }
 
     protected function getFromCookieToSession($index)

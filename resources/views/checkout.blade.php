@@ -21,6 +21,10 @@
             @endif
         @endforeach
 
+        @if ($productsAreNoLongerAvailable)
+            <div class="validation-error-msg">{{ $productsAreNoLongerAvailable }}</div>
+        @endif
+
         <div class="checkout-section">
             <div>
                 <form action="{{ route('checkout.store') }}" method="POST" id="checkout-form">

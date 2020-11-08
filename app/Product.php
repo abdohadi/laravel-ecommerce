@@ -70,7 +70,7 @@ class Product extends Model
         	$price = number_format($this->price, 2, '.', ',');
         }
 
-        return '$' . $price;
+        return $price . ' EGP';
     }
 
     public function imgPath() 
