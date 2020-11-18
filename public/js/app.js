@@ -14420,18 +14420,38 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // });
 
 /*******************************
- *	Our custom Javascript
+ * custom Javascript
  */
 
 (function () {
   var main = document.querySelector('.main');
-  var html = document.querySelector('html'); // Stick footer element to the bottom
+  var html = document.querySelector('html');
+  var footer = document.querySelector('footer');
+  var navItemDropdown = document.querySelector('.nav-item-dropdown');
+  var userDropdownToggle = document.getElementById('user-dropdown-toggle');
+  var dropdownMenuUl = document.querySelector('.custom-dropdown-menu-ul'); // Stick footer element to the bottom
 
-  if (main.offsetHeight < window.innerHeight) {
-    html.style.height = "100%";
-    main.style.marginBottom = '-' + document.querySelector('footer').offsetHeight + 'px';
-    main.style.height = "100%";
-  }
+  if (main) {
+    if (main.offsetHeight + footer.offsetHeight < window.innerHeight) {
+      html.style.height = "100%";
+      main.style.marginBottom = '-' + footer.offsetHeight + 'px';
+      main.style.height = "100%";
+    }
+  } // Show dropdown menu when hovering over the user name
+
+
+  userDropdownToggle.addEventListener('mouseover', function () {
+    dropdownMenuUl.classList.add('show');
+  });
+  navItemDropdown.addEventListener('mouseleave', function () {
+    dropdownMenuUl.classList.remove('show');
+  });
+  dropdownMenuUl.addEventListener('mouseover', function () {
+    dropdownMenuUl.classList.add('show');
+  });
+  dropdownMenuUl.addEventListener('mouseleave', function () {
+    dropdownMenuUl.classList.remove('show');
+  });
 })();
 
 /***/ }),

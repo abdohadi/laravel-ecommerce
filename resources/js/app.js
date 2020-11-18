@@ -39,17 +39,42 @@ window.Vue = require('vue');
 
 
 /*******************************
- *	Our custom Javascript
+ * custom Javascript
  */
 (function() {
 	let main = document.querySelector('.main');
 	let html = document.querySelector('html');
+	let footer = document.querySelector('footer');
+	let navItemDropdown = document.querySelector('.nav-item-dropdown');
+	let userDropdownToggle = document.getElementById('user-dropdown-toggle');
+	let dropdownMenuUl = document.querySelector('.custom-dropdown-menu-ul');
 
 	// Stick footer element to the bottom
-	if (main.offsetHeight < window.innerHeight) {
-		html.style.height = "100%";
-		main.style.marginBottom = '-' + document.querySelector('footer').offsetHeight + 'px';
-		main.style.height = "100%";
+	if (main) {
+		if (main.offsetHeight + footer.offsetHeight < window.innerHeight) {
+			html.style.height = "100%";
+			main.style.marginBottom = '-' + footer.offsetHeight + 'px';
+			main.style.height = "100%";
+		}
 	}
+
+
+	// Show dropdown menu when hovering over the user name
+	userDropdownToggle.addEventListener('mouseover', () => {
+		dropdownMenuUl.classList.add('show');
+	});
+
+	navItemDropdown.addEventListener('mouseleave', () => {
+		dropdownMenuUl.classList.remove('show');
+	});
+
+	dropdownMenuUl.addEventListener('mouseover', () => {
+		dropdownMenuUl.classList.add('show');
+	});
+
+	dropdownMenuUl.addEventListener('mouseleave', () => {
+		dropdownMenuUl.classList.remove('show');
+	});
+
 
 }());

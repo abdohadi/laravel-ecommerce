@@ -105,3 +105,27 @@
         background: $text-color-dark;
       }
 }
+
+.auth-button {
+    background: $text-color;
+    color: $white;
+    border-radius: 5px;
+    padding: 9px 26px;
+
+    &:hover {
+        background: lighten($text-color, 10%);
+    }
+}
+
+.auth-button-hollow {
+    background: white;
+    color: $text-color;
+    border-radius: 5px;
+    border: 1px solid $text-color;
+    padding: 12px 50px;
+
+    &:hover {
+        background: $text-color;
+        color: $white;
+    }
+}

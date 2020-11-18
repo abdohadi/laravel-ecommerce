@@ -3,11 +3,16 @@
 
     input {
         width: 400px;
-        background: #fafafa;
-        border: 1px solid #a2a2a2;
+        background: #fff;
+        border: 1px solid #d6d6d6;
         color: #535353;
-        padding: 12px 30px;
+        padding: 12px 40px;
         border-radius: 50px;
+        box-shadow: 0px 0px 25px -12px #cecece;
+
+        &:focus {
+            box-shadow: 0px 0px 25px -1px #cecece;
+        }
     }
 
     button {

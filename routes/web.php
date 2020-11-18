@@ -41,8 +41,13 @@ Route::get('thankyou', function() {
 	return view('thankyou');
 })->name('thankyou');
 
+Route::middleware('auth')->group(function() {
+	Route::get('profile', 'UsersController@edit')->name('profile.edit');
+	Route::put('profile', 'UsersController@update')->name('profile.update');
+	Route::get('orders', 'UsersController@edit')->name('orders.index');
+});
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin'], function() {
     Voyager::routes();
 });
 

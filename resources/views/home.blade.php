@@ -79,7 +79,7 @@
 
         </div> <!-- end featured-section -->
 
-        <div class="blog-section">
+        {{-- <div class="blog-section">
             <div class="container">
                 <h1 class="text-center">From Our Blog</h1>
 
@@ -103,9 +103,11 @@
                     </div>
                 </div>
             </div> <!-- end container -->
-        </div> <!-- end blog-section -->
+        </div> <!-- end blog-section --> --}}
 
         @include('partials.footer')
+
+        <script src="js/app.js"></script>
 
     </body>
 </html>

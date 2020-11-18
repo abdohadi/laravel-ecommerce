@@ -1,0 +1,23 @@
+.profile-section {
+	form {
+		width: 50%;
+
+		.hr {
+			display: block;
+			margin: auto;
+			margin-top: 38px;
+			border-bottom: 1px solid #e0e0e0;
+		}
+
+		h3 {
+			margin: 20px 0 13px;
+			font-size: 1.3rem;
+		}
+
+		.input-note {
+			display: block;
+			text-align: center;
+			margin-bottom: 15px;
+		}
+	}
+}

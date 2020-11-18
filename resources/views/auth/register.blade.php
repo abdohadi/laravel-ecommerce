@@ -1,10 +1,12 @@
 @extends('layout')
 
+@section('title', 'Sign Up')
+
 @section('content')
 <div class="container">
     <div class="auth-pages register">
         <div class="auth-left">
-            <h2>{{ __('Register') }}</h2>
+            <h2>Sign Up</h2>
 
             <div class="spacer"></div>
 

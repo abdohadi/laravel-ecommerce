@@ -17,20 +17,16 @@ h1.stylish-heading {
     margin-bottom: 60px;
     position: relative;
 
-    &:before, &:after {
+    &:after {
       position: absolute;
-      top: -4px;
-      left: 0;
-      width: 66px;
-      height: 1px;
+      left: 1px;
+      width: 76px;
+      height: 2px;
       background: $text-color;
-      content: '';
+      content: "";
       display: block;
-  }
-
-  &:after {
-    bottom: -14px;
-    top: auto;
+      bottom: -11px;
+      top: auto;
   }
 }
 

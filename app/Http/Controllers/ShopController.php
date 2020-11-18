@@ -19,11 +19,12 @@ class ShopController extends Controller
      */
     public function index()
     {
+        $categories = Category::all();
+            
         if (request()->category) {
             $targetCategory = Category::where('slug', request()->category)->firstOrFail();
             $products = $targetCategory->products();
             $categoryName = $targetCategory->name;
-            $categories = '';
 
             if (request()->sort == 'high_low') {
                 $products = $products->orderBy('price', 'desc');
@@ -35,7 +36,6 @@ class ShopController extends Controller
         } else {
             $products = Product::Where('featured', TRUE)
                                 ->inRandomOrder();
-            $categories = Category::all();
             $categoryName = 'Featured';
         }
 
