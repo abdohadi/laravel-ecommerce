@@ -1,20 +1,10 @@
 .button {
-    border: 1px solid $text-color;
-    padding: 9px 28px;
+    padding: 11px 28px;
+    border-radius: 50px;
 
     &:hover {
         color: $white;
         background: $text-color;
-    }
-}
-
-.button-white {
-    border: 1px solid $white;
-    color: $white !important;
-
-    &:hover {
-        color: $text-color !important;
-        background: $white;
     }
 }
 
@@ -40,17 +30,17 @@
     }
 }
 
-.button-primary {
-    background: $primary;
+.button-success {
+    background: $button-success-background;
     color: white !important;
     padding: 12px 40px;
 
     &:hover {
-        background: darken($primary, 7%);
+        background: darken($button-success-background, 7%);
     }
 
     &:disabled {
-        background: lighten($primary, 10%);
+        background: lighten($button-success-background, 10%);
         cursor: not-allowed;
     }
 }
@@ -95,37 +85,45 @@
 }
 
 .button-black {
-      border: 1px solid #535353;
-      padding: 8px 0;
-      background: #535353;
+      background: #535353cc;
       color: #fff;
-      font-size: 15px !important;
 
       &:hover {
         background: $text-color-dark;
       }
 }
 
-.auth-button {
-    background: $text-color;
-    color: $white;
-    border-radius: 5px;
-    padding: 9px 26px;
-
-    &:hover {
-        background: lighten($text-color, 10%);
+a.button-black {
+    &:visited {
+        color: #fff;
     }
 }
 
-.auth-button-hollow {
-    background: white;
+.button-trans {
+    background: transparent;
+    border-radius: 14px !important;
+    color: $separator-color;
+    font-size: 1.2rem;
+    border: 1px solid $separator-color;
+
+    &:hover {
+        background: $text-color-dark;
+        border: 1px solid $text-color-dark;
+        color: $white;
+    }
+
+    &:visited {
+        color: $white;
+    }
+}
+
+.button-white {
     color: $text-color;
-    border-radius: 5px;
-    border: 1px solid $text-color;
-    padding: 12px 50px;
+    border: 1px solid #53535380;
 
     &:hover {
         background: $text-color;
         color: $white;
     }
 }
+

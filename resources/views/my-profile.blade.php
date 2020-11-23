@@ -30,7 +30,7 @@
                     @if (request()->url() == route('orders.index'))
                         <li class="active">My Orders</li>
                     @else
-                        <li><a href="">My Orders</a></li>
+                        <li><a href="{{ route('orders.index') }}">My Orders</a></li>
                     @endif
                 </ul>
             </div>
@@ -65,8 +65,7 @@
                     @enderror
                 </div>
 
-                <span class="hr"></span>
-
+                <div class="hr"></div>
 
                 <h3>Change Password</h3>
 

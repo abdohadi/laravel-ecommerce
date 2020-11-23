@@ -44,7 +44,8 @@ Route::get('thankyou', function() {
 Route::middleware('auth')->group(function() {
 	Route::get('profile', 'UsersController@edit')->name('profile.edit');
 	Route::put('profile', 'UsersController@update')->name('profile.update');
-	Route::get('orders', 'UsersController@edit')->name('orders.index');
+	
+	Route::resource('orders', 'OrdersController')->only(['index', 'show']);
 });
 
 Route::group(['prefix' => 'admin'], function() {

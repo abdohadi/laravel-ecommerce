@@ -37,20 +37,19 @@ header.with-background {
       }
 
       h1 {
-        font-size: 4rem;
+        font-size: 3.5rem;
         margin-top: 50px;
+        text-align: center;
       }
 
       p {
+        font-size: 1.2rem;
+        text-align: center;
         margin: 40px 0 68px;
       }
 
       .hero-buttons {
         text-align: center;
-        
-        .button {
-          font-weight: normal;
-        }
       }
     }
   }
@@ -109,16 +108,16 @@ header.with-background {
               background: $red;
               color: #eee;
               border-radius: 50%;
-              font-size: .9rem;
+              font-size: 0.8rem;
               position: absolute;
-              right: -13px;
-              top: -13px;
+              right: -8px;
+              top: -12px;
               font-weight: bold;
-              height: 1.6rem;
-              width: 1.6rem;
+              height: 1.4rem;
+              width: 1.4rem;
               display: flex;
               justify-content: center;
-              align-items: center;
+              align-items: flex-end;
             }
           }
         }

@@ -36,7 +36,7 @@ class WishlistController extends Controller
         }
 
         // If item is in Cart
-        if ($request->has('row_id') && $product->isInCart()) {
+        if ($request->filled('row_id') && $product->isInCart()) {dd($request->row_id);
             // Remove item from Cart
             Cart::instance('default')->remove($request->row_id);
         }

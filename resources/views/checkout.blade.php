@@ -26,7 +26,7 @@
         @endif
 
         <div class="checkout-section">
-            <div>
+            <div class="checkout-section-left">
                 <form action="{{ route('checkout.store') }}" method="POST" id="checkout-form">
                     <h2>Billing Details</h2>
 
@@ -132,12 +132,14 @@
                     
                     <div class="spacer"></div>
 
-                    <button type="submit" class="button-primary full-width" id="checkout-submit-btn">Continue</button>
+                    <div>
+                        <button type="submit" class="button button-black" id="checkout-submit-btn">Place your order</button>
+                    </div>
 
                 </form><!-- end form -->
             </div>
 
-            <div class="checkout-table-container">
+            <div class="checkout-section-right">
                 <h2>Your Order</h2>
 
                 <div class="checkout-table">

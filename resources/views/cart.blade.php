@@ -84,7 +84,7 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="button-red" title="Remove from Cart"><span>x</span></button>
+                                        <button type="submit" title="Remove from Cart"><span>x</span></button>
                                     </form> 
                                 </div>
                             </div>
@@ -110,12 +110,12 @@
 
                     <div class="cart-totals-right">
                         <div class="totals-left">
-                            Subtotal <br>
-                            Tax<span class="small-text">({{ config('cart.tax') }}%)</span> <br>
+                            Subtotal: <br>
+                            Tax: <span class="small-text">({{ config('cart.tax') }}%)</span> <br>
                             <div class="hr"></div>
-                            New Subtotal <br>
+                            New Subtotal: <br>
                             @if ($discount)
-                                Discount<span class="small-text">({{ $discountPercent ? $discountPercent.'%' : presentPrice($discount) }})</span>
+                                Discount: <span class="small-text">{{ $discountPercent ? '(' .$discountPercent. '%)' : '' }}</span>
                                 <form class="remove-coupon-form" action="{{ route('coupon.destroy') }}" method="post">
                                     @csrf
                                     @method('DELETE')
@@ -124,7 +124,7 @@
                                 </form>
                                 <br>
                             @endif
-                            <span class="checkout-totals-total">Total</span>
+                            <span class="checkout-totals-total">Total:</span>
                         </div>
 
                         <div class="totals-right">
@@ -141,13 +141,13 @@
                 </div> <!-- end cart-totals -->
 
                 <div class="cart-buttons">
-                    <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
-                    <a href="{{ auth()->user() ? route('checkout.index') : route('loginToCheckout') }}" class="button-primary">Proceed to Checkout</a>
+                    <a href="{{ route('shop.index') }}" class="button button-white">Continue Shopping</a>
+                    <a href="{{ auth()->user() ? route('checkout.index') : route('loginToCheckout') }}" class="button button-black">Proceed to Checkout</a>
                 </div>
             @else 
                 <div class="empty">No items in Cart!</div>
                 <div class="spacer"></div>
-                <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
+                <a href="{{ route('shop.index') }}" class="button button-white">Continue Shopping</a>
                 <div class="spacer"></div>
             @endif
         </div>

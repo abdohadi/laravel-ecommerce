@@ -25,18 +25,17 @@ class ShopController extends Controller
             $targetCategory = Category::where('slug', request()->category)->firstOrFail();
             $products = $targetCategory->products();
             $categoryName = $targetCategory->name;
-
-            if (request()->sort == 'high_low') {
-                $products = $products->orderBy('price', 'desc');
-            } else if (request()->sort == 'low_high') {
-                $products = $products->orderBy('price');
-            } else {
-                $products = $products->inRandomOrder();
-            }
         } else {
-            $products = Product::Where('featured', TRUE)
-                                ->inRandomOrder();
+            $products = Product::Where('featured', TRUE);
             $categoryName = 'Featured';
+        }
+
+        if (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc');
+        } else if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price');
+        } else {
+            $products = $products->inRandomOrder();
         }
 
         $products = $products->paginate(12);

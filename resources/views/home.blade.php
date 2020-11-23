@@ -30,7 +30,7 @@
                     <h1>Laravel Ecommerce Demo</h1>
                     <p>Includes multiple products, categories, a shopping cart and a checkout system with Stripe integration.</p>
                     <div class="hero-buttons">
-                        <a href="{{ route('shop.index') }}" class="button button-white">Shop Now</a>
+                        <a href="{{ route('shop.index') }}" class="button button-trans">Shop Now</a>
                     </div>
                 </div> <!-- end hero-copy -->
 
@@ -48,8 +48,8 @@
                 <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore vitae nisi, consequuntur illum dolores cumque pariatur quis provident deleniti nesciunt officia est reprehenderit sunt aliquid possimus temporibus enim eum hic.</p>
 
                 <div class="text-center button-container">
-                    <a href="#" class="button">Featured</a>
-                    <a href="#" class="button">On Sale</a>
+                    <a href="#" class="button button-white">Featured</a>
+                    <a href="#" class="button button-black">On Sale</a>
                 </div>
 
                 {{-- <div class="tabs">

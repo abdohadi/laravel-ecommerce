@@ -69,7 +69,7 @@
         .heart-item-form button {
             display: flex;
             align-items: center;
-            color: #b3b2b2;
+            color: $blank-heart;
             position: relative;
 
             &:hover > span {
@@ -87,7 +87,8 @@
                 right: 0px;
                 visibility: hidden;
                 transition: right .4s ease, visibility .1s ease;
-                color: #b3b2b2;
+                color: $blank-heart;
+                font-size: 1rem;
 
                 &.add-to-wishlist {
                     width: 120px;
@@ -121,7 +122,7 @@
 }
 
 .product-section-price {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: $text-color-dark;
     margin-bottom: 16px;
 }

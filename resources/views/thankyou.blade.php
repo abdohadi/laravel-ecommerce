@@ -15,7 +15,7 @@
        <p>A confirmation email was sent</p>
        <div class="spacer"></div>
        <div>
-           <a href="{{ route('home') }}" class="button">Home Page</a>
+           <a href="{{ route('home') }}" class="button button-white">Home Page</a>
        </div>
    </div>
 

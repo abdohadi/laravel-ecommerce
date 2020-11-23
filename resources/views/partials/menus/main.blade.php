@@ -30,7 +30,7 @@
                         <a href="{{ route('profile.edit') }}">My Profile</a>
                     </li>
                     <li>
-                        <a href="#">My Orders</a>
+                        <a href="{{ route('orders.index') }}">My Orders</a>
                     </li>
                     <li>
                         <a href="{{ route('logout') }}"

@@ -26,11 +26,14 @@
 // Layout
 @import 'layout/header';
 @import 'layout/footer';
+@import 'layout/sidebar';
 
 // Pages
 @import 'pages/auth';
 @import 'pages/home-page';
-@import 'pages/profile';
+@import 'pages/my-profile';
+@import 'pages/my-order';
+@import 'pages/my-orders';
 @import 'pages/shop';
 @import 'pages/product';
 @import 'pages/cart';

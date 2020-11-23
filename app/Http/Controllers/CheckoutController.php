@@ -264,7 +264,7 @@ class CheckoutController extends Controller
             "other_charges" => getNumbers()->get('tax'),                                     //Additional charges. e.g.: shipping charges, taxes, VAT, etc.         
             'amount' => getNumbers()->get('total'),                                          //Amount of the products and other charges, it should be equal to: amount = (sum of all products’ (unit_price * quantity)) + other_charges
             'discount'=> getNumbers()->get('discount'),                                                //Discount of the transaction. The Total amount of the invoice will be= amount - discount
-            'currency' => "USD",                                            //Currency of the amount stated. 3 character ISO currency code 
+            'currency' => config('payment.currency'),                                            //Currency of the amount stated. 3 character ISO currency code 
             
             //Invoice Information
             'title' => $request->cc_first_name . ' ' . $request->cc_last_name,               // Customer's Name on the invoice
