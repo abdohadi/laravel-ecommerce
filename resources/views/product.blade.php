@@ -15,7 +15,7 @@
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
                 <a href="{{ route('shop.index') }}">Shop</a>
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
-                <span class="visited">{{ $product->name }}</span>
+                <span class="visited">{{ substr($product->name, 0, 20) }}</span>
             </div>
             
             @include('partials.search-form')
@@ -47,15 +47,21 @@
 
         <div class="product-section-information">
             <div class="product-section-first-row">
-                <div class="product-section-title-badge">
+                <div class="product-section-title-badges">
                     <h2 class="product-section-title">{{ $product->name }}</h2>
 
-                    {!! $productLevel !!}
+                    <div class="product-badges">
+                        {!! $productLevel !!}
+
+                        @if ($product->isNew())
+                            <span class="badge product-badge-new">New</span>
+                        @endif    
+                    </div> <!-- end product badges -->
                 </div>
                 
                 @if ($product->isInWishlist())
                     {{-- Remove from wishlist from --}}
-                    <form class="heart-item-form" action="{{ route('wishlist.destroy', $wishlistRowId) }}" method="post">
+                    <form class="heart-item-form" action="{{ route('wishlist.destroy', $product->getCartRowId('wishlist')) }}" method="post">
                         @csrf
                         @method('DELETE')
 
@@ -68,7 +74,7 @@
                     <form class="heart-item-form" action="{{ route('wishlist.store') }}" method="post">
                         @csrf
 
-                        <input type="hidden" name="row_id" value="{{ $wishlistRowId }}">
+                        <input type="hidden" name="row_id" value="{{ $product->getCartRowId('wishlist') }}">
                         <input type="hidden" name="id" value="{{ $product->id }}">
                         <input type="hidden" name="name" value="{{ $product->name }}">
                         <input type="hidden" name="price" value="{{ $product->price }}">

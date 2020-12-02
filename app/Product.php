@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use App\Events\ProductSaved;
 use App\Events\ProductDeleted;
 use Illuminate\Database\Eloquent\Model;
@@ -100,6 +101,11 @@ class Product extends Model
     public function isAvailable()
     {
         return $this->quantity > 0;
+    }
+
+    public function isNew()
+    {
+        return Carbon::parse($this->created_at)->diffInDays(Carbon::now()) < 15;
     }
 
     protected function checkCartDuplicates($instance = 'default')

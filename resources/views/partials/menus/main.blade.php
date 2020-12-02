@@ -52,7 +52,7 @@
         <a href="{{ route('wishlist.index') }}" title="Wishlist">
             <i class="far fa-heart"></i>
             @if (Cart::instance('wishlist')->count())
-                <span class="wishlist-count">{{ Cart::instance('wishlist')->count() }}</span>
+                <span class="wishlist-count"><span>{{ Cart::instance('wishlist')->count() }}</span></span>
             @endif
         </a> 
     </li>
@@ -61,7 +61,7 @@
         <a href="{{ route('cart.index') }}" title="Cart">
             <i class="fa fa-cart-plus"></i> 
             @if (Cart::instance('default')->count())
-                <span class="cart-count">{{ Cart::instance('default')->count() }}</span>
+                <span class="cart-count"><span>{{ Cart::instance('default')->count() }}</span></span>
             @endif
         </a> 
     </li>

@@ -28,7 +28,7 @@
             <div class="hero container">
                 <div class="hero-copy">
                     <h1>Laravel Ecommerce Demo</h1>
-                    <p>Includes multiple products, categories, a shopping cart and a checkout system with Stripe integration.</p>
+                    <p>Includes multiple products, categories, a shopping cart, a wishlist and a checkout system with credit card and paypal integration.</p>
                     <div class="hero-buttons">
                         <a href="{{ route('shop.index') }}" class="button button-trans">Shop Now</a>
                     </div>
@@ -63,47 +63,19 @@
 
                 <div class="products text-center">
                     @foreach ($products as $product)    
-                        <div class="product">
-                            <a href="{{ route('shop.show', $product->id) }}"><img src="{{ $product->imgPath() }}" alt="product"></a>
-                            <a href="{{ route('shop.show', $product->id) }}"><div class="product-name">{{ $product->name }}</div></a>
-                            <div class="product-price">{{ $product->presentPrice() }}</div>
+                        <div>
+                            @include('partials/product-card')
                         </div>
                     @endforeach
                 </div> <!-- end products -->
 
                 <div class="text-center button-container">
-                    <a href="{{ route('shop.index') }}" class="button">View more products</a>
+                    <a href="{{ route('shop.index') }}" class="button button-white">View more products</a>
                 </div>
 
             </div> <!-- end container -->
 
         </div> <!-- end featured-section -->
-
-        {{-- <div class="blog-section">
-            <div class="container">
-                <h1 class="text-center">From Our Blog</h1>
-
-                <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore vitae nisi, consequuntur illum dolores cumque pariatur quis provident deleniti nesciunt officia est reprehenderit sunt aliquid possimus temporibus enim eum hic.</p>
-
-                <div class="blog-posts">
-                    <div class="blog-post" id="blog1">
-                        <a href="#"><img src="{{ asset('/images/blog1.png') }}" alt="Blog Image"></a>
-                        <a href="#"><h2 class="blog-title">Blog Post Title 1</h2></a>
-                        <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, tenetur numquam ipsam reiciendis.</div>
-                    </div>
-                    <div class="blog-post" id="blog2">
-                        <a href="#"><img src="{{ asset('/images/blog2.png') }}" alt="Blog Image"></a>
-                        <a href="#"><h2 class="blog-title">Blog Post Title 2</h2></a>
-                        <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, tenetur numquam ipsam reiciendis.</div>
-                    </div>
-                    <div class="blog-post" id="blog3">
-                        <a href="#"><img src="{{ asset('/images/blog3.png') }}" alt="Blog Image"></a>
-                        <a href="#"><h2 class="blog-title">Blog Post Title 3</h2></a>
-                        <div class="blog-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, tenetur numquam ipsam reiciendis.</div>
-                    </div>
-                </div>
-            </div> <!-- end container -->
-        </div> <!-- end blog-section --> --}}
 
         @include('partials.footer')
 

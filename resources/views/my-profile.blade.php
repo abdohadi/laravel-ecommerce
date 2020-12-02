@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="spacer"></div>
-                <button type="submit" class="auth-button">Update Profile</button>
+                <button type="submit" class="button button-black">Update Profile</button>
             </form> <!-- end form -->
         </div>
     </div> <!-- end product-section -->

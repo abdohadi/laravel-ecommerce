@@ -68,7 +68,7 @@
                     </thead>
 
                     <tbody class="products-box">
-                        <tr class="products">
+                        <tr class="order-products">
                             @foreach ($order->products as $product)
                                 <td class="product-details">
                                     <img src="{{ $product->imgPath() }}" alt="{{ $product->name }}">

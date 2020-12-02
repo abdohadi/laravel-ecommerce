@@ -1,5 +1,5 @@
 .breadcrumbs {
-    background: $light-gray-background;
+    background: #fdfdfd;
     border-bottom: 1px solid $separator-color;
     padding: 14px 0;
 
@@ -9,8 +9,18 @@
         align-items: center;
         font-size: 13px;
 
+        a {
+            font-size: 1.09rem;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
         .visited {
-            color: #668;
+            font-size: 1.15rem;
+            font-weight: normal;
+            color: #818181;
         }
 
         .breadcrumb-separator {

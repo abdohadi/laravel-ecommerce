@@ -16,7 +16,7 @@
                 @if (request()->has('category'))
                     <a href="{{ route('shop.index') }}">Shop</a>
                     <i class="fa fa-chevron-right breadcrumb-separator"></i>
-                    <span class="visited">{{ request()->category }}</span>
+                    <span class="visited">{{ ucfirst(request()->category) }}</span>
                 @else
                     <span class="visited">Shop</span>
                 @endif
@@ -67,10 +67,8 @@
 
             <div class="products text-center">
                 @forelse ($products as $product)
-                    <div class="product">
-                        <a href="{{ route('shop.show', $product->id) }}"><img src="{{ $product->imgPath() }}" alt="product"></a>
-                        <a href="{{ route('shop.show', $product->id) }}"><div class="product-name">{{ $product->name }}</div></a>
-                        <div class="product-price">{{ $product->presentPrice() }}</div>
+                    <div>
+                        @include('partials/product-card')
                     </div>
                 @empty
                     <div class="empty">No items found</div>

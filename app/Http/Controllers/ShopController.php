@@ -53,15 +53,10 @@ class ShopController extends Controller
     {
         $product = Product::findOrFail($id);
         $mightAlsoLike = Product::where('id', '!=', $id)->mightAlsoLike()->get();
-        $wishlistInstance = Cart::instance('wishlist')->search(function($cartItem, $rowId) use ($id) {
-            return $cartItem->id === $id;
-        })->first();
-
-        $wishlistRowId = $wishlistInstance ? $wishlistInstance->rowId : null;
 
         $productLevel = getProductLevel($product->quantity);
 
-        return view('product', compact(['product', 'mightAlsoLike', 'wishlistRowId', 'productLevel']));
+        return view('product', compact(['product', 'mightAlsoLike', 'productLevel']));
     }
 
     public function search(Request $request)
