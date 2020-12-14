@@ -66,7 +66,7 @@ class MakeProductSearchable
                     'hierarchy_lvl5' => null,
                     'hierarchy_lvl6' => null,
                     'content' => ' '.$product->description.' ',
-                    'url' => route('shop.show', $product),
+                    'url' => "shop/{$product}",
                     'anchor' => null,
                 ]);
 

@@ -3,7 +3,7 @@
 <script>
   docsSearchBar({
     hostUrl: '{{ config('meilisearch.host') }}',
-    apiKey: 'myMasterKey',
+    apiKey: '{{ config('meilisearch.key') }}',
     indexUid: 'searchable_products',
     inputSelector: '#search-bar-input',
     debug: true // Set debug to true if you want to inspect the dropdown
