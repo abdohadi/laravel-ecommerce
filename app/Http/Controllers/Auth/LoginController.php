@@ -47,4 +47,17 @@ class LoginController extends Controller
 
         return redirect(route('login'));
     }
+
+    public function showLoginForm()
+    {
+        if (! session()->has('login_to_checkout')) {
+            session(['url.intended' => url()->previous()]);
+
+            return view('auth.login');
+        }
+
+        session()->forget('login_to_checkout');
+
+        return view('auth.loginToCheckout');
+    }
 }

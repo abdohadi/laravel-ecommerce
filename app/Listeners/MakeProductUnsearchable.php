@@ -26,6 +26,9 @@ class MakeProductUnsearchable
      */
     public function handle(ProductDeleted $event)
     {
+        // Change meilisearch key to use the master key instead of the public key to update searchable products
+        config(['meilisearch.key' => env('MEILISEARCH_MASTER_KEY')]);
+        
         $searchableProduct = $event->product->searchableProduct;
         collect([$searchableProduct])->unsearchable();
         $searchableProduct->delete();

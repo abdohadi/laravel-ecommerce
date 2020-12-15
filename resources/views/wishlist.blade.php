@@ -79,7 +79,7 @@
             @else 
                 <div class="empty">No items in your Wishlist!</div>
                 <div class="spacer"></div>
-                <a href="{{ route('shop.index') }}" class="button">Continue Shopping</a>
+                <a href="{{ route('shop.index') }}" class="button button-white">Continue Shopping</a>
                 <div class="spacer"></div>
             @endif
         </div>

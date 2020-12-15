@@ -34,10 +34,13 @@ class Product extends Model
             'products.description' => 2,
         ],
     ];
+
     protected $dispatchesEvents = [
         'saved' => ProductSaved::class,         // when a product is created or updated
         'deleting' => ProductDeleted::class
     ];
+
+    public const NEW_PRODUCT_DURATION = 15;
 
     public function searchableProduct()
     {
@@ -105,7 +108,7 @@ class Product extends Model
 
     public function isNew()
     {
-        return Carbon::parse($this->created_at)->diffInDays(Carbon::now()) < 15;
+        return Carbon::parse($this->created_at)->diffInDays(Carbon::now()) <= self::NEW_PRODUCT_DURATION;
     }
 
     protected function checkCartDuplicates($instance = 'default')

@@ -19,7 +19,7 @@
                     <input type="password" id="password" name="password" value="{{ old('password') }}" placeholder="Password" required>
 
                     <div class="login-container">
-                        <button type="submit" class="auth-button">Login</button>
+                        <button type="submit" class="button button-black">Login</button>
                         <label>
                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
                         </label>
@@ -40,14 +40,14 @@
                 <p><strong>Save time now.</strong></p>
                 <p>You don't need an account to checkout.</p>
                 <div class="spacer"></div>
-                <a href="{{ route('checkout.index') }}" class="button-white">Continue as Guest</a>
+                <a href="{{ route('checkout.index') }}" class="button button-white">Continue as Guest</a>
                 <div class="spacer"></div>
                 &nbsp;
                 <div class="spacer"></div>
                 <p><strong>Save time later.</strong></p>
                 <p>Create an account for fast checkout and easy access to order history.</p>
                 <div class="spacer"></div>
-                <a href="{{ route('register') }}" class="button-white">Create Account</a>
+                <a href="{{ route('register') }}" class="button button-white">Create Account</a>
             </div>
         </div>
     </div>

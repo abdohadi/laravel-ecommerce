@@ -187,6 +187,9 @@ class CheckoutController extends Controller
                 'quantity' => $product->quantity - $product->pivot->quantity
             ]);
         }
+
+        // We use it so we can skip updating the searchable product which requires using meilisearch master key
+        setcookie('dontUpdateSearchable', 'dontUpdateSearchable', time()+600);
     }
 
     protected function rules()
