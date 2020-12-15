@@ -21,4 +21,4 @@ The website is deployed on Amazon Cloud (AWS EC2). Check [Website](http://3.16.1
 	<a href="http://3.16.17.107">Project Demo</a>
 </p>
 
-<p align="center"><img src="public/screenshots/ecommerce_shop.png" width="700"></p>
+<p align="center"><img src="public/images/screenshots/ecommerce_shop.png" width="700"></p>
