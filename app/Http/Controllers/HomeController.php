@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -14,12 +16,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::where('quantity', '>', 0)
-                            ->where('featured', TRUE)
+        $featuredProducts = Product::where('featured', TRUE)
+                            ->where('quantity', '>', 0)
                             ->inRandomOrder()
                             ->take(8)
                             ->get();
 
-        return view('home', ['products' => $products]);
+        $newProducts = Product::whereRaw("DATEDIFF(CURDATE(), created_at) <= ". Product::NEW_PRODUCT_DURATION)
+                            ->inRandomOrder()
+                            ->take(3)
+                            ->get();
+
+        return view('home', compact(['featuredProducts', 'newProducts']));
     }
 }

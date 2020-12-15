@@ -10,6 +10,7 @@
     -o-box-shadow: 0px 0px 7px -2px #33333324;
     box-shadow: 0px 0px 7px -2px #33333324;
     border-radius: 5px;
+    background: #fff;
 
     &:hover {
         -webkit-box-shadow: 0px 0px 16px -1px #33333324;
@@ -33,7 +34,12 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid #eeeeee96;
-        
+        text-align: center;
+
+        &:hover img {
+            width: 80% !important;
+        }
+                
         img {
             width: 60%;
         }

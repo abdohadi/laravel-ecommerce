@@ -40,42 +40,45 @@
             </div> <!-- end hero -->
         </header>
 
-        <div class="featured-section">
+        <div class="home-products-section">
 
             <div class="container">
                 <h1 class="text-center">Laravel Ecommerce</h1>
 
                 <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore vitae nisi, consequuntur illum dolores cumque pariatur quis provident deleniti nesciunt officia est reprehenderit sunt aliquid possimus temporibus enim eum hic.</p>
-
-                <div class="text-center button-container">
-                    <a href="#" class="button button-white">Featured</a>
-                    <a href="#" class="button button-black">On Sale</a>
-                </div>
-
-                {{-- <div class="tabs">
-                    <div class="tab">
-                        Featured
-                    </div>
-                    <div class="tab">
-                        On Sale
-                    </div>
-                </div> --}}
-
-                <div class="products text-center">
-                    @foreach ($products as $product)    
-                        <div>
-                            @include('partials/product-card')
-                        </div>
-                    @endforeach
-                </div> <!-- end products -->
-
-                <div class="text-center button-container">
-                    <a href="{{ route('shop.index') }}" class="button button-white">View more products</a>
-                </div>
-
             </div> <!-- end container -->
 
-        </div> <!-- end featured-section -->
+                {{-- <div class="text-center button-container">
+                    <a href="#" class="button button-white">Featured</a>
+                    <a href="#" class="button button-black">On Sale</a>
+                </div> --}}
+
+            <div class="products-container">
+                <div class="left-section">
+                    <h2>Featured Products</h2>
+                    
+                    <div class="products text-center">
+                        @foreach ($featuredProducts as $product)    
+                            <div>
+                                @include('partials/product-card')
+                            </div>
+                        @endforeach
+                    </div> <!-- end products -->
+
+                    <div class="text-center button-container">
+                        <a href="{{ route('shop.index') }}" class="button button-white">View more products</a>
+                    </div>
+                </div>
+
+                <div class="right-section">
+                    <h2>New Products</h2>
+
+                    @foreach ($newProducts as $product)    
+                        @include('partials/product-card')
+                    @endforeach
+                </div>
+            </div>
+        </div> <!-- end home-products-section -->
 
         @include('partials.footer')
 

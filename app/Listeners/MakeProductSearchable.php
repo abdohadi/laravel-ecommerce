@@ -30,48 +30,57 @@ class MakeProductSearchable
         $searchableProduct = $product->searchableProduct;
         $quantity = $product->quantity;
 
-        if ($searchableProduct) {
-            // If true, then a product's been updated
-            if ($quantity > 0) {
-                $searchableProduct->fill([
-                    'hierarchy_radio_lvl2' => '<h3> '.$product->name.' </h3>',
-                    'hierarchy_radio_lvl3' => $product->details,
-                    'hierarchy_lvl2' => '<h3> '.$product->name.' </h3>',
-                    'hierarchy_lvl3' => $product->details,
-                    'content' => ' '.$product->description.' ',
-                ]);
+        // We can't use meilisearch master key because it will be exposed to users
+        // But it's ok for admins to use it
+        if (! isset($_COOKIE['dontUpdateSearchable'])) {
+            // Change meilisearch key to use the master key instead of the public key to update searchable products
+            config(['meilisearch.key' => env('MEILISEARCH_MASTER_KEY')]);
 
-                $searchableProduct->save();
+            if ($searchableProduct) {
+                // If true, then a product's been updated
+                if ($quantity > 0) {
+                    $searchableProduct->fill([
+                        'hierarchy_radio_lvl2' => '<h3> '.$product->name.' </h3>',
+                        'hierarchy_radio_lvl3' => $product->details,
+                        'hierarchy_lvl2' => '<h3> '.$product->name.' </h3>',
+                        'hierarchy_lvl3' => $product->details,
+                        'content' => ' '.$product->description.' ',
+                    ]);
+
+                    $searchableProduct->save();
+                } else {
+                    collect([$searchableProduct])->unsearchable();
+                    $searchableProduct->delete();
+                }
             } else {
-                collect([$searchableProduct])->unsearchable();
-                $searchableProduct->delete();
+                // Else, then a product's been either created or updated
+                if ($quantity > 0) {
+                    $newSearchable = $product->searchableProduct()->create([
+                        'objectID' => $product->id,
+                        'hierarchy_radio_lvl0' => null,
+                        'hierarchy_radio_lvl1' => null,
+                        'hierarchy_radio_lvl2' => '<h3> '.$product->name.' </h3>',
+                        'hierarchy_radio_lvl3' => $product->details,
+                        'hierarchy_radio_lvl4' => null,
+                        'hierarchy_radio_lvl5' => null,
+                        'hierarchy_lvl0' => 'searchable_products',
+                        // 'hierarchy_lvl1' => '<img src="'.$product->imgPath().'">',
+                        'hierarchy_lvl1' => null,
+                        'hierarchy_lvl2' => '<h3> '.$product->name.' </h3>',
+                        'hierarchy_lvl3' => $product->details,
+                        'hierarchy_lvl4' => null,
+                        'hierarchy_lvl5' => null,
+                        'hierarchy_lvl6' => null,
+                        'content' => ' '.$product->description.' ',
+                        'url' => "shop/{$product->id}",
+                        'anchor' => null,
+                    ]);
+
+                    collect([$newSearchable])->searchable();
+                }
             }
         } else {
-            // Else, then a product's been either created or updated
-            if ($quantity > 0) {
-                $newSearchable = $product->searchableProduct()->create([
-                    'objectID' => $product->id,
-                    'hierarchy_radio_lvl0' => null,
-                    'hierarchy_radio_lvl1' => null,
-                    'hierarchy_radio_lvl2' => '<h3> '.$product->name.' </h3>',
-                    'hierarchy_radio_lvl3' => $product->details,
-                    'hierarchy_radio_lvl4' => null,
-                    'hierarchy_radio_lvl5' => null,
-                    'hierarchy_lvl0' => 'searchable_products',
-                    // 'hierarchy_lvl1' => '<img src="'.$product->imgPath().'">',
-                    'hierarchy_lvl1' => null,
-                    'hierarchy_lvl2' => '<h3> '.$product->name.' </h3>',
-                    'hierarchy_lvl3' => $product->details,
-                    'hierarchy_lvl4' => null,
-                    'hierarchy_lvl5' => null,
-                    'hierarchy_lvl6' => null,
-                    'content' => ' '.$product->description.' ',
-                    'url' => "shop/{$product}",
-                    'anchor' => null,
-                ]);
-
-                collect([$newSearchable])->searchable();
-            }
+            setcookie('dontUpdateSearchable', '', time()-3600);
         }
     }
 }
