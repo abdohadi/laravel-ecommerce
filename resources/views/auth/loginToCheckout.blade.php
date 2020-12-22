@@ -40,7 +40,7 @@
                 <p><strong>Save time now.</strong></p>
                 <p>You don't need an account to checkout.</p>
                 <div class="spacer"></div>
-                <a href="{{ route('checkout.index') }}" class="button button-white">Continue as Guest</a>
+                <a href="{{ route('checkout.detailsIndex') }}" class="button button-white">Continue as Guest</a>
                 <div class="spacer"></div>
                 &nbsp;
                 <div class="spacer"></div>

@@ -38,4 +38,15 @@ return [
         'site_url' => env('PAYTABS_SITE_URL'),
     ],
 
+    'paypal' => [
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'client_secret' => env('PAYPAL_CLIENT_SECRET'),
+    ],
+
+    'currency_converter' => [
+        'apikey' => env('CURRENCY_CONVERTER_APIKEY'),
+        'from_currency' => env('CURRENCY_CONVERTER_FROM_CURRENCY'),
+        'to_currency' => env('CURRENCY_CONVERTER_TO_CURRENCY'),
+    ],
+
 ];

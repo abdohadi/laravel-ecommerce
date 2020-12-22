@@ -178,7 +178,14 @@
     .cart-buttons {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         margin-bottom: 40px;
+
+        .proceed-to-checkout-button {
+            font-weight: normal;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
     }
 
     .have-coupon-container {

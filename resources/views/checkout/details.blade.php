@@ -15,19 +15,13 @@
         {{-- Validation Errors --}}
         @include('partials.errors')
 
-        @foreach ($warnings as $warning)
-            @if ($warning)
-                <div class="validation-warning-msg">{!! $warning !!}</div>
-            @endif
-        @endforeach
-
         @if ($productsAreNoLongerAvailable)
             <div class="validation-error-msg">{{ $productsAreNoLongerAvailable }}</div>
         @endif
 
         <div class="checkout-section">
             <div class="checkout-section-left">
-                <form action="{{ route('checkout.store') }}" method="POST" id="checkout-form">
+                <form action="{{ route('checkout.validateDetails') }}" method="POST" id="checkout-form">
                     <h2>Billing Details</h2>
 
                     @csrf
@@ -70,7 +64,7 @@
                         </div>
                         <div class="form-group">
                             <label for="postal_code">Postal Code</label>
-                            <input type="text" class="form-control" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" required="">
+                            <input type="number" class="form-control" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
 
@@ -106,37 +100,25 @@
                         </div>
                         <div class="form-group">
                             <label for="postal_code_shipping">Postal Code</label>
-                            <input type="text" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}" required="">
+                            <input type="number" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}" required="">
                         </div>
                     </div> <!-- end half-form -->
-
-                    <div class="spacer"></div>
-
-                    <h2>Card Details</h2>
-
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="cc_first_name">First Name on Card</label>
-                            <input type="text" class="form-control" id="cc_first_name" name="cc_first_name" value="{{ old('cc_first_name') }}" required="">
-                        </div>
-                        <div class="form-group">
-                            <label for="cc_last_name">Last Name on Card</label>
-                            <input type="text" class="form-control" id="cc_last_name" name="cc_last_name" value="{{ old('cc_last_name') }}" required="">
-                        </div>
-                    </div> <!-- end half-form -->
-
-                    <div class="form-group">
-                        <label for="cc_phone_number">Card Phone Number</label>
-                        <input type="text" class="form-control" id="cc_phone_number" name="cc_phone_number" value="{{ old('cc_phone_number') }}" required="">
-                    </div>
                     
                     <div class="spacer"></div>
 
                     <div>
-                        <button type="submit" class="button button-black" id="checkout-submit-btn">Place your order</button>
+                        <button type="submit" class="button button-blue can-be-disabled" id="checkout-submit-btn">Continue</button>
                     </div>
 
                 </form><!-- end form -->
+
+                {{-- Paypal Button --}}
+                <div id="smart-button-container">
+                    @csrf
+                    <div style="text-align: center;">
+                        <div id="paypal-button-container"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="checkout-section-right">
@@ -147,10 +129,15 @@
                         <div class="checkout-table-row">
                             <div class="checkout-table-row-left">
                                 <img src="{{ $item->model->imgPath() }}" alt="{{ $item->model->name }}" class="checkout-table-img">
+
                                 <div class="checkout-item-details">
                                     <div class="checkout-table-item">{{ $item->model->name }}</div>
                                     <div class="checkout-table-description">{{ $item->model->details }}</div>
                                     <div class="checkout-table-price">{{ $item->model->presentPrice() }}</div>
+
+                                    @if (! $item->model->isAvailable())
+                                        <span class="badge badge-danger">Not Available</span>
+                                    @endif
                                 </div>
                             </div> <!-- end checkout-table -->
 
@@ -162,36 +149,7 @@
 
                 </div> <!-- end checkout-table -->
 
-                <div class="checkout-totals">
-                    <div class="checkout-totals-left">
-                        Subtotal <br>
-                        Tax({{ config('cart.tax') }}%) <br>
-                        <div class="hr"></div>
-                        New Subtotal <br>
-                        @if ($discount)
-                            Discount ({{ $discountPercent ? $discountPercent.'%' : presentPrice($discount) }}) 
-                            <form class="remove-coupon-form" action="{{ route('coupon.destroy') }}" method="post">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="button-icon">Remove</button>
-                            </form>
-                            <br>
-                        @endif
-                        <span class="checkout-totals-total">Total</span>
-                    </div>
-
-                    <div class="checkout-totals-right">
-                        {{ presentPrice($subtotal) }} <br>
-                        {{ presentPrice($tax) }} <br>
-                        <div class="hr"></div>
-                        {{ presentPrice($newSubtotal) }} <br>
-                        @if ($discount)
-                            -{{ presentPrice($discount) }} <br>
-                        @endif
-                        <span class="checkout-totals-total">{{ presentPrice($total) }}</span>
-                    </div>
-                </div> <!-- end checkout-totals -->
+                @include('checkout.partials.checkout-totals')
             </div>
         </div> <!-- end checkout-section -->
     </div>
@@ -200,14 +158,6 @@
 
 
 @section('extra-js')
-    <script>
-
-        // Make checkout submit button disabled after submitting the form
-        window.onload = function() {
-            document.querySelector('#checkout-form').addEventListener('submit', () => {
-                document.querySelector('#checkout-submit-btn').disabled = true;
-            });
-        }
-
-    </script>
 @endsection
+
+

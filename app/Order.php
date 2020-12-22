@@ -29,6 +29,10 @@ class Order extends Model
 		'discount_code',
 		'total',
 		'payment_gateway',
+		'transaction_id',
+		'card_brand',
+		'card_first_six_digits',
+		'card_last_four_digits',
 		'shipped',
 		'error'
 	];

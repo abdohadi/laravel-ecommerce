@@ -1,5 +1,35 @@
 <?php 
 
+function checkoutErrorHandler($errno, $errstr, $errfile, $errline)
+{
+	define('CHECKOUT_ERROR', [
+		"error" => "Error #{$errno}: {$errstr}. \nFile: {$errfile} \nLine: {$errline}",
+		"userMessage" => "Something went wrong. Please try again later."
+	]);
+}
+
+function convertCurrency($amount, $from_currency = null, $to_currency = null) 
+{
+	$apikey = config('services.currency_converter.apikey');
+	$fromCurrency = urlencode($from_currency ?? config('services.currency_converter.from_currency'));
+	$toCurrency = urlencode($to_currency ?? config('services.currency_converter.to_currency'));
+
+	$response = json_decode(file_get_contents("http://data.fixer.io/api/latest?symbols=${fromCurrency},${toCurrency}&access_key=${apikey}"));
+	// EX: EUR TO EGP
+	$EUR_TO_BASE = $response->rates->{$fromCurrency};
+	// EX: EUR TO USD
+	$EUR_TO_TARGET = $response->rates->{$toCurrency};
+	$BASE_TO_TARGET = $EUR_TO_TARGET / $EUR_TO_BASE;
+	$total = $amount * $BASE_TO_TARGET;
+	
+	return number_format($total, 2, '.', '');
+}
+
+function deleteCookie($name)
+{
+    setcookie($name, '', time()-3600, '/');
+}
+
 function presentPrice($price) 
 {
 	if (! is_string($price)) {
@@ -32,7 +62,7 @@ function getNumbers()
         "discountCode" => $discountCode,
         "discountType" => $discountType,
         "discountPercent" => $discountPercent,
-        "total" => $total
+        "total" => round($total, 2)
     ]);
 }
 

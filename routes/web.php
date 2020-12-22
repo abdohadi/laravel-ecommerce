@@ -1,7 +1,5 @@
 <?php
 
-use App\Order;
-use App\Mail\OrderPlaced;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -21,8 +19,13 @@ Route::patch('cart/{product}', 'CartController@update')->name('cart.update');
 Route::resource('wishlist', 'WishlistController')->only(['index', 'store', 'destroy']);
 
 // Checkout
-Route::resource('checkout', 'CheckoutController')->only(['index', 'store']);
-Route::post('checkout/verify', 'CheckoutController@verify')->name('checkout.verify');
+Route::get('checkout', 'Checkout\CheckoutController@detailsIndex')->name('checkout.detailsIndex');
+Route::post('checkout/validateDetails', 'Checkout\CheckoutController@validateDetails')->name('checkout.validateDetails');
+Route::get('checkout/complete', 'Checkout\CheckoutController@completeIndex')->name('checkout.completeIndex');
+Route::post('checkout', 'Checkout\CreditCardCheckoutController@store')->name('checkout.store');
+Route::post('checkout/verify', 'Checkout\CreditCardCheckoutController@verify')->name('checkout.verify');
+Route::post('checkout/paypal', 'Checkout\PaypalCheckoutController@store')->name('paypal-checkout.store');
+Route::get('checkout/paypal/getOrder', 'Checkout\PaypalCheckoutController@getOrder')->name('paypal-checkout.getOrder');
 
 // Login checkout
 Route::name('loginToCheckout')->get('loginToCheckout', 'Auth\LoginController@loginToCheckout');
