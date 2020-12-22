@@ -60,21 +60,32 @@ window.Vue = require('vue');
 
 
 	// Show dropdown menu when hovering over the user name
-	userDropdownToggle.addEventListener('mouseover', () => {
-		dropdownMenuUl.classList.add('show');
-	});
+	if (userDropdownToggle) {
+		userDropdownToggle.addEventListener('mouseover', () => {
+			dropdownMenuUl.classList.add('show');
+		});
+	}
 
-	navItemDropdown.addEventListener('mouseleave', () => {
-		dropdownMenuUl.classList.remove('show');
-	});
+	if (navItemDropdown) {
+		navItemDropdown.addEventListener('mouseleave', () => {
+			dropdownMenuUl.classList.remove('show');
+		});
+	}
 
-	dropdownMenuUl.addEventListener('mouseover', () => {
-		dropdownMenuUl.classList.add('show');
-	});
+	if (dropdownMenuUl) {
+		dropdownMenuUl.addEventListener('mouseover', () => {
+			dropdownMenuUl.classList.add('show');
+		});
 
-	dropdownMenuUl.addEventListener('mouseleave', () => {
-		dropdownMenuUl.classList.remove('show');
-	});
+		dropdownMenuUl.addEventListener('mouseleave', () => {
+			dropdownMenuUl.classList.remove('show');
+		});
+	}
 
 
+    // Make checkout submit button disabled after submitting the form
+	var diabledButton = document.querySelector('.can-be-disabled');
+    diabledButton.addEventListener('click', (e) => {
+        diabledButton.disabled = true;
+    });
 }());

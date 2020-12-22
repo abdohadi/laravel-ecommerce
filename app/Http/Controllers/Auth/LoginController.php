@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -42,8 +43,11 @@ class LoginController extends Controller
 
     public function loginToCheckout()
     {
+        if (Cart::content()->isEmpty())
+            return redirect(route('login'));
+
         session(['login_to_checkout' => 'login_to_checkout']);
-        session(['url.intended' => route('checkout.index')]);
+        session(['url.intended' => route('checkout.detailsIndex')]);
 
         return redirect(route('login'));
     }

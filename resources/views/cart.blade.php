@@ -45,6 +45,10 @@
                                         <a href="{{ route('shop.show', $item->model->id) }}">{{ $item->model->name }}</a>
                                     </div>
                                     <div class="cart-table-description">{{ $item->model->details }}</div>
+
+                                    @if (! $item->model->isAvailable())
+                                        <span class="badge badge-danger">Not Available</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="cart-table-row-right">
@@ -142,7 +146,7 @@
 
                 <div class="cart-buttons">
                     <a href="{{ route('shop.index') }}" class="button button-white">Continue Shopping</a>
-                    <a href="{{ auth()->user() ? route('checkout.index') : route('loginToCheckout') }}" class="button button-black">Proceed to Checkout</a>
+                    <a href="{{ auth()->user() ? route('checkout.detailsIndex') : route('loginToCheckout') }}" class="button button-green proceed-to-checkout-button">Proceed to Checkout</a>
                 </div>
             @else 
                 <div class="empty">No items in Cart!</div>
