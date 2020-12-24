@@ -14427,9 +14427,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
   var main = document.querySelector('.main');
   var html = document.querySelector('html');
   var footer = document.querySelector('footer');
-  var navItemDropdown = document.querySelector('.nav-item-dropdown');
-  var userDropdownToggle = document.getElementById('user-dropdown-toggle');
-  var dropdownMenuUl = document.querySelector('.custom-dropdown-menu-ul'); // Stick footer element to the bottom
+  var diabledButton = document.querySelector('.can-be-disabled'); // Stick footer element to the bottom
 
   if (main) {
     if (main.offsetHeight + footer.offsetHeight < window.innerHeight) {
@@ -14437,35 +14435,14 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
       main.style.marginBottom = '-' + footer.offsetHeight + 'px';
       main.style.height = "100%";
     }
-  } // Show dropdown menu when hovering over the user name
-
-
-  if (userDropdownToggle) {
-    userDropdownToggle.addEventListener('mouseover', function () {
-      dropdownMenuUl.classList.add('show');
-    });
-  }
-
-  if (navItemDropdown) {
-    navItemDropdown.addEventListener('mouseleave', function () {
-      dropdownMenuUl.classList.remove('show');
-    });
-  }
-
-  if (dropdownMenuUl) {
-    dropdownMenuUl.addEventListener('mouseover', function () {
-      dropdownMenuUl.classList.add('show');
-    });
-    dropdownMenuUl.addEventListener('mouseleave', function () {
-      dropdownMenuUl.classList.remove('show');
-    });
   } // Make checkout submit button disabled after submitting the form
 
 
-  var diabledButton = document.querySelector('.can-be-disabled');
-  diabledButton.addEventListener('click', function (e) {
-    diabledButton.disabled = true;
-  });
+  if (diabledButton) {
+    diabledButton.addEventListener('click', function (e) {
+      diabledButton.disabled = true;
+    });
+  }
 })();
 
 /***/ }),

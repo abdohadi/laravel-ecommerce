@@ -1,5 +1,10 @@
 <?php 
 
+function getCategories()
+{
+	return App\Category::all();
+}
+
 function checkoutErrorHandler($errno, $errstr, $errfile, $errline)
 {
 	define('CHECKOUT_ERROR', [

@@ -137,7 +137,7 @@ table {
 
 html {
   box-sizing: border-box;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 body {
@@ -198,6 +198,10 @@ strong {
   font-weight: bold;
 }
 
+button {
+  letter-spacing: 1px;
+}
+
 .clearfix::after {
   clear: both;
   content: "";
@@ -231,17 +235,17 @@ strong {
 }
 
 body {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Dosis", sans-serif;
   font-weight: 300;
   line-height: 1.6;
+  letter-spacing: 1.5px;
 }
 
 h1,
 h2,
 .product-section-subtitle,
 .product-section-price {
-  font-family: "Montserrat", Arial, sans-serif;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 h1 {
@@ -1239,8 +1243,8 @@ form button[type=submit] {
 }
 
 .product-card .product-details .product-actions .add-to-cart-btn {
-  font-size: 0.9rem;
-  padding: 5px 28px;
+  font-size: 0.95rem;
+  padding: 5px 26px;
 }
 
 .product-card .product-details .product-actions .add-to-cart-btn i {
@@ -1248,7 +1252,7 @@ form button[type=submit] {
 }
 
 .product-card .product-details .product-actions .heart-item-form button i {
-  font-size: 1.6rem !important;
+  font-size: 1.8rem !important;
 }
 
 header.with-background {
@@ -1258,15 +1262,7 @@ header.with-background {
 }
 
 header.with-background .top-nav {
-  display: flex;
-  justify-content: space-between;
   padding: 30px 0;
-  letter-spacing: 1.5px;
-}
-
-header.with-background .top-nav .logo {
-  font-weight: bold;
-  font-size: 28px;
 }
 
 header.with-background .top-nav ul a {
@@ -1311,20 +1307,27 @@ header {
 header .top-nav {
   display: flex;
   justify-content: space-between;
-  padding: 14px 0;
+  align-items: center;
   letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+header .top-nav .logo-checkout {
+  display: flex;
+  align-items: center;
+  height: 65.5px;
 }
 
 header .top-nav .logo {
-  font-weight: bold;
-  font-size: 28px;
+  font-size: 2rem;
   color: #e9e9e9;
   margin-right: 58px;
+  font-style: italic;
 }
 
 header .top-nav ul {
   display: flex;
-  font-weight: 400;
+  font-size: 0.8rem;
 }
 
 header .top-nav ul.nav-left {
@@ -1332,7 +1335,8 @@ header .top-nav ul.nav-left {
 }
 
 header .top-nav ul li {
-  margin-right: 38px;
+  padding: 22px 0;
+  padding-right: 38px;
   display: flex;
   align-items: center;
 }
@@ -1385,7 +1389,7 @@ header .top-nav ul li a .wishlist-count span {
 
 .nav-item-dropdown .custom-dropdown-menu {
   position: absolute;
-  top: 45px;
+  top: 60px;
   right: -13px;
   z-index: 999;
 }
@@ -1395,8 +1399,8 @@ header .top-nav ul li a .wishlist-count span {
   width: 190px;
   background: #666;
   padding: 16px 0;
-  -o-box-shadow: -7px 4px 8px -2px #666;
-  box-shadow: -7px 4px 8px -2px #666;
+  -o-box-shadow: -5px 5px 8px -2px #666;
+  box-shadow: -5px 5px 8px -2px #666;
   border-radius: 6px;
   transform: rotateX(90deg);
   transition: transform 0.2s ease-in-out;
@@ -1418,7 +1422,7 @@ header .top-nav ul li a .wishlist-count span {
 }
 
 .nav-item-dropdown .custom-dropdown-menu .custom-dropdown-menu-ul li {
-  margin: 18px auto;
+  padding: 12px 0;
   justify-content: center;
 }
 
@@ -2154,15 +2158,20 @@ h1.checkout-heading {
 }
 
 .checkout-section .checkout-section-right .checkout-table-row .checkout-table-row-left {
-  width: 75%;
+  width: 82%;
 }
 
 .checkout-section .checkout-section-right .checkout-table-row .checkout-table-img {
-  width: 38%;
+  width: 32%;
 }
 
 .checkout-section .checkout-section-right .checkout-table-row .checkout-item-details {
   width: 59%;
+}
+
+.checkout-section .checkout-section-right .checkout-table-row .checkout-item-details .checkout-table-item {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
 }
 
 .checkout-section .checkout-section-right .checkout-table-row .checkout-table-description {
@@ -2175,7 +2184,8 @@ h1.checkout-heading {
 }
 
 .checkout-section .checkout-section-right .checkout-table-row .checkout-table-quantity {
-  border: 1px solid #919191;
+  border: 1px solid #dfdfdf;
+  color: #919191;
   padding: 4px 12px;
   margin-right: 5px;
 }
