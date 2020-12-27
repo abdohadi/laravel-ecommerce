@@ -1482,8 +1482,7 @@ footer {
 .sidebar .inner-sidebar {
   border: 1px solid #dfdfdf;
   border-radius: 10px;
-  padding: 30px 0 30px 20px;
-  padding: 30px 0 30px 20px;
+  padding: 30px 20px;
 }
 
 .sidebar .inner-sidebar h3 {
@@ -1492,20 +1491,42 @@ footer {
   margin-bottom: 10px;
 }
 
-.sidebar .inner-sidebar .categories-list {
-  margin-bottom: 30px;
-}
-
-.sidebar .inner-sidebar .categories-list li {
+.sidebar .inner-sidebar ul.categories-list li {
   font-size: 1.1rem;
 }
 
-.sidebar .inner-sidebar .sort-by-price-list li {
+.sidebar .inner-sidebar ul.sort-by-price-list li {
   font-size: 0.95rem;
 }
 
-.sidebar .inner-sidebar ul {
+.sidebar .inner-sidebar ul.filter-by-price {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.sidebar .inner-sidebar ul.filter-by-price .slider-container {
+  width: 100% !important;
+}
+
+.sidebar .inner-sidebar ul.filter-by-price .slider-container * {
+  font-size: 0.9rem;
+  letter-spacing: normal;
+}
+
+.sidebar .inner-sidebar ul.filter-by-price .slider-container .back-bar {
+  height: 8px !important;
+}
+
+.sidebar .inner-sidebar ul.filter-by-price .slider-container .back-bar .pointer {
+  top: -3px !important;
+}
+
+.sidebar .inner-sidebar ul:not(.filter-by-price) {
   margin-left: 15px;
+}
+
+.sidebar .inner-sidebar ul:not(:last-of-type) {
+  margin-bottom: 30px;
 }
 
 .sidebar .inner-sidebar li {
