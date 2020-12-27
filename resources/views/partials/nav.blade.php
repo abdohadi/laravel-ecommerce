@@ -1,6 +1,10 @@
 <header>
     <div class="top-nav container">
-        <div class="logo"><a href="/">Ecommerce</a></div>
+        @if (request()->is('checkout') || request()->is('checkout/complete'))
+	        <div class="logo logo-checkout"><a href="/">Ecommerce</a></div>
+	    @else
+	        <div class="logo"><a href="/">Ecommerce</a></div>
+        @endif
         
         @if (! request()->is('checkout') && ! request()->is('checkout/complete'))
 	        {{-- Main menu --}}

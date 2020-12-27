@@ -38,6 +38,11 @@ class ShopController extends Controller
             $products = $products->inRandomOrder();
         }
 
+        if (request()->has('minPrice') && request()->has('maxPrice')) {
+            $products->where('price', '>=', request()->minPrice)
+                     ->where('price', '<=', request()->maxPrice);
+        }
+
         $products = $products->paginate(12);
 
         return view('shop', compact(['products', 'categories', 'categoryName']));

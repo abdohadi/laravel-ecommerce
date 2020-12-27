@@ -66,15 +66,20 @@ h1.checkout-heading {
       }
 
       .checkout-table-row-left {
-        width: 75%;
+        width: 82%;
       }
 
       .checkout-table-img {
-        width: 38%;
+        width: 32%;
       }
 
       .checkout-item-details {
         width: 59%;
+
+        .checkout-table-item {
+          font-size: 1.1rem;
+          margin-bottom: 5px;
+        }
       }
 
       .checkout-table-description {
@@ -87,7 +92,8 @@ h1.checkout-heading {
       }
 
       .checkout-table-quantity {
-        border: 1px solid $text-color-light;
+        border: 1px solid $border-color;
+        color: $text-color-light;
         padding: 4px 12px;
         margin-right: 5px;
       }
