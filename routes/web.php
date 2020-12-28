@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/home', 'HomeController@index');
 Route::get('/', 'HomeController@index')->name('home');
 
+// Contact
+Route::post('/contact', 'HomeController@contact')->name('contact');
+
 // Shop
 Route::resource('shop', 'ShopController')->only(['index', 'show']);
 Route::get('search', 'ShopController@search')->name('search');

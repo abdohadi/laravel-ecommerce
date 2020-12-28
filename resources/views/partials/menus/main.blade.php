@@ -17,7 +17,7 @@
             </li>
         @else
             <li>
-            	<a href="{{ $menu_item->link() }}">{{ $menu_item->title }}</a>
+            	<a id="nav-{{ lcfirst($menu_item->title) }}" href="{{ $menu_item->link() }}">{{ $menu_item->title }}</a>
             </li>
         @endif
     @endforeach

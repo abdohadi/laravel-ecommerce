@@ -11,7 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'main_image' => 'macbook-pro.png',
         'details' => $faker->sentence,
         'quantity' => $faker->numberBetween(1, 20),
-        'price' => $faker->randomFloat(2, 50, 1000),
+        'price' => $faker->randomFloat(2, 1000, 20000),
         'description' => $faker->paragraph,
         'featured' => $faker->randomElement([TRUE, FALSE]),
     ];

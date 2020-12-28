@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Mail\CustomerMessage;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -28,5 +29,12 @@ class HomeController extends Controller
                             ->get();
 
         return view('home', compact(['featuredProducts', 'newProducts']));
+    }
+
+    public function contact(Request $request)
+    {
+        \Mail::send(new CustomerMessage($request));
+
+        return back()->with('success-message', 'Thanks for your message. We will contact you shortly');
     }
 }

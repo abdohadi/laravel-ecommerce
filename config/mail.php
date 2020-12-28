@@ -88,6 +88,12 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    // Cusotm Technical Support
+    'technical_support' => [
+        'address' => env('MAIL_TECHNICAL_SUPPORT_ADDRESS', 'hello@example.com'),
+        'name' => env('MAIL_TECHNICAL_SUPPORT_NAME', 'Example'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
