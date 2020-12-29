@@ -31,20 +31,33 @@
 
 .success-session-msg,
 .error-session-msg {
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 109px;
     right: -1000px;
+    max-width: 400px;
     padding: 15px 45px;
-    background: #353b48;
-    color: #fff;
+    background: $white;
+    color: #353b48;
     font-weight: normal;
-    border-top: 8px solid #4cd137;
-    animation: display-msg 5s linear;
+    animation: display-msg 7s linear;
     z-index: 100;
-}
 
-.error-session-msg {
-    border-top: 10px solid $red;
+    &.success-session-msg {
+        border-top: 8px solid #4cd137;
+    }
+
+    &.error-session-msg {
+        border-top: 10px solid $red;
+    }
+
+    .fa-check-circle {
+        position: relative;
+        left: -28px;
+        font-size: 2rem;
+        color: #4cd137a1;
+    }
 }
 
 @keyframes display-msg {

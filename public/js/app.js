@@ -14427,7 +14427,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
   var main = document.querySelector('.main');
   var html = document.querySelector('html');
   var footer = document.querySelector('footer');
-  var diabledButton = document.querySelector('.can-be-disabled'); // Stick footer element to the bottom
+  var diabledButton = document.querySelector('.can-be-disabled');
+  var closeContact = document.querySelector('#close-contact');
+  var contactContainer = document.querySelector('.contact-container');
+  var navContact = document.querySelector('#nav-contact'); // Stick footer element to the bottom
 
   if (main) {
     if (main.offsetHeight + footer.offsetHeight < window.innerHeight) {
@@ -14442,7 +14445,15 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
     diabledButton.addEventListener('click', function (e) {
       diabledButton.disabled = true;
     });
-  }
+  } // Toggle contact page
+
+
+  navContact.addEventListener('click', function () {
+    contactContainer.style.display = 'block';
+  });
+  closeContact.addEventListener('click', function () {
+    contactContainer.style.display = 'none';
+  });
 })();
 
 /***/ }),

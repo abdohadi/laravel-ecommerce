@@ -269,10 +269,6 @@ h1.stylish-heading:after {
   top: auto;
 }
 
-h2 {
-  font-size: 22px;
-}
-
 .text-center {
   text-align: center;
 }
@@ -513,7 +509,8 @@ form .half-form {
 }
 
 form input,
-form select {
+form select,
+form textarea {
   background: white;
   width: 100%;
   padding: 12px;
@@ -523,21 +520,23 @@ form select {
   color: #535353;
 }
 
-form input::-moz-placeholder, form select::-moz-placeholder {
+form input::-moz-placeholder, form select::-moz-placeholder, form textarea::-moz-placeholder {
   font-weight: lighter;
 }
 
-form input:-ms-input-placeholder, form select:-ms-input-placeholder {
+form input:-ms-input-placeholder, form select:-ms-input-placeholder, form textarea:-ms-input-placeholder {
   font-weight: lighter;
 }
 
 form input::placeholder,
-form select::placeholder {
+form select::placeholder,
+form textarea::placeholder {
   font-weight: lighter;
 }
 
 form input:focus,
-form select:focus {
+form select:focus,
+form textarea:focus {
   border-color: #b3b3b3;
 }
 
@@ -633,21 +632,37 @@ form button[type=submit] {
 
 .success-session-msg,
 .error-session-msg {
+  display: flex;
+  align-items: center;
   position: fixed;
   top: 109px;
   right: -1000px;
+  max-width: 400px;
   padding: 15px 45px;
-  background: #353b48;
-  color: #fff;
+  background: #e9e9e9;
+  color: #353b48;
   font-weight: normal;
-  border-top: 8px solid #4cd137;
-  -webkit-animation: display-msg 5s linear;
-          animation: display-msg 5s linear;
+  -webkit-animation: display-msg 7s linear;
+          animation: display-msg 7s linear;
   z-index: 100;
 }
 
-.error-session-msg {
+.success-session-msg.success-session-msg,
+.error-session-msg.success-session-msg {
+  border-top: 8px solid #4cd137;
+}
+
+.success-session-msg.error-session-msg,
+.error-session-msg.error-session-msg {
   border-top: 10px solid #f95e6c;
+}
+
+.success-session-msg .fa-check-circle,
+.error-session-msg .fa-check-circle {
+  position: relative;
+  left: -28px;
+  font-size: 2rem;
+  color: #4cd137a1;
 }
 
 @-webkit-keyframes display-msg {
@@ -1550,6 +1565,128 @@ footer {
   background: #f95e6c;
   border-radius: 50%;
   left: 97px;
+}
+
+.contact-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("/images/contact-background.jpg");
+  display: none;
+}
+
+.contact-container .contact-overlay {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #e9e9e9;
+}
+
+.contact-container .contact-overlay .fa-times {
+  position: absolute;
+  right: 35px;
+  top: 35px;
+  color: #e9e9e9;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.contact-container .contact-overlay .fa-times:hover {
+  font-size: 2.2rem;
+}
+
+.contact-container .contact-overlay .fa-times:active .contact-container {
+  display: none;
+}
+
+.contact-container .contact-overlay .contact-content {
+  width: 60%;
+  margin: auto;
+}
+
+.contact-container .contact-overlay .contact-content div {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
+.contact-container .contact-overlay .contact-content div h2 {
+  font-size: 2.6rem !important;
+  letter-spacing: 4px !important;
+}
+
+.contact-container .contact-overlay .contact-content div h4 {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+}
+
+.contact-container .contact-overlay .contact-content div form input,
+.contact-container .contact-overlay .contact-content div form textarea {
+  background: rgba(0, 0, 0, 0.5);
+  color: #e9e9e9;
+  border: 1px solid #555;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+}
+
+.contact-container .contact-overlay .contact-content div form input::-moz-placeholder, .contact-container .contact-overlay .contact-content div form textarea::-moz-placeholder {
+  font-weight: normal;
+}
+
+.contact-container .contact-overlay .contact-content div form input:-ms-input-placeholder, .contact-container .contact-overlay .contact-content div form textarea:-ms-input-placeholder {
+  font-weight: normal;
+}
+
+.contact-container .contact-overlay .contact-content div form input::placeholder,
+.contact-container .contact-overlay .contact-content div form textarea::placeholder {
+  font-weight: normal;
+}
+
+.contact-container .contact-overlay .contact-content div form input:focus,
+.contact-container .contact-overlay .contact-content div form textarea:focus {
+  border-color: #999;
+}
+
+.contact-container .contact-overlay .contact-content div form textarea {
+  height: 115px;
+}
+
+.contact-container .contact-overlay .contact-content div form button {
+  display: block;
+  margin: auto;
+  width: 53%;
+  background: rgba(15, 15, 15, 0.8);
+}
+
+.contact-container .contact-overlay .contact-content div form button:hover {
+  background: #0f0f0f;
+}
+
+.contact-container .contact-overlay .contact-content div .social-links ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.contact-container .contact-overlay .contact-content div .social-links ul li a {
+  color: #e9e9e9;
+  font-size: 1.8rem;
+  margin: 20px;
+}
+
+.contact-container .contact-overlay .contact-content div .social-links ul li a:hover {
+  color: #fff;
+}
+
+.contact-container .contact-overlay .contact-content div .social-links ul span {
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .auth-pages.login,

@@ -53,7 +53,7 @@ class MenuItemsTableSeederCustom extends Seeder
             'menu_id' => $menu->id,
             'title'   => 'Contact',
             'url'     => '',
-            'route'   => 'contact',
+            'route'   => '',
         ]);
         if (!$menuItem->exists) {
             $menuItem->fill([

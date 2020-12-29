@@ -46,6 +46,9 @@ window.Vue = require('vue');
 	let html = document.querySelector('html');
 	let footer = document.querySelector('footer');
 	let diabledButton = document.querySelector('.can-be-disabled');
+	let closeContact = document.querySelector('#close-contact');
+	let contactContainer = document.querySelector('.contact-container');
+	let navContact = document.querySelector('#nav-contact');
 
 	// Stick footer element to the bottom
 	if (main) {
@@ -62,5 +65,17 @@ window.Vue = require('vue');
 	    diabledButton.addEventListener('click', (e) => {
 	        diabledButton.disabled = true;
 	    });
+	}
+
+
+	// Toggle contact page
+	if (navContact) {
+		navContact.addEventListener('click', () => {
+			contactContainer.style.display = 'block';
+		});
+
+		closeContact.addEventListener('click', () => {
+			contactContainer.style.display = 'none';
+		});
 	}
 }());

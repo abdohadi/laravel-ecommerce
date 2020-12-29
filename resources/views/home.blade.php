@@ -33,7 +33,7 @@
                     <h1>Laravel Ecommerce Demo</h1>
                     <p>Includes multiple products, categories, a shopping cart, a wishlist and a checkout system with credit card and paypal integration.</p>
                     <div class="hero-buttons">
-                        <a href="{{ route('shop.index') }}" class="button button-trans">Shop Now</a>
+                        <a href="{{ route('shop.index') }}" class="button button-trans">SHOP NOW</a>
                     </div>
                 </div> <!-- end hero-copy -->
 
@@ -50,11 +50,6 @@
 
                 <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore vitae nisi, consequuntur illum dolores cumque pariatur quis provident deleniti nesciunt officia est reprehenderit sunt aliquid possimus temporibus enim eum hic.</p>
             </div> <!-- end container -->
-
-                {{-- <div class="text-center button-container">
-                    <a href="#" class="button button-white">Featured</a>
-                    <a href="#" class="button button-black">On Sale</a>
-                </div> --}}
 
             <div class="products-container">
                 <div class="left-section">
@@ -82,6 +77,10 @@
                 </div>
             </div>
         </div> <!-- end home-products-section -->
+
+        @include('partials.session-messages')
+
+        @include('partials.contact')
 
         @include('partials.footer')
 
