@@ -69,11 +69,13 @@ window.Vue = require('vue');
 
 
 	// Toggle contact page
-	navContact.addEventListener('click', () => {
-		contactContainer.style.display = 'block';
-	});
+	if (navContact) {
+		navContact.addEventListener('click', () => {
+			contactContainer.style.display = 'block';
+		});
 
-	closeContact.addEventListener('click', () => {
-		contactContainer.style.display = 'none';
-	});
+		closeContact.addEventListener('click', () => {
+			contactContainer.style.display = 'none';
+		});
+	}
 }());

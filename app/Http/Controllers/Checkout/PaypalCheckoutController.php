@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Checkout;
 use App\Paypal\PayPalClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PayPalCheckoutSdk\Orders\OrdersGetRequest;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
+use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use App\Http\Controllers\Checkout\CheckoutController;
 
 class PaypalCheckoutController extends CheckoutController
@@ -55,7 +55,7 @@ class PaypalCheckoutController extends CheckoutController
     /**
      * Retrieve an order from paypal using order id
      */
-    public function getOrder(Request $request)
+    public function captureOrder(Request $request)
     {
         try {
             if (! isset($_COOKIE['checkout_details'])) {
@@ -64,10 +64,12 @@ class PaypalCheckoutController extends CheckoutController
                     route('checkout.detailsIndex')
                 );
             }
+
+            $request = new OrdersCaptureRequest($request->orderID);
             
-            // Call PayPal to get the transaction details
+            // Call PayPal to capture an authorization
             $client = PayPalClient::client();
-            $response = $client->execute(new OrdersGetRequest($request->orderID));
+            $response = $client->execute($request);
 
             $userInfo = [
                 'transaction_id' => $response->result->id,

@@ -136,7 +136,7 @@
             },
 
             onApprove: function(data) {
-              return fetch("{{ route('paypal-checkout.getOrder') }}" + "?orderID=" + data.orderID, {
+              return fetch("{{ route('paypal-checkout.captureOrder') }}" + "?orderID=" + data.orderID, {
                 headers: {
                   'content-type': 'application/json'
                 },

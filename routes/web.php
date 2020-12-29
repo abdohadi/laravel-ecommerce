@@ -27,8 +27,9 @@ Route::post('checkout/validateDetails', 'Checkout\CheckoutController@validateDet
 Route::get('checkout/complete', 'Checkout\CheckoutController@completeIndex')->name('checkout.completeIndex');
 Route::post('checkout', 'Checkout\CreditCardCheckoutController@store')->name('checkout.store');
 Route::post('checkout/verify', 'Checkout\CreditCardCheckoutController@verify')->name('checkout.verify');
+// Paypal
 Route::post('checkout/paypal', 'Checkout\PaypalCheckoutController@store')->name('paypal-checkout.store');
-Route::get('checkout/paypal/getOrder', 'Checkout\PaypalCheckoutController@getOrder')->name('paypal-checkout.getOrder');
+Route::get('checkout/paypal/captureOrder', 'Checkout\PaypalCheckoutController@captureOrder')->name('paypal-checkout.captureOrder');
 
 // Login checkout
 Route::name('loginToCheckout')->get('loginToCheckout', 'Auth\LoginController@loginToCheckout');
