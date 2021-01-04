@@ -17,12 +17,12 @@
                     {{ csrf_field() }}
 
                     <div>
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <label for="email">{{ __('E-Mail Address') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                     </div>
 
                     <div>
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <label for="password">{{ __('Password') }}</label>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                         @error('password')

@@ -5,7 +5,7 @@
             <li class="nav-item-dropdown" data-dropdown-menu="categories-dropdown-menu">
                 <a class="custom-dropdown-toggle" data-dropdown-menu="categories-dropdown-menu" href="{{ $menu_item->link() }}">{{ $menu_item->title }}</a>
 
-                <div class="custom-dropdown-menu">
+                <div class="custom-dropdown-menu custom-dropdown-menu-categories">
                     <ul class="custom-dropdown-menu-ul" id="categories-dropdown-menu">
                         @foreach (getCategories() as $category)
                             <li>

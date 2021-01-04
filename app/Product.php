@@ -67,6 +67,11 @@ class Product extends Model
     	return $query->inRandomOrder()->take(4);
     }
 
+    public function scopeAvailable($query)
+    {
+        return $query->where('quantity', '>', 0);
+    }
+
     public function presentPrice($price = null)
     {
         // If price is not comming from cart (subtotal)

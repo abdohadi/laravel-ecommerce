@@ -70,55 +70,54 @@
 
                     <div class="spacer"></div>
 
-                    <h2>Shipping Details</h2>
-
-                    <div class="form-group">
-                        <label for="address_shipping">Address</label>
-                        <input type="text" class="form-control" id="address_shipping" name="address_shipping" value="{{ old('address_shipping') }}" required="">
+                    <div class="address-checkbox-container">
+                        <label id="address-checkbox" class="checkbox" for="same_shipping_address"><span class="check-mark">&#10003;</span></label> 
+                        <input type="checkbox" name="same_shipping_address" id="same_shipping_address" class="hidden">
+                        Check if Shipping Address is the same as Billing Address
                     </div>
 
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="country_shipping">Country</label>
-                            <select class="form-control" id="country_shipping" name="country_shipping" required="">
-                                <option value="">Select Country...</option>
-                                @foreach (countries() as $country)
-                                    <option value="{{ $country['val2'] }}" {{ old('country_shipping') == $country['val2'] ? 'selected' : '' }}>{{ $country['val0'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="city_shipping">City</label>
-                            <input type="text" class="form-control" id="city_shipping" name="city_shipping" value="{{ old('city_shipping') }}" required="">
-                        </div>
-                    </div> <!-- end half-form -->
+                    <div id="shipping-details-container" class="shipping-details-container">
+                        <h2>Shipping Details</h2>
 
-                    <div class="half-form">
                         <div class="form-group">
-                            <label for="state_shipping">State</label>
-                            <input type="text" class="form-control" id="state_shipping" name="state_shipping" value="{{ old('state_shipping') }}" required="">
+                            <label for="address_shipping">Address</label>
+                            <input type="text" class="form-control" id="address_shipping" name="address_shipping" value="{{ old('address_shipping') }}" required="">
                         </div>
-                        <div class="form-group">
-                            <label for="postal_code_shipping">Postal Code</label>
-                            <input type="number" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}" required="">
-                        </div>
-                    </div> <!-- end half-form -->
+
+                        <div class="half-form">
+                            <div class="form-group">
+                                <label for="country_shipping">Country</label>
+                                <select class="form-control" id="country_shipping" name="country_shipping" required="">
+                                    <option value="">Select Country...</option>
+                                    @foreach (countries() as $country)
+                                        <option value="{{ $country['val2'] }}" {{ old('country_shipping') == $country['val2'] ? 'selected' : '' }}>{{ $country['val0'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city_shipping">City</label>
+                                <input type="text" class="form-control" id="city_shipping" name="city_shipping" value="{{ old('city_shipping') }}" required="">
+                            </div>
+                        </div> <!-- end half-form -->
+
+                        <div class="half-form">
+                            <div class="form-group">
+                                <label for="state_shipping">State</label>
+                                <input type="text" class="form-control" id="state_shipping" name="state_shipping" value="{{ old('state_shipping') }}" required="">
+                            </div>
+                            <div class="form-group">
+                                <label for="postal_code_shipping">Postal Code</label>
+                                <input type="number" class="form-control" id="postal_code_shipping" name="postal_code_shipping" value="{{ old('postal_code_shipping') }}" required="">
+                            </div>
+                        </div> <!-- end half-form -->
+                    </div><!-- end shipping details container -->
                     
                     <div class="spacer"></div>
 
                     <div>
                         <button type="submit" class="button button-blue can-be-disabled" id="checkout-submit-btn">Continue</button>
                     </div>
-
                 </form><!-- end form -->
-
-                {{-- Paypal Button --}}
-                <div id="smart-button-container">
-                    @csrf
-                    <div style="text-align: center;">
-                        <div id="paypal-button-container"></div>
-                    </div>
-                </div>
             </div>
 
             <div class="checkout-section-right">
@@ -158,6 +157,27 @@
 
 
 @section('extra-js')
+    <script>
+        const shippingDetailsContainer = document.querySelector('#shipping-details-container');
+        const shippingAddressElementIDs = ['address_shipping', 'country_shipping', 'city_shipping', 'state_shipping', 'postal_code_shipping'];
+        const customAddressCheckbox = document.querySelector('#address-checkbox');
+
+        document.querySelector('#same_shipping_address').addEventListener('change', e => {
+            if (e.target.checked) {
+                shippingDetailsContainer.style.maxHeight = '0';
+
+                shippingAddressElementIDs.forEach(id => {
+                    document.querySelector('#' + id).required = false;
+                })
+            } else {
+                shippingDetailsContainer.style.maxHeight = '1000px';
+
+                shippingAddressElementIDs.forEach(id => {
+                    document.querySelector('#' + id).required = true;
+                })
+            }
+        });
+    </script>
 @endsection
 
 

@@ -16,27 +16,13 @@
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
                 <span class="visited">Orders Details</span>
             </div>
+
+            @include('partials.search-form')
         </div>
     </div> <!-- end breadcrumbs -->
 
     <div class="products-section container profile-section">
-        <div class="sidebar">
-            <div class="inner-sidebar">
-                <ul>
-                    @if (request()->url() == route('profile.edit'))
-                        <li class="active">My Profile</li>
-                    @else
-                        <li><a href="{{ route('profile.edit') }}">My Profile</a></li>
-                    @endif
-
-                    @if (request()->url() == route('orders.index'))
-                        <li class="active">My Orders</li>
-                    @else
-                        <li><a href="{{ route('orders.index') }}">My Orders</a></li>
-                    @endif
-                </ul>
-            </div>
-        </div>
+        @include('partials.profile-sidebar')
 
         <div class="products-section-all">
             <h1 class="stylish-heading">Order Details</h1>
@@ -57,7 +43,13 @@
                     <h3>Payment Method</h3>
 
                     <div class="payment-method">
-                        <img src="/images/visa.png" alt="Visa"> <span>**** 3485</span>
+                        @if ($order->card_brand == 'Visa')
+                            <img src="/images/visa.png" alt="Visa"> <span>****{{ $order->card_last_four_digits }}</span>
+                        @elseif ($order->card_brand == 'Mastercard')
+                            <img src="/images/mastercard.png" alt="Master Card"> <span>****{{ $order->card_last_four_digits }}</span>
+                        @elseif ($order->payment_gateway == 'paypal')
+                            <img src="/images/paypal.png" alt="PayPal">
+                        @endif
                     </div>
                 </div>
 
@@ -78,7 +70,7 @@
                         </div>
 
                         <div>
-                            <div>Total after tax:</div>
+                            <div>Total:</div>
                             
                             <div>{{ presentPrice($order->subtotal + $order->tax) }}</div>
                         </div>

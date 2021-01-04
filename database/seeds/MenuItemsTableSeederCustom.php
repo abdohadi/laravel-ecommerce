@@ -19,9 +19,9 @@ class MenuItemsTableSeederCustom extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => 'Shop',
+            'title'   => 'Contact',
             'url'     => '',
-            'route'   => 'shop.index',
+            'route'   => '',
         ]);
         if (!$menuItem->exists) {
             $menuItem->fill([
@@ -51,9 +51,9 @@ class MenuItemsTableSeederCustom extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => 'Contact',
+            'title'   => 'Shop',
             'url'     => '',
-            'route'   => '',
+            'route'   => 'shop.index',
         ]);
         if (!$menuItem->exists) {
             $menuItem->fill([

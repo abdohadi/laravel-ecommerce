@@ -69,7 +69,7 @@
                                         <input type="hidden" name="id" value="{{ $item->model->id }}">
                                         <input type="hidden" name="name" value="{{ $item->model->name }}">
                                         <input type="hidden" name="price" value="{{ $item->model->price }}">
-                                        <button class="button-blue" type="submit">Move to Cart</button>
+                                        <button class="button button-blue" type="submit">Move to Cart</button>
                                     </form>
                                 </div>
                             </div>

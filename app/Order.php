@@ -46,4 +46,9 @@ class Order extends Model
     {
     	return $this->belongsToMany('App\Product')->withPivot('quantity');
     }
+
+    public function scopeErrorFree($query)
+    {
+        return $query->where('error', null);
+    }
 }

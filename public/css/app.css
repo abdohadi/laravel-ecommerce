@@ -234,6 +234,10 @@ button {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: "Dosis", sans-serif;
   font-weight: 300;
@@ -454,12 +458,12 @@ a.button-black:visited {
 }
 
 .button-blue {
-  background: #007bff;
+  background: #459ffe;
   color: #fff !important;
 }
 
 .button-blue:hover {
-  background: #006adb !important;
+  background: #077df9 !important;
 }
 
 .can-be-disabled:disabled {
@@ -639,12 +643,13 @@ form button[type=submit] {
   right: -1000px;
   max-width: 400px;
   padding: 15px 45px;
-  background: #e9e9e9;
+  background: #f9f9f9;
   color: #353b48;
   font-weight: normal;
   -webkit-animation: display-msg 7s linear;
           animation: display-msg 7s linear;
   z-index: 100;
+  border: 1px solid #dfdfdf;
 }
 
 .success-session-msg.success-session-msg,
@@ -779,8 +784,8 @@ form button[type=submit] {
   position: absolute;
   right: 2px;
   padding: 18px;
-  top: -9px;
-  font-size: 1.5rem;
+  top: -12px;
+  font-size: 1.5rem !important;
   background: transparent;
   color: #b0b0b0;
   transform: rotateY(180deg);
@@ -1177,11 +1182,19 @@ form button[type=submit] {
   display: none;
 }
 
+.cards-container {
+  padding: 0 150px;
+}
+
+.cards-container .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 60px 30px;
+}
+
 .product-card {
   position: relative;
   border: 1px solid #dfdfdf;
-  width: 205px;
-  margin: auto;
   padding: 12px 0;
   height: 330px;
   -o-box-shadow: 0px 0px 7px -2px #33333324;
@@ -1214,11 +1227,21 @@ form button[type=submit] {
 }
 
 .product-card .product-image:hover img {
-  width: 80% !important;
+  max-width: 90% !important;
+  max-height: 96% !important;
 }
 
-.product-card .product-image img {
-  width: 60%;
+.product-card .product-image a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.product-card .product-image a img {
+  max-width: 75%;
+  max-height: 85%;
 }
 
 .product-card .product-details {
@@ -1248,7 +1271,7 @@ form button[type=submit] {
 .product-card .product-details .product-details-top .product-price {
   font-weight: bold;
   font-size: 1.1rem;
-  color: #007bff;
+  color: #2a8ffa;
 }
 
 .product-card .product-details .product-actions {
@@ -1268,6 +1291,35 @@ form button[type=submit] {
 
 .product-card .product-details .product-actions .heart-item-form button i {
   font-size: 1.8rem !important;
+}
+
+.checkbox {
+  border: 1px solid #459ffe;
+  border-radius: 3px;
+  color: #fff;
+  background: #fff;
+  font-size: 1.4rem;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2px;
+  padding-bottom: 0.4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 3px -2px #459ffe;
+}
+
+.checkbox.checked {
+  background: #459ffe;
+}
+
+.checkbox .check-mark {
+  display: none;
+}
+
+.checkbox .check-mark.show {
+  display: block !important;
 }
 
 header.with-background {
@@ -1405,8 +1457,12 @@ header .top-nav ul li a .wishlist-count span {
 .nav-item-dropdown .custom-dropdown-menu {
   position: absolute;
   top: 60px;
-  right: -13px;
+  right: 20px;
   z-index: 999;
+}
+
+.nav-item-dropdown .custom-dropdown-menu.custom-dropdown-menu-categories {
+  right: 38px;
 }
 
 .nav-item-dropdown .custom-dropdown-menu .custom-dropdown-menu-ul {
@@ -1740,8 +1796,6 @@ footer {
 }
 
 .home-products-section .products-container {
-  display: grid;
-  grid-template-columns: 5fr 2fr;
   margin-top: 70px;
 }
 
@@ -1750,23 +1804,12 @@ footer {
   margin-bottom: 35px;
 }
 
-.home-products-section .products-container .left-section {
-  padding: 0 35px;
+.home-products-section .products-container .cards-container {
+  padding: 0 150px;
 }
 
-.home-products-section .products-container .left-section .products {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 60px 30px;
-}
-
-.home-products-section .products-container .right-section {
-  padding: 0 20px;
-  border-left: 2px solid #e3e3e3;
-}
-
-.home-products-section .products-container .right-section .product-card {
-  margin-bottom: 15px;
+.home-products-section .products-container .cards-container:first-of-type {
+  margin-bottom: 80px;
 }
 
 .profile-section form {
@@ -1808,6 +1851,7 @@ footer {
 .order-box .payment-method {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
 }
 
@@ -2085,6 +2129,15 @@ footer {
   width: 39%;
 }
 
+.cart-section .cart-table-row .wishlist-table-row-right .move-to-cart-form {
+  margin-left: 40px;
+}
+
+.cart-section .cart-table-row .wishlist-table-row-right .move-to-cart-form button {
+  padding: 4px 11px !important;
+  border-radius: 7px !important;
+}
+
 .cart-section .cart-table-row .cart-table-img {
   max-width: 125px;
 }
@@ -2096,10 +2149,6 @@ footer {
 
 .cart-section .cart-table-row .cart-table-actions form button i {
   font-size: 22px;
-}
-
-.cart-section .cart-table-row .cart-table-actions .move-to-cart-form {
-  margin-left: 70px;
 }
 
 .cart-section .cart-table-row .cart-table-actions .remove-item-form {
@@ -2259,6 +2308,18 @@ h1.checkout-heading {
   border-radius: 28px;
 }
 
+.checkout-section .checkout-section-left .address-checkbox-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.checkout-section .checkout-section-left .shipping-details-container {
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
 .checkout-section .checkout-section-left form button[type=submit] {
   width: 50%;
   display: block;
@@ -2357,6 +2418,8 @@ h1.checkout-heading {
 
 .checkout-section .checkout-totals .checkout-totals-right {
   text-align: right;
+  width: 40%;
+  letter-spacing: 1px;
 }
 
 .checkout-section .checkout-totals .checkout-totals-left .remove-coupon-form {
@@ -2366,12 +2429,12 @@ h1.checkout-heading {
 
 .checkout-section .checkout-totals .checkout-totals-left .remove-coupon-form button {
   color: #f95e6c;
-  font-size: 12px !important;
+  font-size: 0.85rem !important;
 }
 
 .checkout-section .checkout-totals .checkout-totals-total {
   font-weight: bold;
-  font-size: 22px;
+  font-size: 1.3rem;
   line-height: 2.2;
 }
 

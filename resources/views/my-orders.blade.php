@@ -14,27 +14,13 @@
                 <i class="fa fa-chevron-right breadcrumb-separator"></i>
                 <span class="visited">My Orders</span>
             </div>
+            
+            @include('partials.search-form')
         </div>
     </div> <!-- end breadcrumbs -->
 
     <div class="products-section container profile-section">
-        <div class="sidebar">
-            <div class="inner-sidebar">
-                <ul>
-                    @if (request()->url() == route('profile.edit'))
-                        <li class="active">My Profile</li>
-                    @else
-                        <li><a href="{{ route('profile.edit') }}">My Profile</a></li>
-                    @endif
-
-                    @if (request()->url() == route('orders.index'))
-                        <li class="active">My Orders</li>
-                    @else
-                        <li><a href="{{ route('orders.index') }}">My Orders</a></li>
-                    @endif
-                </ul>
-            </div>
-        </div>
+        @include('partials.profile-sidebar')
 
         <div class="products-section-all">
             <h1 class="stylish-heading">My Orders</h1>

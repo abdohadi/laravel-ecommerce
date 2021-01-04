@@ -131,9 +131,13 @@ header {
   .custom-dropdown-menu {
     position: absolute;
     top: 60px;
-    right: -13px;
+    right: 20px;
     z-index: 999;
 
+    &.custom-dropdown-menu-categories {
+      right: 38px;
+    }
+    
     .custom-dropdown-menu-ul {
       display: block;
       width: 190px;

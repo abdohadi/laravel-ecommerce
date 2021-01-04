@@ -52,28 +52,30 @@
             </div> <!-- end container -->
 
             <div class="products-container">
-                <div class="left-section">
+                <div class="cards-container">
+                    <h2>New Products</h2>
+
+                    <div class="cards text-center">
+                        @foreach ($newProducts as $product)    
+                            @include('partials/product-card')
+                        @endforeach
+                    </div> <!-- end products -->
+                </div>
+
+                <div class="cards-container">
                     <h2>Featured Products</h2>
                     
-                    <div class="products text-center">
+                    <div class="cards text-center">
                         @foreach ($featuredProducts as $product)    
                             <div>
                                 @include('partials/product-card')
                             </div>
                         @endforeach
                     </div> <!-- end products -->
-
-                    <div class="text-center button-container">
-                        <a href="{{ route('shop.index') }}" class="button button-white">View more products</a>
-                    </div>
                 </div>
 
-                <div class="right-section">
-                    <h2>New Products</h2>
-
-                    @foreach ($newProducts as $product)    
-                        @include('partials/product-card')
-                    @endforeach
+                <div class="text-center button-container">
+                    <a href="{{ route('shop.index') }}" class="button button-white">View more products</a>
                 </div>
             </div>
         </div> <!-- end home-products-section -->

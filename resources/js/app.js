@@ -78,4 +78,17 @@ window.Vue = require('vue');
 			contactContainer.style.display = 'none';
 		});
 	}
+
+
+	// Toggle checkbox
+	document.querySelectorAll('.checkbox').forEach(el => {
+		el.addEventListener('click', (e) => {
+		  	if (e.target.classList.contains('checkbox')) {
+			  	e.target.classList.toggle('checked');
+				e.target.querySelector('.check-mark').classList.toggle('show');
+			} else if (e.target.classList.contains('check-mark')) {
+			  	e.target.parentElement.click();
+			}
+		});
+	});
 }());
