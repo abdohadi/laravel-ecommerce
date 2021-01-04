@@ -56,6 +56,15 @@
 
         .wishlist-table-row-right {
             width: 39%;
+
+            .move-to-cart-form {
+                margin-left: 40px;
+
+                button {
+                    padding: 4px 11px !important;
+                    border-radius: 7px !important;
+                }
+            }
         }
 
         .cart-table-img {
@@ -68,10 +77,6 @@
 
             form button i {
                 font-size: 22px;
-            }
-
-            .move-to-cart-form {
-                margin-left: 70px;
             }
 
             .remove-item-form {

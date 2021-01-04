@@ -13,6 +13,18 @@ h1.checkout-heading {
     padding: 30px 40px;
     border-radius: 28px;
 
+    .address-checkbox-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .shipping-details-container {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height .3s ease-in-out;
+    }
+
     form button[type='submit'] {
       width: 50%;
       display: block;
@@ -108,6 +120,8 @@ h1.checkout-heading {
 
     .checkout-totals-right {
       text-align: right;
+      width: 40%;
+      letter-spacing: 1px;
     }
 
     .checkout-totals-left {
@@ -117,14 +131,14 @@ h1.checkout-heading {
 
         button {
           color: $red;
-          font-size: 12px !important;
+          font-size: .85rem !important;
         }
       }
     }
 
     .checkout-totals-total {
       font-weight: bold;
-      font-size: 22px;
+      font-size: 1.3rem;
       line-height: 2.2;
     }
   }

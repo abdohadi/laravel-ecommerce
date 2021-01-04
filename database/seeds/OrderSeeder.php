@@ -53,7 +53,7 @@ class OrderSeeder extends Seeder
         $dataRow = $this->dataRow($postDataType, 'user_id');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'string',
+                'type'         => 'number',
                 'display_name' => 'user_id',
                 'required'     => 1,
                 'browse'       => 1,
@@ -93,7 +93,7 @@ class OrderSeeder extends Seeder
         $dataRow = $this->dataRow($postDataType, 'billing_phone');
         if (!$dataRow->exists) {
             $dataRow->fill([
-                'type'         => 'number',
+                'type'         => 'text',
                 'display_name' => 'billing_phone',
                 'required'     => 1,
                 'browse'       => 1,
@@ -361,11 +361,6 @@ class OrderSeeder extends Seeder
                 'edit'         => 1,
                 'add'          => 1,
                 'delete'       => 1,
-                'details'      => [
-                    'validation' => [
-                        'rule'  => 'required',
-                    ],
-                ],
                 'order'        => 17,
             ])->save();
         }

@@ -11,7 +11,6 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ShopController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -23,11 +22,16 @@ class ShopController extends Controller
             
         if (request()->category) {
             $targetCategory = Category::where('slug', request()->category)->firstOrFail();
-            $products = $targetCategory->products();
+            $products = $targetCategory->products()->available();
             $categoryName = $targetCategory->name;
         } else {
-            $products = Product::Where('featured', TRUE);
+            $products = Product::available()->Where('featured', TRUE);
             $categoryName = 'Featured';
+        }
+
+        if (request()->has('minPrice') && request()->has('maxPrice')) {
+            $products->where('price', '>=', request()->minPrice)
+                     ->where('price', '<=', request()->maxPrice);
         }
 
         if (request()->sort == 'high_low') {
@@ -36,11 +40,6 @@ class ShopController extends Controller
             $products = $products->orderBy('price');
         } else {
             $products = $products->inRandomOrder();
-        }
-
-        if (request()->has('minPrice') && request()->has('maxPrice')) {
-            $products->where('price', '>=', request()->minPrice)
-                     ->where('price', '<=', request()->maxPrice);
         }
 
         $products = $products->paginate(12);

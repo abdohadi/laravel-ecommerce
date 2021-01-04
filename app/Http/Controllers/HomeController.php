@@ -17,15 +17,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $featuredProducts = Product::where('featured', TRUE)
+        $featuredProducts = Product::available()
+                            ->where('featured', TRUE)
                             ->where('quantity', '>', 0)
                             ->inRandomOrder()
                             ->take(8)
                             ->get();
 
-        $newProducts = Product::whereRaw("DATEDIFF(CURDATE(), created_at) <= ". Product::NEW_PRODUCT_DURATION)
+        $newProducts = Product::available()
+                            ->whereRaw("DATEDIFF(CURDATE(), created_at) <= ". Product::NEW_PRODUCT_DURATION)
                             ->inRandomOrder()
-                            ->take(3)
+                            ->take(4)
                             ->get();
 
         return view('home', compact(['featuredProducts', 'newProducts']));

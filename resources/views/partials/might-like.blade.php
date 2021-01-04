@@ -1,7 +1,7 @@
 <div class="might-like-section">
-    <div class="container">
+    <div class="cards-container">
         <h2>You might also like...</h2>
-        <div class="might-like-grid">
+        <div class="cards">
             @foreach ($mightAlsoLike as $product)
                 @include('partials/product-card')
             @endforeach

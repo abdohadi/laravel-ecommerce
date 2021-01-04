@@ -1,8 +1,16 @@
+.cards-container {
+    padding: 0 150px;
+
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 60px $gutter;
+    }
+}
+
 .product-card {
     position: relative;
     border: 1px solid $border-color;
-    width: 205px;
-    margin: auto;
     padding: 12px 0;
     height: 330px;
     -webkit-box-shadow: 0px 0px 7px -2px #33333324;
@@ -37,11 +45,21 @@
         text-align: center;
 
         &:hover img {
-            width: 80% !important;
+            max-width: 90% !important;
+            max-height: 96% !important;
         }
-                
-        img {
-            width: 60%;
+        
+        a {       
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+
+            img {
+                max-width: 75%;
+                max-height: 85%;
+            }
         }
     }
 

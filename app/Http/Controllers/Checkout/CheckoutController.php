@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Checkout;
 use App\Order;
 use App\Product;
 use App\OrderProduct;
-use App\Paytabs\Paytabs;
 use App\Mail\OrderPlaced;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,6 +29,16 @@ class CheckoutController extends Controller
     public function validateDetails(Request $request)
     {
         $this->checkRaceCondition();
+
+        if ($request->same_shipping_address) {
+            $request->merge([
+                'address_shipping' => $request->billing_address,
+                'country_shipping' => $request->country,
+                'city_shipping' => $request->city,
+                'state_shipping' => $request->state,
+                'postal_code_shipping' => $request->postal_code
+            ]);
+        }
         
         $request->validate($this->detailsRules(), $this->messages());
 

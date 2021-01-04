@@ -2,8 +2,6 @@
     padding: 50px 0;
 
     .products-container {
-        display: grid;
-		grid-template-columns: 5fr 2fr;
 		margin-top: 70px;
 
 		h2 {
@@ -11,23 +9,12 @@
 			margin-bottom: 35px;
 		}
 
-		.left-section {
-			padding: 0 35px;
+		.cards-container {
+		    padding: 0 150px;
 
-			.products {
-				display: grid;
-		        grid-template-columns: 1fr 1fr 1fr 1fr;
-		        grid-gap: 60px $gutter;
-			}
-		}
-
-		.right-section {
-			padding: 0 20px;
-			border-left: 2px solid #e3e3e3;
-
-			.product-card {
-				margin-bottom: 15px;
-			}
+		    &:first-of-type {
+		        margin-bottom: 80px;
+		    }
 		}
     }
 }

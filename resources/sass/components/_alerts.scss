@@ -38,11 +38,12 @@
     right: -1000px;
     max-width: 400px;
     padding: 15px 45px;
-    background: $white;
+    background: #f9f9f9;
     color: #353b48;
     font-weight: normal;
     animation: display-msg 7s linear;
     z-index: 100;
+    border: 1px solid $border-color;
 
     &.success-session-msg {
         border-top: 8px solid #4cd137;

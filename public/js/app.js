@@ -14448,11 +14448,25 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
   } // Toggle contact page
 
 
-  navContact.addEventListener('click', function () {
-    contactContainer.style.display = 'block';
-  });
-  closeContact.addEventListener('click', function () {
-    contactContainer.style.display = 'none';
+  if (navContact) {
+    navContact.addEventListener('click', function () {
+      contactContainer.style.display = 'block';
+    });
+    closeContact.addEventListener('click', function () {
+      contactContainer.style.display = 'none';
+    });
+  } // Toggle checkbox
+
+
+  document.querySelectorAll('.checkbox').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (e.target.classList.contains('checkbox')) {
+        e.target.classList.toggle('checked');
+        e.target.querySelector('.check-mark').classList.toggle('show');
+      } else if (e.target.classList.contains('check-mark')) {
+        e.target.parentElement.click();
+      }
+    });
   });
 })();
 
