@@ -51,14 +51,11 @@ class EcommerceInstall extends Command
     protected function proceed()
     {
         File::deleteDirectory(public_path('images/basic'));
-<<<<<<< HEAD
-        File::cleanDirectory(public_path('images/products'));
-        File::cleanDirectory(public_path('images/users'));
-=======
+
         $filesystem = new Filesystem;
         $filesystem->cleanDirectory(public_path('images/products'));
         $filesystem->cleanDirectory(public_path('images/users'));
->>>>>>> aa4269259825ff93525153f8192bff75ca8343b1
+
 
         $this->info('Installing dummy data...');
 
