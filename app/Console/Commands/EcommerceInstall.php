@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Filesystem\Filesystem;
 
 class EcommerceInstall extends Command
 {
@@ -50,8 +51,9 @@ class EcommerceInstall extends Command
     protected function proceed()
     {
         File::deleteDirectory(public_path('images/basic'));
-        File::deleteDirectory(public_path('images/products'));
-        File::deleteDirectory(public_path('images/users'));
+        $filesystem = new Filesystem;
+        $filesystem->cleanDirectory(public_path('images/products'));
+        $filesystem->cleanDirectory(public_path('images/users'));
 
         $this->info('Installing dummy data...');
 
