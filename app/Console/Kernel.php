@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('ecommerce:install --force')->everyMinute();
+        $schedule->command('ecommerce:install --force')->daily();
     }
 
     /**
