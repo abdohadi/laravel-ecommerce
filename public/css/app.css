@@ -238,6 +238,10 @@ button {
   display: none;
 }
 
+.toggle-down {
+  max-height: 1000px !important;
+}
+
 body {
   font-family: "Dosis", sans-serif;
   font-weight: 300;
@@ -1322,6 +1326,49 @@ form button[type=submit] {
   display: block !important;
 }
 
+.navbar-toggler-container {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.navbar-toggler-container.close > span {
+  background: #dfdfdf;
+  margin: 0;
+}
+
+.navbar-toggler-container.close > span:nth-of-type(1) {
+  position: relative;
+  top: 2px;
+  --webkit-transform: rotateZ(-45deg);
+  --moz-transform: rotateZ(-45deg);
+  --o-transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
+}
+
+.navbar-toggler-container.close > span:nth-of-type(2) {
+  display: none;
+}
+
+.navbar-toggler-container.close > span:nth-of-type(3) {
+  --webkit-transform: rotateZ(45deg);
+  --moz-transform: rotateZ(45deg);
+  --o-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.navbar-toggler-container span {
+  content: "";
+  display: block;
+  width: 23px;
+  height: 2px;
+  border-radius: 2px;
+  background: #b3b3b3;
+}
+
+.navbar-toggler-container span:nth-of-type(2) {
+  margin: 4px 0;
+}
+
 header.with-background {
   background: url("/images/triangles.svg");
   background-size: cover;
@@ -1392,43 +1439,52 @@ header .top-nav .logo {
   font-style: italic;
 }
 
-header .top-nav ul {
+header .top-nav ul,
+header .small-devices-navbar-items ul {
   display: flex;
   font-size: 0.8rem;
 }
 
-header .top-nav ul.nav-left {
+header .top-nav ul.nav-left,
+header .small-devices-navbar-items ul.nav-left {
   margin-right: auto;
 }
 
-header .top-nav ul li {
+header .top-nav ul li,
+header .small-devices-navbar-items ul li {
   padding: 22px 0;
   padding-right: 38px;
   display: flex;
   align-items: center;
 }
 
-header .top-nav ul li:last-child {
-  margin-right: 0;
+header .top-nav ul li:last-child,
+header .small-devices-navbar-items ul li:last-child {
+  padding-right: 0;
 }
 
-header .top-nav ul li a {
+header .top-nav ul li a,
+header .small-devices-navbar-items ul li a {
   position: relative;
   display: flex;
   align-items: center;
   color: #e9e9e9;
 }
 
-header .top-nav ul li a:hover {
+header .top-nav ul li a:hover,
+header .small-devices-navbar-items ul li a:hover {
   color: #d0d0d0;
 }
 
-header .top-nav ul li a i {
+header .top-nav ul li a i,
+header .small-devices-navbar-items ul li a i {
   font-size: 1.8rem;
 }
 
 header .top-nav ul li a .cart-count,
-header .top-nav ul li a .wishlist-count {
+header .top-nav ul li a .wishlist-count,
+header .small-devices-navbar-items ul li a .cart-count,
+header .small-devices-navbar-items ul li a .wishlist-count {
   background: #f95e6c;
   color: #eee;
   border-radius: 50%;
@@ -1446,8 +1502,31 @@ header .top-nav ul li a .wishlist-count {
 }
 
 header .top-nav ul li a .cart-count span,
-header .top-nav ul li a .wishlist-count span {
+header .top-nav ul li a .wishlist-count span,
+header .small-devices-navbar-items ul li a .cart-count span,
+header .small-devices-navbar-items ul li a .wishlist-count span {
   margin-right: 1px;
+}
+
+header .small-devices-navbar-items ul {
+  display: block;
+}
+
+header .small-devices-navbar-items ul li {
+  display: block;
+}
+
+header .small-devices-navbar-items ul li a {
+  display: block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: auto;
+}
+
+header .small-devices-navbar-items ul li a .cart-count,
+header .small-devices-navbar-items ul li a .wishlist-count {
+  top: -8px;
 }
 
 .nav-item-dropdown {
@@ -1713,7 +1792,6 @@ footer {
 .contact-container .contact-overlay .contact-content div form button {
   display: block;
   margin: auto;
-  width: 53%;
   background: rgba(15, 15, 15, 0.8);
 }
 
@@ -1805,7 +1883,7 @@ footer {
 }
 
 .home-products-section .products-container .cards-container {
-  padding: 0 150px;
+  padding: 0 110px;
 }
 
 .home-products-section .products-container .cards-container:first-of-type {

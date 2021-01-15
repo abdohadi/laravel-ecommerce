@@ -17,7 +17,7 @@
             </li>
         @else
             <li>
-            	<a id="nav-{{ lcfirst($menu_item->title) }}" href="{{ $menu_item->link() }}">{{ $menu_item->title }}</a>
+            	<a class="nav-{{ lcfirst($menu_item->title) }}" href="{{ $menu_item->link() }}">{{ $menu_item->title }}</a>
             </li>
         @endif
     @endforeach
@@ -85,9 +85,10 @@
 
 <script>
 
-    let navItemDropdownList = document.querySelectorAll('.nav-item-dropdown');
-    let dropdownToggleList = document.querySelectorAll('.custom-dropdown-toggle');
-    let dropdownMenuUlList = document.querySelectorAll('.custom-dropdown-menu-ul');
+    {{-- Large screens drop down menus --}}
+    var dropdownToggleList = document.querySelectorAll('.custom-dropdown-toggle');
+    var dropdownMenuUlList = document.querySelectorAll('.custom-dropdown-menu-ul');
+    var navItemDropdownList = document.querySelectorAll('.nav-item-dropdown');
     
     // Show dropdown menu when hovering over the user name
     if (dropdownToggleList.length) {
@@ -114,6 +115,21 @@
 
             el.addEventListener('mouseleave', (e) => {
                 e.target.classList.remove('show');
+            });
+        });
+    }
+
+
+    {{-- Small screens drop down menus --}}
+    var sDropdownToggleList = document.querySelectorAll('.small-devices-navbar-items .custom-dropdown-toggle');
+    var sDropdownMenuList = document.querySelectorAll('.small-devices-navbar-items .custom-dropdown-menu');
+    
+    // Show dropdown menu
+    if (sDropdownToggleList.length) {
+        sDropdownToggleList.forEach(el => {
+            el.addEventListener('click', e => {
+                e.preventDefault();
+                e.target.parentElement.querySelector('#'+e.target.dataset.dropdownMenu).parentElement.classList.toggle('toggle-down');
             });
         });
     }
