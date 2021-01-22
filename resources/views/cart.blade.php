@@ -65,9 +65,9 @@
                                             class="quantity" 
                                             value="{{ $item->qty }}" min="1" max="{{ $item->model->quantity }}">
                                     </form>
-                                </div>
 
-                                <div>{{ presentPrice($item->subtotal()) }}</div>
+                                    <div>{{ presentPrice($item->subtotal()) }}</div>
+                                </div>
 
                                 <div class="cart-table-actions">
                                     {{-- Add to wishlist form --}}

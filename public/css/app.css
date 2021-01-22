@@ -214,7 +214,7 @@ button {
 }
 
 .small-text {
-  font-size: 14px;
+  font-size: 0.8;
 }
 
 .hr {
@@ -1914,16 +1914,13 @@ footer {
 }
 
 .order-box {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 4rem;
   padding: 20px;
   border: 1px solid #dfdfdf;
   border-radius: 5px;
   margin-bottom: 30px;
-}
-
-.order-box .shipping-address-box {
-  width: 25%;
 }
 
 .order-box .payment-method {
@@ -1936,10 +1933,6 @@ footer {
 .order-box .payment-method img {
   width: 45px;
   display: inline;
-}
-
-.order-box .order-summary-box {
-  width: 25%;
 }
 
 .order-box .order-summary-box .order-summary > div {
@@ -2146,9 +2139,9 @@ footer {
 
 .cart-section {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 4fr 1fr;
   grid-gap: 30px;
-  margin: 60px auto;
+  margin: 60px;
 }
 
 .cart-section h2 {
@@ -2174,10 +2167,16 @@ footer {
 
 .cart-section .cart-table-row .cart-table-row-left {
   width: 50%;
+  gap: 20px;
 }
 
-.cart-section .cart-table-row .cart-table-row-left a {
+.cart-section .cart-table-row .cart-table-row-left .cart-table-item {
+  margin-bottom: 9px;
+}
+
+.cart-section .cart-table-row .cart-table-row-left .cart-table-item a {
   margin-right: 20px;
+  font-size: 1.2rem;
 }
 
 .cart-section .cart-table-row .cart-table-row-right {
@@ -2186,14 +2185,18 @@ footer {
 }
 
 .cart-section .cart-table-row .cart-table-row-right .quantity-section {
-  margin-right: -40px;
+  text-align: center;
 }
 
-.cart-section .cart-table-row .cart-table-row-right .quantity-section input.quantity {
+.cart-section .cart-table-row .cart-table-row-right .quantity-section .quantity-form {
+  margin-bottom: 10px;
+}
+
+.cart-section .cart-table-row .cart-table-row-right .quantity-section .quantity-form input.quantity {
   width: 80px;
 }
 
-.cart-section .cart-table-row .cart-table-row-right .quantity-section .quantity-submit {
+.cart-section .cart-table-row .cart-table-row-right .quantity-section .quantity-form .quantity-submit {
   display: block;
   margin: auto;
   margin-top: 5px;
