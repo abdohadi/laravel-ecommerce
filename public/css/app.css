@@ -2062,8 +2062,7 @@ footer {
 }
 
 .product-section-images .product-section-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  display: flex;
   grid-gap: 20px;
   margin-top: 20px;
 }
@@ -2071,18 +2070,15 @@ footer {
 .product-section-images .product-section-thumbnails .product-section-thumbnail {
   display: flex;
   align-items: center;
+  max-width: 65px;
+  max-height: 65px;
   border: 1px solid lightgray;
-  min-height: 66px;
   cursor: pointer;
 }
 
 .product-section-images .product-section-thumbnails .product-section-thumbnail.selected,
 .product-section-images .product-section-thumbnails .product-section-thumbnail:hover {
   border: 1px solid #979797;
-}
-
-.product-section-information {
-  padding-right: 50px;
 }
 
 .product-section-information .product-section-first-row {

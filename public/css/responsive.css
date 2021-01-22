@@ -204,6 +204,12 @@
   .profile-section .order-box {
     grid-template-columns: 2fr 1fr;
   }
+
+  /* Product */
+
+  .product-section {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Small Devices, Tablets */
@@ -428,6 +434,18 @@
 
   .profile-section .order-box {
     grid-template-columns: 1fr;
+  }
+
+  /* Product */
+
+  .product-section .product-section-title-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .product-section .product-section-title-badges .product-badges {
+    width: 100%;
   }
 }
 
