@@ -14430,7 +14430,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
   var diabledButton = document.querySelector('.can-be-disabled');
   var closeContact = document.querySelector('#close-contact');
   var contactContainer = document.querySelector('.contact-container');
-  var navContact = document.querySelector('#nav-contact'); // Stick footer element to the bottom
+  var navContact = document.querySelectorAll('.nav-contact');
+  var navbarToggler = document.querySelector('.navbar-toggler-container');
+  var navbarItems = document.querySelector('.small-devices-navbar-items'); // Stick footer element to the bottom
 
   if (main) {
     if (main.offsetHeight + footer.offsetHeight < window.innerHeight) {
@@ -14449,8 +14451,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
   if (navContact) {
-    navContact.addEventListener('click', function () {
-      contactContainer.style.display = 'block';
+    navContact.forEach(function (el) {
+      el.addEventListener('click', function () {
+        contactContainer.style.display = 'block';
+      });
     });
     closeContact.addEventListener('click', function () {
       contactContainer.style.display = 'none';
@@ -14467,6 +14471,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
         e.target.parentElement.click();
       }
     });
+  }); // Toggle navbar items in small devices
+
+  navbarToggler.addEventListener('click', function (e) {
+    e.target.classList.toggle('close');
+    navbarItems.classList.toggle('toggle-down');
   });
 })();
 
@@ -14526,15 +14535,27 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/responsive.scss":
+/*!****************************************!*\
+  !*** ./resources/sass/responsive.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!**********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/responsive.scss ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /opt/lampp/htdocs/laravel-ecommerce/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /opt/lampp/htdocs/laravel-ecommerce/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /opt/lampp/htdocs/laravel-ecommerce/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /opt/lampp/htdocs/laravel-ecommerce/resources/sass/responsive.scss */"./resources/sass/responsive.scss");
 
 
 /***/ })

@@ -1,8 +1,8 @@
 .cart-section {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 4fr 1fr;
     grid-gap: 30px;
-    margin: 60px auto;
+    margin: 60px;
 
     h2 {
         margin-bottom: 30px;
@@ -25,9 +25,15 @@
 
         .cart-table-row-left {
             width: 50%;
+            gap: 20px;
 
-            a {
-                margin-right: 20px;
+            .cart-table-item {
+                margin-bottom: 9px;
+             
+                a {
+                    margin-right: 20px;
+                    font-size: 1.2rem;
+                }
             }
         }
 
@@ -36,16 +42,20 @@
             width: 43%;
 
             .quantity-section {
-                margin-right: -40px;
+                text-align: center;
 
-                input.quantity {
-                    width: 80px;
-                }
+                .quantity-form {
+                    margin-bottom: 10px;
+                    
+                    input.quantity {
+                        width: 80px;
+                    }
 
-                .quantity-submit {
-                    display: block;
-                    margin: auto;
-                    margin-top: 5px;
+                    .quantity-submit {
+                        display: block;
+                        margin: auto;
+                        margin-top: 5px;
+                    }
                 }
             }
         }

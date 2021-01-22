@@ -48,7 +48,9 @@ window.Vue = require('vue');
 	let diabledButton = document.querySelector('.can-be-disabled');
 	let closeContact = document.querySelector('#close-contact');
 	let contactContainer = document.querySelector('.contact-container');
-	let navContact = document.querySelector('#nav-contact');
+	let navContact = document.querySelectorAll('.nav-contact');
+	let navbarToggler = document.querySelector('.navbar-toggler-container');
+	let navbarItems = document.querySelector('.small-devices-navbar-items');
 
 	// Stick footer element to the bottom
 	if (main) {
@@ -70,8 +72,10 @@ window.Vue = require('vue');
 
 	// Toggle contact page
 	if (navContact) {
-		navContact.addEventListener('click', () => {
-			contactContainer.style.display = 'block';
+		navContact.forEach(el => {
+				el.addEventListener('click', () => {
+				contactContainer.style.display = 'block';
+			});
 		});
 
 		closeContact.addEventListener('click', () => {
@@ -90,5 +94,12 @@ window.Vue = require('vue');
 			  	e.target.parentElement.click();
 			}
 		});
+	});
+
+
+	// Toggle navbar items in small devices
+	navbarToggler.addEventListener('click', (e) => {
+		e.target.classList.toggle('close');
+		navbarItems.classList.toggle('toggle-down');
 	});
 }());

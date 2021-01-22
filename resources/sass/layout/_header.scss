@@ -66,7 +66,9 @@ header {
       margin-right: 58px;
       font-style: italic;
     }
+  }
 
+  .top-nav, .small-devices-navbar-items {
     ul {
       display: flex;
       font-size: .8rem;
@@ -82,7 +84,7 @@ header {
         align-items: center;
 
         &:last-child {
-          margin-right: 0;
+          padding-right: 0;
         }
 
         a {
@@ -119,6 +121,24 @@ header {
               margin-right: 1px;
             }
           }
+        }
+      }
+    }
+  }
+
+  .small-devices-navbar-items ul {
+    display: block;
+
+    li {
+      display: block;
+
+      a {
+        display: block;
+        width: max-content;
+        margin: auto;
+
+        .cart-count, .wishlist-count {
+          top: -8px;
         }
       }
     }

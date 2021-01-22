@@ -21,12 +21,14 @@
     </head>
     <body>
         <header class="with-background">
-            <div class="top-nav container">
+            <div class="top-nav container large-devices-navbar">
                 <div class="logo"><a href="/">Ecommerce</a></div>
 
                 {{-- Main menu --}}
                 {{ menu('main', 'partials.menus.main') }}
             </div> <!-- end top-nav -->
+
+            @include('partials/small-nav')
 
             <div class="hero container">
                 <div class="hero-copy">

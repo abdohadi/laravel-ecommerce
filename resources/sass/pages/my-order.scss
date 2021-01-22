@@ -3,16 +3,13 @@
 }
 
 .order-box {
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: 2fr 1fr 2fr;
+	gap: 4rem;
 	padding: 20px;
 	border: 1px solid $border-color;
 	border-radius: 5px;
 	margin-bottom: 30px;
-
-	.shipping-address-box {
-		width: 25%;
-	}
 
 	.payment-method {
 		display: flex;
@@ -27,8 +24,6 @@
 	}
 
 	.order-summary-box {
-		width: 25%;
-
 		.order-summary {
 			& > div {
 				display: flex;

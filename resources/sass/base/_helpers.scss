@@ -10,7 +10,7 @@
 }
 
 .small-text {
-	font-size: 14px;
+	font-size: .8;
 }
 
 .hr {
@@ -32,4 +32,8 @@
 
 .hidden {
 	display: none;
+}
+
+.toggle-down {
+	max-height: 1000px !important;
 }
