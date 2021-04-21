@@ -8,7 +8,7 @@ An E-Commerce website built with Laravel Framework, Vuejs, and Javascript.
 - They can make use of coupons and checkout for products.
 - Autocomplete search is applied
 
-The website is deployed on Amazon Cloud (AWS EC2). Check [Website](http://3.16.17.107)
+The website is deployed on Amazon Cloud (AWS EC2). Check [Website](http://ec2-15-237-94-238.eu-west-3.compute.amazonaws.com)
 
 ### Tools & Packages:
 
@@ -19,8 +19,8 @@ The website is deployed on Amazon Cloud (AWS EC2). Check [Website](http://3.16.1
 
 
 <p align="center">
-	<p><a href="http://3.16.17.107">Project Demo</a></p>
-	<p><a href="http://3.16.17.107/admin/login">Admin Panel</a></p>
+	<p><a href="http://ec2-15-237-94-238.eu-west-3.compute.amazonaws.com">Project Demo</a></p>
+	<p><a href="http://ec2-15-237-94-238.eu-west-3.compute.amazonaws.com/admin/login">Admin Panel</a></p>
 </p>
 
 <p align="center"><img src="public/images/screenshots/ecommerce_home.png" width="700"></p>
