@@ -72,7 +72,7 @@ class MakeProductSearchable
                         'hierarchy_lvl5' => null,
                         'hierarchy_lvl6' => null,
                         'content' => ' '.$product->description.' ',
-                        'url' => "shop/{$product->id}",
+                        'url' => "/shop/{$product->id}",
                         'anchor' => null,
                     ]);
 
