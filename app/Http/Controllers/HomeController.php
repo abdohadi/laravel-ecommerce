@@ -29,6 +29,7 @@ class HomeController extends Controller
                             ->inRandomOrder()
                             ->take(4)
                             ->get();
+                            
 
         return view('home', compact(['featuredProducts', 'newProducts']));
     }
