@@ -25,7 +25,7 @@ class HomeController extends Controller
                             ->get();
 
         $newProducts = Product::available()
-                            ->whereRaw("DATEDIFF(CURDATE(), created_at) <= ". Product::NEW_PRODUCT_DURATION)
+                            // ->whereRaw("DATEDIFF(CURDATE(), created_at) <= ". Product::NEW_PRODUCT_DURATION)
                             ->inRandomOrder()
                             ->take(4)
                             ->get();
