@@ -37,6 +37,6 @@ class HomeController extends Controller
     {
         \Mail::send(new CustomerMessage($request));
 
-        return back()->with('success-message', 'Thanks for your message. We will contact you shortly');
+        return back()->with('success-message', 'Thanks! for your message. We will contact you shortly');
     }
 }
