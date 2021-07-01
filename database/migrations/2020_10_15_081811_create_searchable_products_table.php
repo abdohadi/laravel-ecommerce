@@ -30,7 +30,7 @@ class CreateSearchableProductsTable extends Migration
             $table->string('hierarchy_lvl4')->nullable();
             $table->string('hierarchy_lvl5')->nullable();
             $table->string('hierarchy_lvl6')->nullable();
-            $table->string('content');
+            $table->text('content');
             $table->string('url');
             $table->string('anchor')->nullable();
             $table->timestamps();
