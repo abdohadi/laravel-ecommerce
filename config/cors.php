@@ -22,6 +22,8 @@ return [
     'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
+    
+    'Access-Control-Allow-Origin' => ['*'],
 
     'allowed_headers' => ['*'],
 
