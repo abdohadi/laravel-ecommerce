@@ -194,7 +194,7 @@ class CheckoutController extends Controller
     {
         $this->reduceProductsQuantity($order);
 
-        Mail::send(new OrderPlaced($order));
+        //Mail::send(new OrderPlaced($order));
 
         Cart::instance('default')->destroy();
 

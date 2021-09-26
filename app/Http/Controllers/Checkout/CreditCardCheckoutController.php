@@ -35,9 +35,9 @@ class CreditCardCheckoutController extends CheckoutController
         $result = $this->createPayPageForPaytbas();
 
         // If there is an error while creating the pay page
-        if ($result->response_code != 4012) {
+        if (!isset($result->response_code) || $result->response_code != 4012) {
             // Insert into orders tables with error
-            $this->addToOrderTables($result->result ?? $result->details);
+            $this->addToOrderTables($result->result ?? $result->details ?? $result->error);
 
             return back()->withErrors('Something went wrong. Please try again!');
         }

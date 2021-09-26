@@ -18,7 +18,9 @@ class PaypalCheckoutController extends CheckoutController
 
     public function __construct()
     {
-        set_error_handler('checkoutErrorHandler');
+        parent::__construct();
+        
+        // set_error_handler('checkoutErrorHandler');
     }
 
     /**
@@ -46,7 +48,8 @@ class PaypalCheckoutController extends CheckoutController
             return json_encode($response->result);
         } catch (\Exception $e) {
             return $this->handlerErrorForFrontEnd(
-                CHECKOUT_ERROR['userMessage'] ?? self::DEFAULT_ERROR_MESSAGE, 
+                // CHECKOUT_ERROR['userMessage'] ?? self::DEFAULT_ERROR_MESSAGE, 
+                self::DEFAULT_ERROR_MESSAGE, 
                 route('checkout.completeIndex')
             );
         }
@@ -90,7 +93,8 @@ class PaypalCheckoutController extends CheckoutController
             return json_encode(route('thankyou'));
         } catch (\Exception $e) {
             return $this->handlerErrorForFrontEnd(
-                CHECKOUT_ERROR['userMessage'] ?? self::DEFAULT_ERROR_MESSAGE, 
+                // CHECKOUT_ERROR['userMessage'] ?? self::DEFAULT_ERROR_MESSAGE, 
+                self::DEFAULT_ERROR_MESSAGE, 
                 route('checkout.completeIndex')
             );
         }
